@@ -6,17 +6,27 @@
     </div>
 
 
-    <div id="toggle_spaces" class="p-2 h-12 border-b border-transparent flex justify-between items-center hover:bg-blue-800">
-        <div class="text-lg">work spaces</div>
-        <div>V</div>
+    <% for( let i = 0; i < workspaces.length; i++ ) { %>
+        <div id="toggle_spaces" class="p-2 h-12 border-b border-transparent flex justify-between items-center hover:bg-blue-800">
+            <div class="text-lg"><%= workspaces[i].name %></div>
+            <div>V</div>
       
     </div>
     <div id="toggle_spaces_list" class="hidden">
         <div>
-            <div class="bg-gray-600 rounded-md m-2 text-center" id="toggle_create_space_modal"> create new space </div>
-            all are here no borrders
+            <div class="bg-gray-600 rounded-md m-2 text-center" id="toggle_create_list_modal">
+                <input type="hidden" id="parent.id_<%=workspaces[i].id%>">
+                create new list 
+            </div>
+            <div>
+                <% for( let k = 0; k < workspaces[i].lists.length; k++ ) { %>
+                    <%= workspaces[i].lists[k].name %>
+                <%}%>
+            </div>
         </div>
     </div>
+
+    <%}%>
 
 
 

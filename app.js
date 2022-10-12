@@ -50,6 +50,10 @@ app.use('/',pages_route)
 app.use('/login',pages_route)
 app.use('/register',pages_route)
 app.use('/logout',pages_route)
+app.use('/create_list',pages_route)
+
+
+
 
 
 app.listen(3000);

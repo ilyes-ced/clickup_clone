@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const auth_controller = require('../controllers/Auth_controller')
+const Workspace_controller = require('../controllers/Workspace_controller')
 const is_auth_middleware = require("../middleware/is_auth_middleware")
 const workspace_model = require("../models/work_space")
 
@@ -29,6 +30,14 @@ router.post('/login',auth_controller.login)
 router.post('/register',auth_controller.register)
 
 router.post('/logout',auth_controller.logout)
+
+
+
+router.post('/create_list', Workspace_controller.create_list)
+
+
+
+
 
 
 
