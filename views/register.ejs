@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="public/css/app.css" />
+</head>
+<body class="bg-main text-text_color h-screen flex items-center  justify-center">
+
+
+
+
+    <div class='border bg-secondary rounded-lg  p-8 w-[600px]'>
+                <p class='text-[25px] font-bold mb-4'>Please create a new account</p>
+                <div class='flex flex-row'>
+                <button class='border rounded-lg w-1/2 mr-2 h-10 bg-main flex flex-row  items-center  justify-center hover:bg-secondary hover:text-the_red'><x-bi-google class='mx-2'/>Log in with google</button>          
+                <button class='border rounded-lg w-1/2 ml-2 h-10 bg-main flex flex-row items-center  justify-center hover:bg-secondary hover:text-the_red '><x-bi-facebook class='mx-2'/>Log in with facebook</button>
+                </div>
+
+
+                <div class='flex flex-row items-center mt-2'>
+
+                <hr class="w-96 h-0.5 bg-icons " />
+                <div class='m-4'>OR</div>
+                <hr class="w-96 h-0.5 bg-icons " />
+                </div>
+
+
+                <div>
+                <form action="/register" method="post" class='flex flex-col'>
+                    <label class='mb-2' for="email">Username</label>
+                    <input class='mb-4 pl-2 h-10 bg-main rounded-lg border' type="text" name='username' placeholder="Username">
+                    
+                    <label class='mb-2' for="email">Email</label>
+                    <input class='mb-4 pl-2 h-10 bg-main rounded-lg border' type="text" name='email' placeholder="email">
+                    <label class='mb-2' for="password">Password</label>
+                    <input class='pl-2 h-10 bg-main rounded-lg border' type="text" name='password' placeholder="password">
+                    <div class='flex justify-between my-4' >
+                    <div>
+                        <input class='' type="checkbox" name="checkbox" id="">
+                        <label for="checkbox">remember me</label>
+                    </div>
+        
+                    <a href="" class='text-the_red underline' >forgot password</a>
+                    </div>
+                    
+                    <button class='w-full bg-the_red rounded-lg h-10 mb-4 hover:bg-main hover:border hover:border-the_red'>submit</button>
+                </form>
+                have an accoutn?  <a href="/login" class='underline text-the_red'>login here</a>
+                </div>
+            </div>
+        
+        
+        
+        
+        
+
+
+</body>
+</html>
