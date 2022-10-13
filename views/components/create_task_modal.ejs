@@ -1,12 +1,31 @@
-<div  class="h-full w-full absolute hidden bg-[rgb(0,0,0,0.5)] flex items-center justify-center " id="create_task_modal" >
-    <div tabindex="-1" aria-hidden="true" class="inside_modal overflow-y-auto overflow-x-hidden absolute  z-50 h-modal justify-center items-center">
-        <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
-            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+<!-- flex items-center justify-center-->
+<div  class="h-full w-full absolute hidden bg-transparent flex justify-end items-end " id="create_task_modal" >
+    <div tabindex="-1" aria-hidden="true" class="inside_modal bg-red-600  overflow-x-hidden z-50 h-modal justify-center items-center w-[30rem] h-4/5 mx-6 mb-20">
+        <div class="w-full h-full bg-secondary overflow-y-auto">
+            <div class="relative  shadow"> 
                 
-                <div>
-                    <input type="text" placeholder="create task">
+
+
+
+                <div class="flex flex-col">
+
+                    ico
+                    <input type="text" id="name_create_task" placeholder="create task" required>
+                    <input type="text" placeholder="select list">
+                    <textarea class="bg-black" name="" id="" cols="30" rows="10"></textarea>
+                    
+                    <input type="text">
+                    <div class="my-12">+add subtask press to add input </div>
+                    <div class="my-12">set tags </div>
+                    <div class="my-12">set due date</div>
+                    <div class="my-12">set priority</div>
+                    <button id="submit_create_task">submit</button>
                 </div>
-              
+
+
+
+
+
             </div>
         </div>
     </div>

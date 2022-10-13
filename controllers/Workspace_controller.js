@@ -1,5 +1,6 @@
 const workspace_model = require("../models/work_space")
 const mongoose = require('mongoose')
+const ObjectID = require('mongodb').ObjectId
 
 
 const create_list =  async (req, res) => {
@@ -16,8 +17,12 @@ const create_list =  async (req, res) => {
             { _id:  req.body.parent_space}, 
             { $push: { 
                       lists: {
+                        _id : new ObjectID(),
                         name : req.body.name,
-                        tasks : []
+                        tasks : [],
+                        createdAt : Date(),
+                        updatedAt : Date()
+                            
                         }  
                     }
             })
@@ -42,7 +47,39 @@ const create_list =  async (req, res) => {
 
 
 
+const create_space =  async (req, res) => {
+    try{
+        console.log(req.body)
+        if(await workspace_model.exists({name: req.body.name})){
+            res.json({status: "exists"})
+            return
+        }
+        new_workspace = new workspace_model({
+            name: req.body.name,
+            owner: req.session.user_id,
+        })
+        await new_workspace.save()
+        res.json({status: "success"})
+    }catch(e){
+        console.log(e)
+        res.json({status: 'unknown'})
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = {
-    create_list
+    create_list, create_space
 }
