@@ -54,6 +54,9 @@ app.use('/create_list',pages_route)
 
 
 
+app.post('/create_new_task_in_list',(req, res) => {
+	console.log(req.body)
+})
 
 
 app.listen(3000);

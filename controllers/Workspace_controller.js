@@ -20,12 +20,12 @@ const create_list =  async (req, res) => {
                         _id : new ObjectID(),
                         name : req.body.name,
                         tasks : [],
-                        createdAt : Date(),
-                        updatedAt : Date()
+                        createdAt : Date.now(),
+                        updatedAt : Date.now()
                             
                         }  
                     }
-            })
+        })
         res.json({status: "success"})
     }catch(e){
         console.log(e)

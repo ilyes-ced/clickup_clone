@@ -6,9 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <link rel="stylesheet" type="text/css" href="public/css/app.css" />
+        <link rel="stylesheet" type="text/css" href="public/css/states.css" />
     </head>
     <body class='text-white text-sm'>
-
+        
 
         <!-- must change to include on demand -->
         <%- include('components/success_modal') %>
@@ -17,6 +18,11 @@
         <%- include('components/create_space_modal') %>
 
         
+
+        <%- include('components/select_list_modal') %>
+        <%- include('components/tags_modal') %>
+
+
 
         <div class='flex flex-row h-full bg-[#1d203e]'>
             <%- include('components/side_bar') %>

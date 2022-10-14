@@ -10,15 +10,30 @@
                 <div class="flex flex-col">
 
                     ico
-                    <input type="text" id="name_create_task" placeholder="create task" required>
-                    <input type="text" placeholder="select list">
+                    <input class="bg-black" type="text" id="name_create_task" placeholder="create task" required>
+                    <div class="w-full">
+                        <input class="bg-black w-full" type="text" placeholder="select list" id="task_create_select_input">
+                        <div class="absolute bg-red-600 h-32 w-full  hidden" id="task_create_select_input_toggle">
+                            <% for (let i = 0; i < workspaces.length; i++) { %>
+                                <%= workspaces[i].name %>
+                                <ul>
+                                    <% for (let k = 0; k < workspaces[i].lists.length; k++) { %>
+                                        <li id="space.id_<%= workspaces[i].id %> list.id_<%= workspaces[i].lists[k]._id %>" class="selected_list_to_add_task px-6 hover:bg-green-600">
+                                            <%= workspaces[i].lists[k].name %>
+                                        </li>
+                                    <% } %>
+                                </ul>
+                                
+                            <% } %>
+                        </div>
+                    </div>
                     <textarea class="bg-black" name="" id="" cols="30" rows="10"></textarea>
                     
                     <input type="text">
-                    <div class="my-12">+add subtask press to add input </div>
-                    <div class="my-12">set tags </div>
-                    <div class="my-12">set due date</div>
-                    <div class="my-12">set priority</div>
+                    <div class="my-12 bg-black">+add subtask press to add input </div>
+                    <div class="my-12 bg-black">set tags </div>
+                    <div class="my-12 bg-black">set due date</div>
+                    <div class="my-12 bg-black">set priority</div>
                     <button id="submit_create_task">submit</button>
                 </div>
 

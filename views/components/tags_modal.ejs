@@ -1,0 +1,20 @@
+<div class="absolute hidden w-full h-full bg-transparent" id="tags_modal">
+    <div class="absolute bg-red-600 h-32 w-32  "  id="tags_modal_content">
+        <div class="divide-y">
+            <ul>
+                <% if(user_data.tags.length == 0){ %>
+                    no tags here
+                <% }else{ %>
+                    <%for (let i = 0; i < user_data.tags.length; i++) { %>
+                        <li class="bg-[<%= user_data.tags[i].color %>] "><%= user_data.tags[i].name %></li>
+                    <% } %>
+                <% } %>
+            </ul>
+            <div>
+                you can add and edit tags in the seetings page
+            </div>
+        </div>
+    
+    </div>
+</div>
+

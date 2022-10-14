@@ -1,3 +1,13 @@
-.active_space{}
-.active_list{}
+.active_space{
+    background-color: pink;
+
+}
+
+
+.active_list{
+    background-color: rebeccapurple;
+}
+
+
+
 .active_nav_element{}
