@@ -1,6 +1,6 @@
 <% for( let i = 0; i < workspaces.length; i++ ) { %>
     <% for( let j = 0; j < workspaces[i].lists.length; j++ ) { %>
-        <div class="m-10 p-4 border border-gray-700 rounded-lg active_list_tasks" >
+        <div class="m-6 p-4 border border-gray-700 rounded-lg hidden active_tasks_list" id="active.tasks.list_<%= workspaces[i].lists[j]._id %>">
             <h1 class="text-xl mb-6">
                 <%= workspaces[i].lists[j].name %>
             </h1>
@@ -23,13 +23,29 @@
 
                     <div class="list_of_tasks">
                         <% for( let k = 0; k < workspaces[i].lists[j].tasks.length; k++ ) { %>
-                            <div class="border-y border-primary w-full flex flex-row bg-gray-800 hover:bg-gray-600 h-10 items-center px-2 cursor-pointer table_row">
+                            <div id="<%= workspaces[i].lists[j].tasks[k]._id %>" class="border-y border-primary w-full flex flex-row bg-gray-800 hover:bg-gray-600 h-10 items-center px-2 cursor-pointer table_row">
                                 <div class="flex flex-row space-x-2 w-2/3">
                                     <div class="border hover:border-blue-600 rounded-sm border-transparent p-0.5 self-center">    
                                         <div class="h-3 w-3 bg-blue-600 rounded-sm self-center "></div>
                                     </div>
-                                    <div><%=  workspaces[i].lists[j].tasks[k].name %></div>
-                                    <div class="toggle_sub_tasks this_hidden_icons rounded-md border border-gray-800 w-5 h-5 hidden"><%= workspaces[i].lists[j].tasks[k].sub_tasks.length %></div>
+                                    <div class="flex flex-row"><%=  workspaces[i].lists[j].tasks[k].name %> 
+                                        <%workspaces[i].lists[j].tasks[k].tags.forEach(element =>{
+                                            user_data.tags.filter(object =>{
+                                                if(object._id == element){ %>
+                                                    <div class="mx-2 px-1 rounded-md bg-[<%= object.color %>] flex flex-row"> <%= object.name %> <div id="<%= object._id %>" class="px-1 ml-1 remove_tag hover:bg-red-600 rounded-md">X</div> </div>
+                                                <%}
+                                            })
+                                        }) %>
+
+                                    </div>
+                                    <div class=" this_hidden_icons rounded-md border border-gray-800 w-10 h-5 hidden flex flex-row divide-x" >
+                                        <div class="toggle_sub_tasks w-5 flex items-center justify-center">
+                                            <%= workspaces[i].lists[j].tasks[k].sub_tasks.length %>
+                                        </div>
+                                        <div class="w-5 flex items-center justify-center create_sub_task_in_list" >
+                                            +
+                                        </div>
+                                    </div>
                                     <div class="toggle_tags_modal this_hidden_icons rounded-md border border-gray-800 w-5 h-5 hidden">i</div>
                                     <div class="this_hidden_icons rounded-md border border-gray-800 w-5 h-5 hidden">i</div>
                                 </div>
@@ -42,7 +58,7 @@
                             </div>
                             <div class="hidden hidden_sub_tasks">
                                 <% for( let l = 0; l < workspaces[i].lists[j].tasks[k].sub_tasks.length; l++ ) { %>
-                                    <div class="border-y border-primary w-full flex flex-row bg-gray-800 hover:bg-gray-600 h-10 items-center px-2 cursor-pointer table_row">
+                                    <div id="<%= workspaces[i].lists[j].tasks[k].sub_tasks[l]._id %>" class="border-y border-primary w-full flex flex-row bg-gray-800 hover:bg-gray-600 h-10 items-center px-2 cursor-pointer table_row">
                                         <div class="flex flex-row space-x-2 w-2/3 h-full items-center">
                                             <% if(!(l == workspaces[i].lists[j].tasks[k].sub_tasks.length-1)){ %>
                                                 <div class="w-10 h-full flex flex-row divide-x">
@@ -63,9 +79,17 @@
                                             <div class="border hover:border-blue-600 rounded-sm border-transparent p-0.5 self-center">    
                                                 <div class="h-3 w-3 bg-blue-600 rounded-sm self-center "></div>
                                             </div>
-                                            <div>ame of task and sub <%=  workspaces[i].lists[j].tasks[k].sub_tasks[l].name %></div>
+                                            <div class="flex flex-row"><%=  workspaces[i].lists[j].tasks[k].sub_tasks[l].name %>
+                                                <%workspaces[i].lists[j].tasks[k].tags.forEach(element =>{
+                                                    user_data.tags.filter(object =>{
+                                                    if(object._id == element){ %>
+                                                        <div class="mx-2 px-1 rounded-md bg-[<%= object.color %>] flex flex-row"> <%= object.name %> <div id="<%= object._id %>" class="px-1 ml-1 remove_tag hover:bg-red-600 rounded-md">X</div> </div>
+                                                    <%}
+                                                    })
+                                                }) %>
+                                            </div>
                                             <div class="this_hidden_icons rounded-md border border-gray-800 w-5 h-5 hidden">i</div>
-                                            <div class="this_hidden_icons rounded-md border border-gray-800 w-5 h-5 hidden">i</div>
+                                            <div class="toggle_tags_modal this_hidden_icons rounded-md border border-gray-800 w-5 h-5 hidden">tag</div>
                                             <div class="this_hidden_icons rounded-md border border-gray-800 w-5 h-5 hidden">i</div>
                                         </div>
                                         <div class="flex flex-row w-1/3">

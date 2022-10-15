@@ -13,6 +13,11 @@ const create_list =  async (req, res) => {
             res.json({status: "exists"})
             return
         }
+        if(!await workspace_model.exists({_id: req.body.parent_space, owner: req.session.user_id})){
+            console.log('gg')
+            res.json({status: "denied"})
+            return
+        }
         await workspace_model.findOneAndUpdate(
             { _id:  req.body.parent_space}, 
             { $push: { 

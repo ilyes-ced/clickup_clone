@@ -51,12 +51,10 @@ app.use('/login',pages_route)
 app.use('/register',pages_route)
 app.use('/logout',pages_route)
 app.use('/create_list',pages_route)
-
-
-
-app.post('/create_new_task_in_list',(req, res) => {
-	console.log(req.body)
-})
+app.use('/create_new_task_in_list', pages_route)
+app.use('/create_new_sub_task_in_list', pages_route)
+app.use('/add_tag_to_task', pages_route)
+app.use('/remove_tag_from_task', pages_route)
 
 
 app.listen(3000);

@@ -7,31 +7,30 @@ const lists = document.getElementsByClassName('list_names')
 lists[0].classList.add('active_list')
 current_active_space = spaces[0].id
 current_active_list = lists[0].id
-
+document.getElementById('active.tasks.list_'+current_active_list).classList.remove('hidden')
 for( let i = 0; i < lists.length; i++ ) { 
   lists[i].addEventListener('click', (event) => {
     if(!event.target.classList.contains('active_list')){
+      document.getElementById('active.tasks.list_'+current_active_list).classList.add('hidden')
       document.getElementsByClassName('active_list')[0].classList.remove('active_list')
       event.target.classList.add('active_list')
       current_active_list =  document.getElementsByClassName('active_list')[0]
       document.getElementsByClassName('active_space')[0].classList.remove('active_space')
       document.getElementById(current_active_list.parentElement.id.split('_')[1]).classList.add('active_space')
-      current_active_space =  document.getElementsByClassName('active_space')[0]
-    }
-  })
-}
-/*
-for( let i = 0; i < spaces.length; i++ ) { 
-  spaces[i].addEventListener('click', (event) => {
-    if(!event.target.classList.contains('active_space')){
-      document.getElementsByClassName('active_space')[0].classList.remove('active_space')
-      event.target.classList.add('active_space')
       current_active_space =  document.getElementsByClassName('active_space')[0].id
-      console.log(current_active_list+'/'+current_active_space)
+      current_active_list =  document.getElementsByClassName('active_list')[0].id
+      document.getElementById('active.tasks.list_'+current_active_list).classList.remove('hidden')
+      console.log(current_active_list+'/////'+current_active_space)
     }
   })
 }
-*/
+
+
+
+
+
+
+
 
 
 const success_modal = document.getElementById('success_modal')
@@ -181,8 +180,8 @@ for( let i = 0; i < table_row.length; i++ ) {
 
 
 
-
-success_modal.addEventListener('click', (event) => {
+const close_success_modal = document.getElementById('close_success_modal')
+close_success_modal.addEventListener('click', (event) => {
   success_modal.classList.add('hidden')
 })
 
@@ -219,7 +218,7 @@ submit_create_list.addEventListener('click', (event) => {
 
         setTimeout(()=>{
           success_modal.classList.add('hidden')
-        }, 2000);
+        }, 5000);
         
       }else if(json.status == 'exists'){
         name_create_list.parentElement.appendChild(document.createTextNode(" This text was added to the DIV."));
@@ -244,9 +243,9 @@ submit_create_list.addEventListener('click', (event) => {
 const name_create_space = document.getElementById('name_create_space')
 const submit_create_space = document.getElementById('submit_create_space')
 name_create_space.addEventListener("keyup", function(event) {
-    event.preventDefault();
+    event.preventDefault()
     if (event.keyCode === 13) {
-      submit_create_space.click();
+      submit_create_space.click()
     }
 });
 
@@ -254,7 +253,7 @@ name_create_space.addEventListener("keyup", function(event) {
 
 
 submit_create_space.addEventListener('click', (event) => { 
-  const xhttp = new XMLHttpRequest();
+  const xhttp = new XMLHttpRequest()
   let json = JSON.stringify({
     name: name_create_space.value,
   });
@@ -272,7 +271,7 @@ submit_create_space.addEventListener('click', (event) => {
 
         setTimeout(()=>{
           success_modal.classList.add('hidden')
-        }, 2000);
+        }, 5000);
         
       }else if(json.status == 'exists'){
         name_create_space.parentElement.appendChild(document.createTextNode(" This text was added to the DIV."));
@@ -294,6 +293,13 @@ submit_create_space.addEventListener('click', (event) => {
 
 
 
+const selected_list_to_add_task = document.getElementsByClassName('selected_list_to_add_task')
+for( let i = 0; i < selected_list_to_add_task.length; i++ ) { 
+  selected_list_to_add_task[i].addEventListener('click', (event) => {
+    task_create_select_input_toggle.classList.add('hidden')  
+    task_create_select_input.value = event.target.textContent
+  })
+}
 
 
 
@@ -301,11 +307,11 @@ const task_create_select_input = document.getElementById('task_create_select_inp
 const task_create_select_input_toggle = document.getElementById('task_create_select_input_toggle')
 
 task_create_select_input.addEventListener('click', (event) => {
-  if(document.activeElement == task_create_select_input){
-    task_create_select_input_toggle.classList.toggle('hidden')
-  }
+    task_create_select_input_toggle.classList.remove('hidden')  
+    task_create_select_input.addEventListener('blur', (event) => {
+      //task_create_select_input_toggle.classList.add('hidden')  
+    })
 })
-
 
 
 
@@ -353,7 +359,8 @@ for( let i = 0; i < toggle_list_of_tasks.length; i++ ) {
 
 
 
-
+var selected_task_tag
+var selected_task_parent_task = null
 const toggle_tags_modal = document.getElementsByClassName('toggle_tags_modal')
 const tags_modal_content = document.getElementById('tags_modal_content')
 const tags_modal = document.getElementById('tags_modal')
@@ -362,6 +369,10 @@ var top_pixel
 var left 
 for( let i = 0; i < toggle_tags_modal.length; i++ ) { 
   toggle_tags_modal[i].addEventListener('click', (event) => {
+    selected_task_tag = event.target.parentElement.parentElement.id
+    if(event.target.parentElement.parentElement.parentElement.classList.contains('hidden_sub_tasks')){
+      selected_task_parent_task=event.target.parentElement.parentElement.parentElement.previousElementSibling.id
+    }
     
     for (let i = tags_modal_content.classList.length - 1; i >= 0; i--) {
       if (tags_modal_content.classList[i].startsWith('top') || tags_modal_content.classList[i].startsWith('left')) {
@@ -387,6 +398,66 @@ tags_modal.addEventListener('click', (event) => {
 
 
 
+const selected_tag = document.getElementsByClassName('selected_tag')
+for( let i = 0; i < selected_tag.length; i++ ) { 
+  selected_tag[i].addEventListener('click', (event) => {
+    const xhttp = new XMLHttpRequest();
+    let json = JSON.stringify({
+      selected_task : selected_task_tag,
+      tag_id : event.target.id,
+      parent_workspace : current_active_space,
+      parent_list : current_active_list,
+      parent_task_if_exists : selected_task_parent_task
+    });
+    console.log(json)
+    xhttp.open("POST", "/add_tag_to_task");
+    xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xhttp.send(json);
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        json = JSON.parse(this.response) 
+        if(json.status == 'success'){
+          alert('gg')
+        }else if(json.status == 'denied'){
+          alert('ez')
+        }else{
+
+        }
+      }
+    }
+  })
+}
+
+
+const remove_tag = document.getElementsByClassName('remove_tag')
+for( let i = 0; i < remove_tag.length; i++ ) { 
+  remove_tag[i].addEventListener('click', (event) => {
+    const xhttp = new XMLHttpRequest();
+    let json = JSON.stringify({
+      selected_task : selected_task_tag,
+      tag_id : event.target.id,
+      parent_workspace : current_active_space,
+      parent_list : current_active_list,
+      parent_task_if_exists : selected_task_parent_task
+    });
+    console.log(json)
+    xhttp.open("POST", "/remove_tag_from_task");
+    xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xhttp.send(json);
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        json = JSON.parse(this.response) 
+        if(json.status == 'success'){
+          alert('gg')
+        }else if(json.status == 'denied'){
+          alert('ez')
+        }else{
+
+        }
+      }
+    }
+  })
+}
 
 
 
@@ -407,12 +478,7 @@ tags_modal.addEventListener('click', (event) => {
 
 
 
-
-
-
-
-
-const table_element = '<div class="border-y border-primary w-full flex flex-row bg-gray-800 hover:bg-gray-600 h-10 items-center px-2 cursor-pointer table_row"> \
+const table_element = '<div id="remove_on_error" class="border-y border-primary w-full flex flex-row bg-gray-800 hover:bg-gray-600 h-10 items-center px-2 cursor-pointer table_row"> \
                                 <div class="flex flex-row space-x-2 w-2/3"> \
                                     <div class="border hover:border-blue-600 rounded-sm border-transparent p-0.5 self-center">     \
                                         <div class="h-3 w-3 bg-blue-600 rounded-sm self-center "></div> \
@@ -444,29 +510,179 @@ for( let i = 0; i < add_task_in_list.length; i++ ) {
         const xhttp = new XMLHttpRequest();
         let json = JSON.stringify({
           name: new_task_name.value,
-          parent_workspace : current_active_space.id,
-          parent_list : current_active_list.id,
+          parent_workspace : current_active_space,
+          parent_list : current_active_list,
         });
+        console.log(json)
         xhttp.open("POST", "/create_new_task_in_list");
         xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
         xhttp.send(json);
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
             json = JSON.parse(this.response) 
-            name_create_space.value=""
             if(json.status == 'success'){
-            
-            }else if(json.status == 'exists'){
-
+              new_task_name.insertAdjacentHTML('beforebegin', new_task_name.value)
+              new_task_name.remove()
+              document.getElementById('remove_on_error').removeAttribute('id')       
+              success_modal.classList.remove('hidden')
+              setTimeout(()=>{
+                success_modal.classList.add('hidden')
+              }, 5000);
+            }else if(json.status == 'denied'){
+              document.getElementById('remove_on_error').remove()
             }else{
-      
+              alert('error, please check your internet connection')
             }
           }
         }
       }
     });
     new_task_name.focus()
-
+    new_task_name.addEventListener('blur', (event) => {
+      document.getElementById('remove_on_error').remove()
+    })
   })
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const sub_table_element = '<div id="remove_on_error" class="border-y border-primary w-full flex flex-row bg-gray-800 hover:bg-gray-600 h-10 items-center px-2 cursor-pointer table_row"> \
+<div class="flex flex-row space-x-2 w-2/3 h-full items-center">  \
+        <div class="w-10 h-full flex flex-row">  \
+            <div class="w-1/4 h-full "></div>  \
+            <div class="w-3/4 h-full ">  \
+                <div class="w-full h-1/2  border-b border-l rounded-bl-lg"></div>  \
+            </div>  \
+        </div>  \
+    <div class="border hover:border-blue-600 rounded-sm border-transparent p-0.5 self-center">    \
+        <div class="h-3 w-3 bg-blue-600 rounded-sm self-center "></div>  \
+    </div>  \
+    <div><input id="new_task_name" type="text" class=" bg-transparent"></div>\
+    <div class="this_hidden_icons rounded-md border border-gray-800 w-5 h-5 hidden">i</div>\
+    <div class="this_hidden_icons rounded-md border border-gray-800 w-5 h-5 hidden">i</div>\
+    <div class="this_hidden_icons rounded-md border border-gray-800 w-5 h-5 hidden">i</div>\
+</div>\
+<div class="flex flex-row w-1/3">\
+    <div class="w-1/4 text-center">ico</div>\
+    <div class="w-1/4 text-center">ico</div>\
+    <div class="w-1/4 text-center">icp</div>\
+    <div class="w-1/4 text-center">ico</div>\
+</div>\
+</div> '
+
+
+
+
+
+const create_sub_task_in_list = document.getElementsByClassName('create_sub_task_in_list')
+for( let i = 0; i < create_sub_task_in_list.length; i++ ) { 
+  create_sub_task_in_list[i].addEventListener('click', (event) => {
+    document.getElementsByClassName('hidden_sub_tasks')[i].classList.remove('hidden')
+    document.getElementsByClassName('hidden_sub_tasks')[i].insertAdjacentHTML('beforeend', sub_table_element)
+    const new_task_name = document.getElementById('new_task_name')
+    console.log(event.target.parentElement)
+    const parent_task = event.target.parentElement.parentElement.parentElement.id
+    new_task_name.addEventListener("keyup", function(event) {
+      event.preventDefault();
+      if (event.keyCode === 13) {
+        const xhttp = new XMLHttpRequest();
+        let json = JSON.stringify({
+          name: new_task_name.value,
+          parent_workspace : current_active_space,
+          parent_list : current_active_list,
+          parent_task : parent_task,
+        });
+        console.log(json)
+        xhttp.open("POST", "/create_new_sub_task_in_list");
+        xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        xhttp.send(json);
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            json = JSON.parse(this.response) 
+            if(json.status == 'success'){
+              new_task_name.insertAdjacentHTML('beforebegin', new_task_name.value)
+              new_task_name.remove()
+              document.getElementById('remove_on_error').removeAttribute('id')
+              success_modal.classList.remove('hidden')
+              setTimeout(()=>{
+                success_modal.classList.add('hidden')
+              }, 5000);
+            }else if(json.status == 'denied'){
+              document.getElementById('remove_on_error').remove()
+            }else{
+              alert('error, please check your internet connection')
+            }
+          }
+        }
+      }
+    });
+    new_task_name.focus()
+    new_task_name.addEventListener('blur', (event) => {
+      document.getElementById('remove_on_error').remove()
+    })
+  })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
