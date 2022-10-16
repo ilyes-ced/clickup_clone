@@ -4,6 +4,7 @@ const auth_controller = require('../controllers/Auth_controller')
 const Workspace_controller = require('../controllers/Workspace_controller')
 const Tasks_controller = require('../controllers/Tasks_controller')
 const Tags_controller = require('../controllers/Tags_controller')
+const Types_controller = require('../controllers/Types_controller')
 const is_auth_middleware = require("../middleware/is_auth_middleware")
 const workspace_model = require("../models/work_space")
 const user_model = require("../models/User")
@@ -40,17 +41,18 @@ router.get('/', is_auth_middleware, async (req, res) => {
             ]
         })
         */
-       /* await user_model.findOneAndUpdate({_id : req.session.user_id},{
+       /*
+        await user_model.findOneAndUpdate({_id : req.session.user_id},{
             $push : {
-                tags: {$each:
-                   [ {_id: new ObjectID(), name: "61111",color: '#'},
-                    {_id: new ObjectID(), name: "48",color: '#'},
-                    {_id: new ObjectID(), name: "zefez",color: '#'},
-                    {_id: new ObjectID(), name: "oijzfouhaeof",color: '#'},]
+                types: {$each:
+                   [ {_id: new ObjectID(), name: "REACT",color: 'rgb(200,120,10)'},
+                    {_id: new ObjectID(), name: "NODE",color: 'rgb(90,105,200)'},
+                    {_id: new ObjectID(), name: "JS",color: 'rgb(30,70,200)'},
+                    {_id: new ObjectID(), name: "RUST",color: 'rgb(10,30,45)'},]
                 }
             }    
-        })*/
-
+        })
+        */
         
         var workspaces = await workspace_model.find({owner: req.session.user_id})
         var user_data = await user_model.findOne({_id: req.session.user_id}).select('-_id tags types categories')
@@ -83,6 +85,8 @@ router.post('/create_new_task_in_list', Tasks_controller.create_new_task_in_list
 router.post('/create_new_sub_task_in_list', Tasks_controller.create_new_sub_task_in_list)
 router.post('/add_tag_to_task', Tags_controller.add_tag_to_task)
 router.post('/remove_tag_from_task', Tags_controller.remove_tag_from_task)
+router.post('/add_type_to_task', Types_controller.add_type_to_task)
+router.post('/remove_type_from_task', Types_controller.remove_type_from_task)
 
 
 

@@ -213,9 +213,14 @@ submit_create_list.addEventListener('click', (event) => {
       name_create_list.value=""
       if(json.status == 'success'){
         create_list_modal.classList.add('hidden')
-        document.getElementById('alert_content').innerText = 'i like this error'
         success_modal.classList.remove('hidden')
+        setTimeout(()=>{
+          success_modal.classList.add('hidden')
+        }, 5000);
 
+        document.getElementById("parent.id_"+current_workspace).parentElement.nextElementSibling.insertAdjacentHTML('beforeend', '<div id="'+json.id+'" class="list_names px-10 h-10 flex items-center">'+json.name+'</div>')
+       
+        success_modal.classList.remove('hidden')
         setTimeout(()=>{
           success_modal.classList.add('hidden')
         }, 5000);
@@ -266,9 +271,24 @@ submit_create_space.addEventListener('click', (event) => {
       name_create_space.value=""
       if(json.status == 'success'){
         create_space_modal.classList.add('hidden')
-        document.getElementById('alert_content').innerText = 'i like this error'
-        success_modal.classList.remove('hidden')
 
+
+        sidebar_menu.insertAdjacentHTML('beforeend', 
+
+        '<div id="'+json.id+'" class="toggle_spaces p-2 h-12 border-b border-transparent flex justify-between items-center hover:bg-blue-800"> \
+        <div  class="text-lg">'+json.name+'</div> \
+        <div>V</div> \
+    </div> \
+    <div id="" class="hidden toggle_spaces_list"> \
+        <div class="bg-gray-600 rounded-md m-2 text-center toggle_create_list_modal" id=""> \
+            <input type="hidden" id="parent.id_'+json.id+'"> \
+            create new list \
+        </div> \
+        <div id="parent_'+json.id+'"> \
+        </div> \
+    </div>'
+    )
+        success_modal.classList.remove('hidden')
         setTimeout(()=>{
           success_modal.classList.add('hidden')
         }, 5000);
@@ -298,6 +318,7 @@ for( let i = 0; i < selected_list_to_add_task.length; i++ ) {
   selected_list_to_add_task[i].addEventListener('click', (event) => {
     task_create_select_input_toggle.classList.add('hidden')  
     task_create_select_input.value = event.target.textContent
+    task_create_select_input.dataset.id = event.target.id
   })
 }
 
@@ -320,6 +341,13 @@ task_create_select_input.addEventListener('click', (event) => {
 
 
 
+const toggle_sub_tasks = document.getElementsByClassName('toggle_sub_tasks')
+const hidden_sub_tasks = document.getElementsByClassName('hidden_sub_tasks')
+for( let i = 0; i < toggle_sub_tasks.length; i++ ) { 
+  toggle_sub_tasks[i].addEventListener('click', (event) => {
+    hidden_sub_tasks[i].classList.toggle('hidden')
+  })
+}
 
 
 
@@ -330,6 +358,7 @@ task_create_select_input.addEventListener('click', (event) => {
 
 
 
+/*
 
 
 const toggle_sub_tasks = document.getElementsByClassName('toggle_sub_tasks')
@@ -339,7 +368,7 @@ for( let i = 0; i < toggle_sub_tasks.length; i++ ) {
     hidden_sub_tasks[i].classList.toggle('hidden')
   })
 }
-
+*/
 
 
 
@@ -359,12 +388,178 @@ for( let i = 0; i < toggle_list_of_tasks.length; i++ ) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var selected_task_type
+var selected_task_parent_task = null
+const toggle_types_modal = document.getElementsByClassName('toggle_types_modal')
+const types_modal_content = document.getElementById('types_modal_content')
+const types_modal = document.getElementById('types_modal')
+var types_top
+var types_left 
+
+for( let i = 0; i < toggle_types_modal.length; i++ ) { 
+  toggle_types_modal[i].addEventListener('click', (event) => {
+    console.log('clicked')
+    selected_task_type = event.target.parentElement.parentElement.id
+    if(event.target.parentElement.parentElement.parentElement.classList.contains('hidden_sub_tasks')){
+      selected_task_parent_task=event.target.parentElement.parentElement.parentElement.previousElementSibling.id
+    }
+    
+    for (let i = types_modal_content.classList.length - 1; i >= 0; i--) {
+      if (types_modal_content.classList[i].startsWith('top') || types_modal_content.classList[i].startsWith('left')) {
+          types_modal_content.classList.remove(types_modal_content.classList[i]);
+      }
+    }
+    types_modal.classList.remove('hidden')
+    top_pixel = 'top-['+event.target.offsetTop+'px]'
+    left = 'left-['+event.target.offsetLeft+'px]'
+    //types_modal_content.classList.add(top_pixel) 
+    //types_modal_content.classList.add(left)
+    types_modal_content.style.top = (event.target.offsetTop+40)+'px'
+    types_modal_content.style.left = event.target.offsetLeft+'px'
+  })
+}
+
+types_modal.addEventListener('click', (event) => {
+  if(event.target == event.currentTarget) {
+    types_modal.classList.toggle('hidden')
+  }
+})
+
+const selected_type = document.getElementsByClassName('selected_type')
+for( let i = 0; i < selected_type.length; i++ ) { 
+  selected_type[i].addEventListener('click', (event) => {
+    const xhttp = new XMLHttpRequest();
+    let json = JSON.stringify({
+      selected_task : selected_task_type,
+      type_id : event.target.id,
+      parent_workspace : current_active_space,
+      parent_list : current_active_list,
+      parent_task_if_exists : selected_task_parent_task
+    });
+    console.log(json)
+    xhttp.open("POST", "/add_type_to_task");
+    xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xhttp.send(json);
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        json = JSON.parse(this.response) 
+        alert(this.response)
+        if(json.status == 'success'){
+          alert('gg')
+        }else if(json.status == 'denied'){
+          alert('ez')
+        }else{
+
+        }
+      }
+    }
+  })
+}
+
+
+const remove_type = document.getElementsByClassName('remove_type')
+for( let i = 0; i < remove_type.length; i++ ) { 
+  remove_type[i].addEventListener('click', (event) => {
+    const xhttp = new XMLHttpRequest();
+    let json = JSON.stringify({
+      selected_task : selected_task_type,
+      type_id : event.target.id,
+      parent_workspace : current_active_space,
+      parent_list : current_active_list,
+      parent_task_if_exists : selected_task_parent_task
+    });
+    console.log(json)
+    xhttp.open("POST", "/remove_type_from_task");
+    xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xhttp.send(json);
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        json = JSON.parse(this.response) 
+        if(json.status == 'success'){
+          alert('gg')
+        }else if(json.status == 'denied'){
+          alert('ez')
+        }else{
+
+        }
+      }
+    }
+  })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var selected_task_tag
 var selected_task_parent_task = null
 const toggle_tags_modal = document.getElementsByClassName('toggle_tags_modal')
 const tags_modal_content = document.getElementById('tags_modal_content')
 const tags_modal = document.getElementById('tags_modal')
-var co = 0
 var top_pixel
 var left 
 for( let i = 0; i < toggle_tags_modal.length; i++ ) { 

@@ -18,20 +18,20 @@ const create_list =  async (req, res) => {
             res.json({status: "denied"})
             return
         }
+        const obj = {
+            _id : new ObjectID(),
+            name : req.body.name,
+            tasks : [],
+            createdAt : Date.now(),
+            updatedAt : Date.now()
+        }
         await workspace_model.findOneAndUpdate(
             { _id:  req.body.parent_space}, 
             { $push: { 
-                      lists: {
-                        _id : new ObjectID(),
-                        name : req.body.name,
-                        tasks : [],
-                        createdAt : Date.now(),
-                        updatedAt : Date.now()
-                            
-                        }  
+                      lists: obj
                     }
         })
-        res.json({status: "success"})
+        res.json({status: "success",id: obj._id,name:obj.name})
     }catch(e){
         console.log(e)
         res.json({status: 'unknown'})
@@ -60,11 +60,13 @@ const create_space =  async (req, res) => {
             return
         }
         new_workspace = new workspace_model({
+            _id : new ObjectID(),
             name: req.body.name,
             owner: req.session.user_id,
         })
         await new_workspace.save()
-        res.json({status: "success"})
+        console.log(new_workspace)
+        res.json({status: "success", id: new_workspace._id, name:new_workspace.name})
     }catch(e){
         console.log(e)
         res.json({status: 'unknown'})

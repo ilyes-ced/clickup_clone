@@ -7,9 +7,10 @@ const ObjectID = require('mongodb').ObjectId
 
 
 
-const add_tag_to_task = async (req, res) => {
+const add_type_to_task = async (req, res) => {
+  
     try{	
-		if(!(mongoose.isValidObjectId(req.body.selected_task) && mongoose.isValidObjectId(req.body.tag_id) && mongoose.isValidObjectId(req.body.parent_workspace) && mongoose.isValidObjectId(req.body.parent_list))){
+		if(!(mongoose.isValidObjectId(req.body.selected_task) && mongoose.isValidObjectId(req.body.type_id) && mongoose.isValidObjectId(req.body.parent_workspace) && mongoose.isValidObjectId(req.body.parent_list))){
 			res.json({status: "denied"})
 			return
 		}
@@ -23,11 +24,11 @@ const add_tag_to_task = async (req, res) => {
 			res.json({status: "denied"})
 			return
 		}
-        if(!(await workspace_model.exists({_id: req.body.parent_workspace, owner: req.session.user_id}) || User_model.exists({tags : {$elemMatch:{_id: ObjectID(req.body.tag_id)}}}))){
+        if(!(await workspace_model.exists({_id: req.body.parent_workspace, owner: req.session.user_id}) || User_model.exists({types : {$elemMatch:{_id: ObjectID(req.body.type_id)}}}))){
             res.json({status: "denied"})
             return
         }
-        if(!await User_model.exists({_id: req.session.user_id, tags:{$elemMatch:{_id: ObjectID(req.body.tag_id)}}}).select('-_id tags')){
+        if(!await User_model.exists({_id: req.session.user_id, types:{$elemMatch:{_id: ObjectID(req.body.type_id)}}}).select('-_id types')){
             res.json({status: "denied"})
             return
         }
@@ -37,7 +38,7 @@ const add_tag_to_task = async (req, res) => {
 
             await workspace_model.findOneAndUpdate({_id : req.body.parent_workspace, lists : {$elemMatch:{_id:ObjectID(req.body.parent_list)}}},{
                 $push : {
-                    "lists.$[para1].tasks.$[para2].sub_tasks.$[para3].tags": req.body.tag_id
+                    "lists.$[para1].tasks.$[para2].sub_tasks.$[para3].types": req.body.type_id
                     }
             },{
                 arrayFilters: [
@@ -53,7 +54,7 @@ const add_tag_to_task = async (req, res) => {
 
             await workspace_model.findOneAndUpdate({_id : req.body.parent_workspace, lists : {$elemMatch:{_id:ObjectID(req.body.parent_list)}}},{
                 $push : {
-                    "lists.$[para1].tasks.$[para2].tags": req.body.tag_id
+                    "lists.$[para1].tasks.$[para2].types": req.body.type_id
                     }
             },{
                 arrayFilters: [
@@ -64,22 +65,13 @@ const add_tag_to_task = async (req, res) => {
 		    res.json({status: 'success'})
         }
         
-        
 
-/*
-        await workspace_model.findOneAndUpdate({_id : req.body.parent_workspace, lists : {$elemMatch:{_id:ObjectID(req.body.parent_list)}}},{
-            $push : {
-                "lists.$[para1].tasks": {_id : new ObjectID(), name:req.body.name, description: "", sub_tasks:[], createdAt:Date.now(), updatedAt:Date.now()}}
-                },{
-                arrayFilters: [
-                    {"para1._id" : ObjectID(req.body.parent_list)},
-            ]   
-        })*/
 		
 	}catch(e){
 		res.json({status: 'error'})
         console.log(e)
 	}
+    
 }
 
 
@@ -100,7 +92,7 @@ const add_tag_to_task = async (req, res) => {
 
 
 
-const remove_tag_from_task = async (req,res) => {
+const remove_type_from_task = async (req,res) => {
 
 }
 
@@ -115,5 +107,5 @@ const remove_tag_from_task = async (req,res) => {
 
 
 module.exports = {
-    add_tag_to_task, remove_tag_from_task
+    add_type_to_task, remove_type_from_task
 }

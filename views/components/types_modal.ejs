@@ -1,0 +1,20 @@
+<div class="absolute hidden w-full h-full bg-transparent" id="types_modal">
+    <div class="absolute bg-red-600 h-32 w-32  "  id="types_modal_content">
+        <div class="divide-y">
+            <ul>
+                <% if(user_data.types.length == 0){ %>
+                    no types here
+                <% }else{ %>
+                    <%for (let i = 0; i < user_data.types.length; i++) { %>
+                        <li id="<%= user_data.types[i]._id %>" class="bg-[<%= user_data.types[i].color %>] selected_type"><%= user_data.types[i].name %></li>
+                    <% } %>
+                <% } %>
+            </ul>
+            <div>
+                you can add and edit types in the seetings page
+            </div>
+        </div>
+    
+    </div>
+</div>
+

@@ -5,12 +5,12 @@
                 <%= workspaces[i].lists[j].name %>
             </h1>
             <div class="w-full flex flex-row">
-                <div class="h-5 w-5 bg-blue-600 rounded-full mr-1  toggle_list_of_tasks">ic</div>
+                <div class="h-5 w-5 text-blue-600 border border-blue-600 rounded-full mr-1  toggle_list_of_tasks"></div>
                 <div class="flex flex-col w-full">
                     <div class="w-full flex flex-row  pr-2">
                         <div class="flex flex-row space-x-2 w-2/3">
                             <div class="bg-pink-600 rounded-t-md">task category here</div>
-                            <div>n of tasks</div>
+                            <div><%= workspaces[i].lists[j].tasks.length %> tasks</div>
                         </div>
                         <div class="flex flex-row w-1/3 lists_of_tasks_indexes">
                             <div class="w-1/4 text-center">due date</div>
@@ -49,11 +49,37 @@
                                     <div class="toggle_tags_modal this_hidden_icons rounded-md border border-gray-800 w-5 h-5 hidden">i</div>
                                     <div class="this_hidden_icons rounded-md border border-gray-800 w-5 h-5 hidden">i</div>
                                 </div>
-                                <div class="flex flex-row w-1/3">
-                                    <div class="w-1/4 text-center">temp</div>
-                                    <div class="w-1/4 text-center">temp</div>
-                                    <div class="w-1/4 text-center">temp</div>
-                                    <div class="w-1/4 text-center">temp</div>
+                                <div class="flex flex-row w-1/3 h-full items-center">
+                                    <% if(workspaces[i].lists[j].tasks[k].due_date){ %>
+                                        azdazd
+                                    <% }else{ %>
+                                        <div class="w-1/4 text-center">temp</div>
+                                    <% } %>
+                                    <% if(workspaces[i].lists[j].tasks[k].priority){ %>
+                                        azdazd
+                                    <% }else{ %>
+                                        <div class="w-1/4 text-center">temp</div>
+                                    <% } %>
+                                    <% if(workspaces[i].lists[j].tasks[k].type){ %>
+                                        <div class="w-1/4 text-center hover:bg-green-600 h-full flex  items-center justify-center toggle_types_modal">
+                                            <%
+                                            user_data.typess.forEach(object =>{
+                                                if(object._id == workspaces[i].lists[j].tasks[k].type){ %>
+                                                    <%=workspaces[i].lists[j].tasks[k].type%>
+                                                    
+                                                <%}
+                                            })
+                                            %>    
+                                        </div>
+                                    <% }else{ %>
+                                        <div class="w-1/4 text-center hover:bg-green-600 h-full flex  items-center justify-center toggle_types_modal">-</div>
+                                    <% } %>                     
+                                    <div class="w-1/4 flex items-center">
+                                        <div class="text-green-600 px-1"><%= workspaces[i].lists[j].tasks[k].progress %>%</div>
+                                        <div class="w-full rounded-full border border-green-600 h-2">
+                                            <div class="h-full rounded-full bg-green-600" style="width:45%;"></div>    
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="hidden hidden_sub_tasks">
@@ -81,10 +107,11 @@
                                             </div>
                                             <div class="flex flex-row"><%=  workspaces[i].lists[j].tasks[k].sub_tasks[l].name %>
                                                 <%workspaces[i].lists[j].tasks[k].tags.forEach(element =>{
-                                                    user_data.tags.filter(object =>{
-                                                    if(object._id == element){ %>
-                                                        <div class="mx-2 px-1 rounded-md bg-[<%= object.color %>] flex flex-row"> <%= object.name %> <div id="<%= object._id %>" class="px-1 ml-1 remove_tag hover:bg-red-600 rounded-md">X</div> </div>
-                                                    <%}
+                                                    user_data.tags.filter(object =>{ 
+                                                        if(object._id == element){ %>
+                                                            <div class="mx-2 px-1 rounded-md bg-[<%= object.color %>] flex flex-row"> <%= object.name %> <div id="<%= object._id %>" class="px-1 ml-1 remove_tag hover:bg-red-600 rounded-md">X</div> </div>
+                                                        <%}
+                                                    
                                                     })
                                                 }) %>
                                             </div>
@@ -92,10 +119,10 @@
                                             <div class="toggle_tags_modal this_hidden_icons rounded-md border border-gray-800 w-5 h-5 hidden">tag</div>
                                             <div class="this_hidden_icons rounded-md border border-gray-800 w-5 h-5 hidden">i</div>
                                         </div>
-                                        <div class="flex flex-row w-1/3">
+                                        <div class="flex flex-row w-1/3 h-full items-center">
                                             <div class="w-1/4 text-center">ico</div>
                                             <div class="w-1/4 text-center">ico</div>
-                                            <div class="w-1/4 text-center">icp</div>
+                                            <div class="w-1/4 text-center hover:bg-green-600 h-full flex  items-center justify-center toggle_types_modal">temp</div>
                                             <div class="w-1/4 text-center">ico</div>
                                         </div>
                                     </div>
