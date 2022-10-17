@@ -20,7 +20,7 @@ const create_new_task_in_list = async (req, res) => {
         await workspace_model.findOneAndUpdate({_id : req.body.parent_workspace, lists : {$elemMatch:{_id:ObjectID(req.body.parent_list)}}},{
             $push : {
                 "lists.$[para1].tasks": {
-					_id : new ObjectID(), name:req.body.name, description: '', tags:[], due_date: '', priority: '', type: '', progress: 0, sub_tasks:[], createdAt:Date.now(), updatedAt:Date.now()
+					_id : new ObjectID(), name:req.body.name, description: '', tags:[], due_date: '', priority: '', category:'' , type: '', progress: 0, sub_tasks:[], createdAt:Date.now(), updatedAt:Date.now()
 				}
 			}
         },{
@@ -58,7 +58,7 @@ const create_new_sub_task_in_list = async (req, res) => {
         }
         await workspace_model.findOneAndUpdate({_id : req.body.parent_workspace, lists : {$elemMatch:{_id:ObjectID(req.body.parent_list)}}},{
             $push : {
-                "lists.$[para1].tasks.$[para2].sub_tasks": {_id : new ObjectID(), name:req.body.name, description: '', tags:[], due_date: '', priority: '', type: '', progress: 0, screatedAt:Date.now(), updatedAt:Date.now()}}
+                "lists.$[para1].tasks.$[para2].sub_tasks": {_id : new ObjectID(), name:req.body.name, description: '', tags:[], due_date: '', priority: '', category:'' , type: '', progress: 0, screatedAt:Date.now(), updatedAt:Date.now()}}
                 },{
                 arrayFilters: [
                     {"para1._id" : ObjectID(req.body.parent_list)},

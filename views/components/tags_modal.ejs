@@ -6,7 +6,7 @@
                     no tags here
                 <% }else{ %>
                     <%for (let i = 0; i < user_data.tags.length; i++) { %>
-                        <li id="<%= user_data.tags[i]._id %>" class="bg-[<%= user_data.tags[i].color %>] selected_tag"><%= user_data.tags[i].name %></li>
+                        <li id="<%= user_data.tags[i]._id %>" class="selected_tag" style="background-color: <%= user_data.tags[i].color %>"><%= user_data.tags[i].name %></li>
                     <% } %>
                 <% } %>
             </ul>

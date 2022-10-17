@@ -44,11 +44,11 @@ router.get('/', is_auth_middleware, async (req, res) => {
        /*
         await user_model.findOneAndUpdate({_id : req.session.user_id},{
             $push : {
-                types: {$each:
-                   [ {_id: new ObjectID(), name: "REACT",color: 'rgb(200,120,10)'},
-                    {_id: new ObjectID(), name: "NODE",color: 'rgb(90,105,200)'},
-                    {_id: new ObjectID(), name: "JS",color: 'rgb(30,70,200)'},
-                    {_id: new ObjectID(), name: "RUST",color: 'rgb(10,30,45)'},]
+                categories: {$each:
+                   [ {_id: new ObjectID(), name: "tech",color: 'rgb(200,120,210)'},
+                    {_id: new ObjectID(), name: "to do",color: 'rgb(90,15,200)'},
+                    {_id: new ObjectID(), name: "house",color: 'rgb(30,70,20)'},
+                    {_id: new ObjectID(), name: "maintenance",color: 'rgb(150,200,45)'},]
                 }
             }    
         })
@@ -56,7 +56,6 @@ router.get('/', is_auth_middleware, async (req, res) => {
         
         var workspaces = await workspace_model.find({owner: req.session.user_id})
         var user_data = await user_model.findOne({_id: req.session.user_id}).select('-_id tags types categories')
-        
 
         res.render('home_page', {workspaces: workspaces, user_data: user_data})
     }catch(e){

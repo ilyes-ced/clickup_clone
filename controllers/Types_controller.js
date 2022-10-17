@@ -37,8 +37,8 @@ const add_type_to_task = async (req, res) => {
          
 
             await workspace_model.findOneAndUpdate({_id : req.body.parent_workspace, lists : {$elemMatch:{_id:ObjectID(req.body.parent_list)}}},{
-                $push : {
-                    "lists.$[para1].tasks.$[para2].sub_tasks.$[para3].types": req.body.type_id
+                $set : {
+                    "lists.$[para1].tasks.$[para2].sub_tasks.$[para3].type": req.body.type_id
                     }
             },{
                 arrayFilters: [
@@ -47,14 +47,15 @@ const add_type_to_task = async (req, res) => {
                     {"para3._id" : ObjectID(req.body.selected_task)},
                 ]   
             })
-		    res.json({status: 'success'})
+            console.log(await User_model.findOne({_id : req.session.user_id}))
+		    res.json({status: 'success', name: '', color: ''})
         }else{
    
 
 
             await workspace_model.findOneAndUpdate({_id : req.body.parent_workspace, lists : {$elemMatch:{_id:ObjectID(req.body.parent_list)}}},{
-                $push : {
-                    "lists.$[para1].tasks.$[para2].types": req.body.type_id
+                $set : {
+                    "lists.$[para1].tasks.$[para2].type": req.body.type_id
                     }
             },{
                 arrayFilters: [
@@ -62,7 +63,8 @@ const add_type_to_task = async (req, res) => {
                     {"para2._id" : ObjectID(req.body.selected_task)},
                 ]   
             })
-		    res.json({status: 'success'})
+            console.log(await User_model.findOne({_id : req.session.user_id}))
+		    res.json({status: 'success', name: '', color: ''})
         }
         
 

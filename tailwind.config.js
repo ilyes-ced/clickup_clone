@@ -1,14 +1,17 @@
 /** @type {import('tailwindcss').Config} */
+
+
 module.exports = {
     content: [
         './views/*.ejs',
         './views/components/*.ejs',
     ],
+
     safelist: [
         ///^bg-/,
-        /*{
+        {
             pattern: /bg-(red|green|blue)-(100|200|300)/
-        }*/
+        }
     ],
     theme: {
         extend: {

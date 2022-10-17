@@ -6,7 +6,7 @@
                     no types here
                 <% }else{ %>
                     <%for (let i = 0; i < user_data.types.length; i++) { %>
-                        <li id="<%= user_data.types[i]._id %>" class="bg-[<%= user_data.types[i].color %>] selected_type"><%= user_data.types[i].name %></li>
+                        <li id="<%= user_data.types[i]._id %>" class="selected_type" style="background-color: <%= user_data.types[i].color %>"><%= user_data.types[i].name %></li>
                     <% } %>
                 <% } %>
             </ul>

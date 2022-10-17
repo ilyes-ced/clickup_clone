@@ -397,6 +397,13 @@ for( let i = 0; i < toggle_list_of_tasks.length; i++ ) {
 
 
 
+const select_due_date = document.getElementsByClassName('select_due_date')
+for( let i = 0; i < select_due_date.length; i++ ) { 
+  select_due_date[i].addEventListener('click', (event) => {
+    select_due_date[i].getElementsByTagName('input')[0].showPicker()
+  })
+}
+
 
 
 
@@ -434,12 +441,13 @@ for( let i = 0; i < toggle_types_modal.length; i++ ) {
     if(event.target.parentElement.parentElement.parentElement.classList.contains('hidden_sub_tasks')){
       selected_task_parent_task=event.target.parentElement.parentElement.parentElement.previousElementSibling.id
     }
-    
+    /*
     for (let i = types_modal_content.classList.length - 1; i >= 0; i--) {
       if (types_modal_content.classList[i].startsWith('top') || types_modal_content.classList[i].startsWith('left')) {
           types_modal_content.classList.remove(types_modal_content.classList[i]);
       }
-    }
+    }*/
+
     types_modal.classList.remove('hidden')
     top_pixel = 'top-['+event.target.offsetTop+'px]'
     left = 'left-['+event.target.offsetLeft+'px]'
@@ -488,35 +496,6 @@ for( let i = 0; i < selected_type.length; i++ ) {
 }
 
 
-const remove_type = document.getElementsByClassName('remove_type')
-for( let i = 0; i < remove_type.length; i++ ) { 
-  remove_type[i].addEventListener('click', (event) => {
-    const xhttp = new XMLHttpRequest();
-    let json = JSON.stringify({
-      selected_task : selected_task_type,
-      type_id : event.target.id,
-      parent_workspace : current_active_space,
-      parent_list : current_active_list,
-      parent_task_if_exists : selected_task_parent_task
-    });
-    console.log(json)
-    xhttp.open("POST", "/remove_type_from_task");
-    xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-    xhttp.send(json);
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        json = JSON.parse(this.response) 
-        if(json.status == 'success'){
-          alert('gg')
-        }else if(json.status == 'denied'){
-          alert('ez')
-        }else{
-
-        }
-      }
-    }
-  })
-}
 
 
 
@@ -627,6 +606,11 @@ for( let i = 0; i < selected_tag.length; i++ ) {
 const remove_tag = document.getElementsByClassName('remove_tag')
 for( let i = 0; i < remove_tag.length; i++ ) { 
   remove_tag[i].addEventListener('click', (event) => {
+    selected_task_parent_task = null
+    selected_task_tag = event.target.parentElement.parentElement.parentElement.parentElement.id
+    if(event.target.parentElement.parentElement.parentElement.parentElement.parentElement.classList.contains('hidden_sub_tasks')){
+      selected_task_parent_task=event.target.parentElement.parentElement.parentElement.parentElement.parentElement.previousElementSibling.id
+    }
     const xhttp = new XMLHttpRequest();
     let json = JSON.stringify({
       selected_task : selected_task_tag,
@@ -643,7 +627,7 @@ for( let i = 0; i < remove_tag.length; i++ ) {
       if (this.readyState == 4 && this.status == 200) {
         json = JSON.parse(this.response) 
         if(json.status == 'success'){
-          alert('gg')
+          event.target.parentElement.remove()
         }else if(json.status == 'denied'){
           alert('ez')
         }else{
@@ -881,3 +865,52 @@ for( let i = 0; i < create_sub_task_in_list.length; i++ ) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const hover_item = document.getElementById('hover_item')
+const hover_item_content = document.getElementById('hover_item_content')
+const categories_modal = document.getElementById('categories_modal')
+const categories_modal_content = document.getElementById('categories_modal_content')
+const task_category_toggle = document.getElementsByClassName('task_category_toggle')
+for( let i = 0; i < task_category_toggle.length; i++ ) { 
+  task_category_toggle[i].addEventListener('click', (event) => {
+
+    categories_modal.classList.remove('hidden')
+    categories_modal_content.style.top = (event.target.offsetTop+40)+'px'
+    categories_modal_content.style.left = event.target.offsetLeft+'px'
+  })
+  task_category_toggle[i].addEventListener('mouseover', (event) => {
+    
+    hover_item.classList.remove('hidden')
+    hover_item.style.top = (event.target.offsetTop-60)+'px'
+    hover_item.style.left = event.target.offsetLeft+'px'
+    hover_item_content.innerText = 'this tech'
+  })
+
+  task_category_toggle[i].addEventListener('mouseout', (event) => {
+    hover_item.classList.add('hidden')
+  })
+
+}

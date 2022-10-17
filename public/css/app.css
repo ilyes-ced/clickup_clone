@@ -683,6 +683,10 @@ video {
   height: 0px;
 }
 
+.h-32 {
+  height: 8rem;
+}
+
 .h-4\/5 {
   height: 80%;
 }
@@ -695,10 +699,6 @@ video {
 
 .h-12 {
   height: 3rem;
-}
-
-.h-32 {
-  height: 8rem;
 }
 
 .h-5 {
@@ -737,16 +737,16 @@ video {
   width: 24rem;
 }
 
+.w-32 {
+  width: 8rem;
+}
+
 .w-\[30rem\] {
   width: 30rem;
 }
 
 .w-\[400px\] {
   width: 400px;
-}
-
-.w-32 {
-  width: 8rem;
 }
 
 .w-5 {
@@ -825,16 +825,16 @@ video {
   margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
-.divide-x-2 > :not([hidden]) ~ :not([hidden]) {
-  --tw-divide-x-reverse: 0;
-  border-right-width: calc(2px * var(--tw-divide-x-reverse));
-  border-left-width: calc(2px * calc(1 - var(--tw-divide-x-reverse)));
-}
-
 .divide-y > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-y-reverse: 0;
   border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
   border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
+}
+
+.divide-x-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-x-reverse: 0;
+  border-right-width: calc(2px * var(--tw-divide-x-reverse));
+  border-left-width: calc(2px * calc(1 - var(--tw-divide-x-reverse)));
 }
 
 .divide-x > :not([hidden]) ~ :not([hidden]) {
@@ -951,15 +951,6 @@ video {
   background-color: rgb(44 47 72 / var(--tw-bg-opacity));
 }
 
-.bg-\[rgb\(0\2c 0\2c 0\2c 0\.5\)\] {
-  background-color: rgb(0,0,0,0.5);
-}
-
-.bg-white {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
 .bg-transparent {
   background-color: transparent;
 }
@@ -967,6 +958,15 @@ video {
 .bg-red-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(220 38 38 / var(--tw-bg-opacity));
+}
+
+.bg-\[rgb\(0\2c 0\2c 0\2c 0\.5\)\] {
+  background-color: rgb(0,0,0,0.5);
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .bg-black {
@@ -1006,6 +1006,591 @@ video {
 .bg-blue-800 {
   --tw-bg-opacity: 1;
   background-color: rgb(30 64 175 / var(--tw-bg-opacity));
+}
+
+.bg-red-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 226 226 / var(--tw-bg-opacity));
+}
+
+.bg-red-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
+}
+
+.bg-red-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(252 165 165 / var(--tw-bg-opacity));
+}
+
+.bg-green-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 252 231 / var(--tw-bg-opacity));
+}
+
+.bg-green-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(187 247 208 / var(--tw-bg-opacity));
+}
+
+.bg-green-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(134 239 172 / var(--tw-bg-opacity));
+}
+
+.bg-blue-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(219 234 254 / var(--tw-bg-opacity));
+}
+
+.bg-blue-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(191 219 254 / var(--tw-bg-opacity));
+}
+
+.bg-blue-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(147 197 253 / var(--tw-bg-opacity));
+}
+
+.bg-red-100\/0 {
+  background-color: rgb(254 226 226 / 0);
+}
+
+.bg-red-100\/5 {
+  background-color: rgb(254 226 226 / 0.05);
+}
+
+.bg-red-100\/10 {
+  background-color: rgb(254 226 226 / 0.1);
+}
+
+.bg-red-100\/20 {
+  background-color: rgb(254 226 226 / 0.2);
+}
+
+.bg-red-100\/25 {
+  background-color: rgb(254 226 226 / 0.25);
+}
+
+.bg-red-100\/30 {
+  background-color: rgb(254 226 226 / 0.3);
+}
+
+.bg-red-100\/40 {
+  background-color: rgb(254 226 226 / 0.4);
+}
+
+.bg-red-100\/50 {
+  background-color: rgb(254 226 226 / 0.5);
+}
+
+.bg-red-100\/60 {
+  background-color: rgb(254 226 226 / 0.6);
+}
+
+.bg-red-100\/70 {
+  background-color: rgb(254 226 226 / 0.7);
+}
+
+.bg-red-100\/75 {
+  background-color: rgb(254 226 226 / 0.75);
+}
+
+.bg-red-100\/80 {
+  background-color: rgb(254 226 226 / 0.8);
+}
+
+.bg-red-100\/90 {
+  background-color: rgb(254 226 226 / 0.9);
+}
+
+.bg-red-100\/95 {
+  background-color: rgb(254 226 226 / 0.95);
+}
+
+.bg-red-100\/100 {
+  background-color: rgb(254 226 226 / 1);
+}
+
+.bg-red-200\/0 {
+  background-color: rgb(254 202 202 / 0);
+}
+
+.bg-red-200\/5 {
+  background-color: rgb(254 202 202 / 0.05);
+}
+
+.bg-red-200\/10 {
+  background-color: rgb(254 202 202 / 0.1);
+}
+
+.bg-red-200\/20 {
+  background-color: rgb(254 202 202 / 0.2);
+}
+
+.bg-red-200\/25 {
+  background-color: rgb(254 202 202 / 0.25);
+}
+
+.bg-red-200\/30 {
+  background-color: rgb(254 202 202 / 0.3);
+}
+
+.bg-red-200\/40 {
+  background-color: rgb(254 202 202 / 0.4);
+}
+
+.bg-red-200\/50 {
+  background-color: rgb(254 202 202 / 0.5);
+}
+
+.bg-red-200\/60 {
+  background-color: rgb(254 202 202 / 0.6);
+}
+
+.bg-red-200\/70 {
+  background-color: rgb(254 202 202 / 0.7);
+}
+
+.bg-red-200\/75 {
+  background-color: rgb(254 202 202 / 0.75);
+}
+
+.bg-red-200\/80 {
+  background-color: rgb(254 202 202 / 0.8);
+}
+
+.bg-red-200\/90 {
+  background-color: rgb(254 202 202 / 0.9);
+}
+
+.bg-red-200\/95 {
+  background-color: rgb(254 202 202 / 0.95);
+}
+
+.bg-red-200\/100 {
+  background-color: rgb(254 202 202 / 1);
+}
+
+.bg-red-300\/0 {
+  background-color: rgb(252 165 165 / 0);
+}
+
+.bg-red-300\/5 {
+  background-color: rgb(252 165 165 / 0.05);
+}
+
+.bg-red-300\/10 {
+  background-color: rgb(252 165 165 / 0.1);
+}
+
+.bg-red-300\/20 {
+  background-color: rgb(252 165 165 / 0.2);
+}
+
+.bg-red-300\/25 {
+  background-color: rgb(252 165 165 / 0.25);
+}
+
+.bg-red-300\/30 {
+  background-color: rgb(252 165 165 / 0.3);
+}
+
+.bg-red-300\/40 {
+  background-color: rgb(252 165 165 / 0.4);
+}
+
+.bg-red-300\/50 {
+  background-color: rgb(252 165 165 / 0.5);
+}
+
+.bg-red-300\/60 {
+  background-color: rgb(252 165 165 / 0.6);
+}
+
+.bg-red-300\/70 {
+  background-color: rgb(252 165 165 / 0.7);
+}
+
+.bg-red-300\/75 {
+  background-color: rgb(252 165 165 / 0.75);
+}
+
+.bg-red-300\/80 {
+  background-color: rgb(252 165 165 / 0.8);
+}
+
+.bg-red-300\/90 {
+  background-color: rgb(252 165 165 / 0.9);
+}
+
+.bg-red-300\/95 {
+  background-color: rgb(252 165 165 / 0.95);
+}
+
+.bg-red-300\/100 {
+  background-color: rgb(252 165 165 / 1);
+}
+
+.bg-green-100\/0 {
+  background-color: rgb(220 252 231 / 0);
+}
+
+.bg-green-100\/5 {
+  background-color: rgb(220 252 231 / 0.05);
+}
+
+.bg-green-100\/10 {
+  background-color: rgb(220 252 231 / 0.1);
+}
+
+.bg-green-100\/20 {
+  background-color: rgb(220 252 231 / 0.2);
+}
+
+.bg-green-100\/25 {
+  background-color: rgb(220 252 231 / 0.25);
+}
+
+.bg-green-100\/30 {
+  background-color: rgb(220 252 231 / 0.3);
+}
+
+.bg-green-100\/40 {
+  background-color: rgb(220 252 231 / 0.4);
+}
+
+.bg-green-100\/50 {
+  background-color: rgb(220 252 231 / 0.5);
+}
+
+.bg-green-100\/60 {
+  background-color: rgb(220 252 231 / 0.6);
+}
+
+.bg-green-100\/70 {
+  background-color: rgb(220 252 231 / 0.7);
+}
+
+.bg-green-100\/75 {
+  background-color: rgb(220 252 231 / 0.75);
+}
+
+.bg-green-100\/80 {
+  background-color: rgb(220 252 231 / 0.8);
+}
+
+.bg-green-100\/90 {
+  background-color: rgb(220 252 231 / 0.9);
+}
+
+.bg-green-100\/95 {
+  background-color: rgb(220 252 231 / 0.95);
+}
+
+.bg-green-100\/100 {
+  background-color: rgb(220 252 231 / 1);
+}
+
+.bg-green-200\/0 {
+  background-color: rgb(187 247 208 / 0);
+}
+
+.bg-green-200\/5 {
+  background-color: rgb(187 247 208 / 0.05);
+}
+
+.bg-green-200\/10 {
+  background-color: rgb(187 247 208 / 0.1);
+}
+
+.bg-green-200\/20 {
+  background-color: rgb(187 247 208 / 0.2);
+}
+
+.bg-green-200\/25 {
+  background-color: rgb(187 247 208 / 0.25);
+}
+
+.bg-green-200\/30 {
+  background-color: rgb(187 247 208 / 0.3);
+}
+
+.bg-green-200\/40 {
+  background-color: rgb(187 247 208 / 0.4);
+}
+
+.bg-green-200\/50 {
+  background-color: rgb(187 247 208 / 0.5);
+}
+
+.bg-green-200\/60 {
+  background-color: rgb(187 247 208 / 0.6);
+}
+
+.bg-green-200\/70 {
+  background-color: rgb(187 247 208 / 0.7);
+}
+
+.bg-green-200\/75 {
+  background-color: rgb(187 247 208 / 0.75);
+}
+
+.bg-green-200\/80 {
+  background-color: rgb(187 247 208 / 0.8);
+}
+
+.bg-green-200\/90 {
+  background-color: rgb(187 247 208 / 0.9);
+}
+
+.bg-green-200\/95 {
+  background-color: rgb(187 247 208 / 0.95);
+}
+
+.bg-green-200\/100 {
+  background-color: rgb(187 247 208 / 1);
+}
+
+.bg-green-300\/0 {
+  background-color: rgb(134 239 172 / 0);
+}
+
+.bg-green-300\/5 {
+  background-color: rgb(134 239 172 / 0.05);
+}
+
+.bg-green-300\/10 {
+  background-color: rgb(134 239 172 / 0.1);
+}
+
+.bg-green-300\/20 {
+  background-color: rgb(134 239 172 / 0.2);
+}
+
+.bg-green-300\/25 {
+  background-color: rgb(134 239 172 / 0.25);
+}
+
+.bg-green-300\/30 {
+  background-color: rgb(134 239 172 / 0.3);
+}
+
+.bg-green-300\/40 {
+  background-color: rgb(134 239 172 / 0.4);
+}
+
+.bg-green-300\/50 {
+  background-color: rgb(134 239 172 / 0.5);
+}
+
+.bg-green-300\/60 {
+  background-color: rgb(134 239 172 / 0.6);
+}
+
+.bg-green-300\/70 {
+  background-color: rgb(134 239 172 / 0.7);
+}
+
+.bg-green-300\/75 {
+  background-color: rgb(134 239 172 / 0.75);
+}
+
+.bg-green-300\/80 {
+  background-color: rgb(134 239 172 / 0.8);
+}
+
+.bg-green-300\/90 {
+  background-color: rgb(134 239 172 / 0.9);
+}
+
+.bg-green-300\/95 {
+  background-color: rgb(134 239 172 / 0.95);
+}
+
+.bg-green-300\/100 {
+  background-color: rgb(134 239 172 / 1);
+}
+
+.bg-blue-100\/0 {
+  background-color: rgb(219 234 254 / 0);
+}
+
+.bg-blue-100\/5 {
+  background-color: rgb(219 234 254 / 0.05);
+}
+
+.bg-blue-100\/10 {
+  background-color: rgb(219 234 254 / 0.1);
+}
+
+.bg-blue-100\/20 {
+  background-color: rgb(219 234 254 / 0.2);
+}
+
+.bg-blue-100\/25 {
+  background-color: rgb(219 234 254 / 0.25);
+}
+
+.bg-blue-100\/30 {
+  background-color: rgb(219 234 254 / 0.3);
+}
+
+.bg-blue-100\/40 {
+  background-color: rgb(219 234 254 / 0.4);
+}
+
+.bg-blue-100\/50 {
+  background-color: rgb(219 234 254 / 0.5);
+}
+
+.bg-blue-100\/60 {
+  background-color: rgb(219 234 254 / 0.6);
+}
+
+.bg-blue-100\/70 {
+  background-color: rgb(219 234 254 / 0.7);
+}
+
+.bg-blue-100\/75 {
+  background-color: rgb(219 234 254 / 0.75);
+}
+
+.bg-blue-100\/80 {
+  background-color: rgb(219 234 254 / 0.8);
+}
+
+.bg-blue-100\/90 {
+  background-color: rgb(219 234 254 / 0.9);
+}
+
+.bg-blue-100\/95 {
+  background-color: rgb(219 234 254 / 0.95);
+}
+
+.bg-blue-100\/100 {
+  background-color: rgb(219 234 254 / 1);
+}
+
+.bg-blue-200\/0 {
+  background-color: rgb(191 219 254 / 0);
+}
+
+.bg-blue-200\/5 {
+  background-color: rgb(191 219 254 / 0.05);
+}
+
+.bg-blue-200\/10 {
+  background-color: rgb(191 219 254 / 0.1);
+}
+
+.bg-blue-200\/20 {
+  background-color: rgb(191 219 254 / 0.2);
+}
+
+.bg-blue-200\/25 {
+  background-color: rgb(191 219 254 / 0.25);
+}
+
+.bg-blue-200\/30 {
+  background-color: rgb(191 219 254 / 0.3);
+}
+
+.bg-blue-200\/40 {
+  background-color: rgb(191 219 254 / 0.4);
+}
+
+.bg-blue-200\/50 {
+  background-color: rgb(191 219 254 / 0.5);
+}
+
+.bg-blue-200\/60 {
+  background-color: rgb(191 219 254 / 0.6);
+}
+
+.bg-blue-200\/70 {
+  background-color: rgb(191 219 254 / 0.7);
+}
+
+.bg-blue-200\/75 {
+  background-color: rgb(191 219 254 / 0.75);
+}
+
+.bg-blue-200\/80 {
+  background-color: rgb(191 219 254 / 0.8);
+}
+
+.bg-blue-200\/90 {
+  background-color: rgb(191 219 254 / 0.9);
+}
+
+.bg-blue-200\/95 {
+  background-color: rgb(191 219 254 / 0.95);
+}
+
+.bg-blue-200\/100 {
+  background-color: rgb(191 219 254 / 1);
+}
+
+.bg-blue-300\/0 {
+  background-color: rgb(147 197 253 / 0);
+}
+
+.bg-blue-300\/5 {
+  background-color: rgb(147 197 253 / 0.05);
+}
+
+.bg-blue-300\/10 {
+  background-color: rgb(147 197 253 / 0.1);
+}
+
+.bg-blue-300\/20 {
+  background-color: rgb(147 197 253 / 0.2);
+}
+
+.bg-blue-300\/25 {
+  background-color: rgb(147 197 253 / 0.25);
+}
+
+.bg-blue-300\/30 {
+  background-color: rgb(147 197 253 / 0.3);
+}
+
+.bg-blue-300\/40 {
+  background-color: rgb(147 197 253 / 0.4);
+}
+
+.bg-blue-300\/50 {
+  background-color: rgb(147 197 253 / 0.5);
+}
+
+.bg-blue-300\/60 {
+  background-color: rgb(147 197 253 / 0.6);
+}
+
+.bg-blue-300\/70 {
+  background-color: rgb(147 197 253 / 0.7);
+}
+
+.bg-blue-300\/75 {
+  background-color: rgb(147 197 253 / 0.75);
+}
+
+.bg-blue-300\/80 {
+  background-color: rgb(147 197 253 / 0.8);
+}
+
+.bg-blue-300\/90 {
+  background-color: rgb(147 197 253 / 0.9);
+}
+
+.bg-blue-300\/95 {
+  background-color: rgb(147 197 253 / 0.95);
+}
+
+.bg-blue-300\/100 {
+  background-color: rgb(147 197 253 / 1);
 }
 
 .p-8 {
@@ -1158,6 +1743,11 @@ video {
 .hover\:border-blue-600:hover {
   --tw-border-opacity: 1;
   border-color: rgb(37 99 235 / var(--tw-border-opacity));
+}
+
+.hover\:border-white:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
 .hover\:bg-blue-700:hover {
