@@ -521,6 +521,106 @@ for( let i = 0; i < selected_type.length; i++ ) {
 
 
 
+var selected_task_category
+var selected_task_parent_task = null
+const toggle_categories_modal = document.getElementsByClassName('toggle_categories_modal')
+const hover_item = document.getElementById('hover_item')
+const hover_item_content = document.getElementById('hover_item_content')
+const categories_modal = document.getElementById('categories_modal')
+const categories_modal_content = document.getElementById('categories_modal_content')
+const task_category_toggle = document.getElementsByClassName('task_category_toggle')
+for( let i = 0; i < task_category_toggle.length; i++ ) { 
+  task_category_toggle[i].addEventListener('click', (event) => {
+    if(event.target.classList.contains('task_category_toggle')){
+      selected_task_category = event.target.parentElement.parentElement.id
+      if(event.target.parentElement.parentElement.parentElement.classList.contains('hidden_sub_tasks')){
+        selected_task_parent_task=event.target.parentElement.parentElement.parentElement.previousElementSibling.id
+      }
+    }else{
+      selected_task_category = event.target.parentElement.parentElement.parentElement.id
+      if(event.target.parentElement.parentElement.parentElement.parentElement.classList.contains('hidden_sub_tasks')){
+        selected_task_parent_task=event.target.parentElement.parentElement.parentElement.parentElement.previousElementSibling.id
+      }
+    }
+
+
+    categories_modal.classList.remove('hidden')
+    categories_modal_content.style.top = (event.target.offsetTop+40)+'px'
+    categories_modal_content.style.left = event.target.offsetLeft+'px'
+  })
+  task_category_toggle[i].addEventListener('mouseover', (event) => {
+    
+    hover_item.classList.remove('hidden')
+    hover_item.style.top = (event.target.offsetTop-60)+'px'
+    hover_item.style.left = event.target.offsetLeft+'px'
+    hover_item_content.innerText = 'this tech'
+  })
+
+  task_category_toggle[i].addEventListener('mouseout', (event) => {
+    hover_item.classList.add('hidden')
+  })
+
+}
+
+categories_modal.addEventListener('click', (event) => {
+  if(event.target == event.currentTarget) {
+    categories_modal.classList.toggle('hidden')
+  }
+})
+
+const selected_category = document.getElementsByClassName('selected_category')
+for( let i = 0; i < selected_category.length; i++ ) { 
+  selected_category[i].addEventListener('click', (event) => {
+    const xhttp = new XMLHttpRequest();
+    let json = JSON.stringify({
+      selected_task : selected_task_category,
+      category_id : event.target.id,
+      parent_workspace : current_active_space,
+      parent_list : current_active_list,
+      parent_task_if_exists : selected_task_parent_task
+    });
+    console.log(json)
+    xhttp.open("POST", "/add_category_to_task");
+    xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xhttp.send(json);
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        json = JSON.parse(this.response) 
+        alert(this.response)
+        if(json.status == 'success'){
+          alert('gg')
+        }else if(json.status == 'denied'){
+          alert('ez')
+        }else{
+
+        }
+      }
+    }
+  })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -889,28 +989,163 @@ for( let i = 0; i < create_sub_task_in_list.length; i++ ) {
 
 
 
-const hover_item = document.getElementById('hover_item')
-const hover_item_content = document.getElementById('hover_item_content')
-const categories_modal = document.getElementById('categories_modal')
-const categories_modal_content = document.getElementById('categories_modal_content')
-const task_category_toggle = document.getElementsByClassName('task_category_toggle')
-for( let i = 0; i < task_category_toggle.length; i++ ) { 
-  task_category_toggle[i].addEventListener('click', (event) => {
 
-    categories_modal.classList.remove('hidden')
-    categories_modal_content.style.top = (event.target.offsetTop+40)+'px'
-    categories_modal_content.style.left = event.target.offsetLeft+'px'
-  })
-  task_category_toggle[i].addEventListener('mouseover', (event) => {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+slist(document.getElementById("tempo"));
+
+
+
+function slist (target) {
+  // (A) SET CSS + GET ALL LIST ITEMS
+  target.classList.add("slist");
+  let items = target.getElementsByClassName("table_row"), current = null;
+
+  // (B) MAKE ITEMS DRAGGABLE + SORTABLE
+  for (let i of items) {
+    // (B1) ATTACH DRAGGABLE
+    i.draggable = true;
     
-    hover_item.classList.remove('hidden')
-    hover_item.style.top = (event.target.offsetTop-60)+'px'
-    hover_item.style.left = event.target.offsetLeft+'px'
-    hover_item_content.innerText = 'this tech'
-  })
+    // (B2) DRAG START - YELLOW HIGHLIGHT DROPZONES
+    i.ondragstart = (ev) => {
+      current = i;
+      for (let it of items) {
+        if (it != current) { it.classList.add("hint"); }
+      }
+    };
+    
+    // (B3) DRAG ENTER - RED HIGHLIGHT DROPZONE
+    i.ondragenter = (ev) => {
+      if (i != current) { i.classList.add("active"); }
+    };
 
-  task_category_toggle[i].addEventListener('mouseout', (event) => {
-    hover_item.classList.add('hidden')
-  })
+    // (B4) DRAG LEAVE - REMOVE RED HIGHLIGHT
+    i.ondragleave = () => {
+      i.classList.remove("active");
+    };
 
+    // (B5) DRAG END - REMOVE ALL HIGHLIGHTS
+    i.ondragend = () => { for (let it of items) {
+        it.classList.remove("hint");
+        it.classList.remove("active");
+    }};
+ 
+    // (B6) DRAG OVER - PREVENT THE DEFAULT "DROP", SO WE CAN DO OUR OWN
+    i.ondragover = (evt) => { evt.preventDefault(); };
+ 
+    // (B7) ON DROP - DO SOMETHING
+    i.ondrop = (evt) => {
+      evt.preventDefault();
+      if (i != current) {
+        let currentpos = 0, droppedpos = 0;
+        for (let it=0; it<items.length; it++) {
+          if (current == items[it]) { currentpos = it; }
+          if (i == items[it]) { droppedpos = it; }
+        }
+        if (currentpos < droppedpos) {
+          i.parentNode.insertBefore(current, i.nextSibling);
+        } else {
+          i.parentNode.insertBefore(current, i);
+        }
+      }
+    };
+  }
 }
+/*
+
+slist(document.getElementById("sortlist"));
+
+
+
+function slist (target) {
+  // (A) SET CSS + GET ALL LIST ITEMS
+  target.classList.add("slist");
+  let items = target.getElementsByTagName("li"), current = null;
+
+  // (B) MAKE ITEMS DRAGGABLE + SORTABLE
+  for (let i of items) {
+    // (B1) ATTACH DRAGGABLE
+    i.draggable = true;
+    
+    // (B2) DRAG START - YELLOW HIGHLIGHT DROPZONES
+    i.ondragstart = (ev) => {
+      current = i;
+      for (let it of items) {
+        if (it != current) { it.classList.add("hint"); }
+      }
+    };
+    
+    // (B3) DRAG ENTER - RED HIGHLIGHT DROPZONE
+    i.ondragenter = (ev) => {
+      if (i != current) { i.classList.add("active"); }
+    };
+
+    // (B4) DRAG LEAVE - REMOVE RED HIGHLIGHT
+    i.ondragleave = () => {
+      i.classList.remove("active");
+    };
+
+    // (B5) DRAG END - REMOVE ALL HIGHLIGHTS
+    i.ondragend = () => { for (let it of items) {
+        it.classList.remove("hint");
+        it.classList.remove("active");
+    }};
+ 
+    // (B6) DRAG OVER - PREVENT THE DEFAULT "DROP", SO WE CAN DO OUR OWN
+    i.ondragover = (evt) => { evt.preventDefault(); };
+ 
+    // (B7) ON DROP - DO SOMETHING
+    i.ondrop = (evt) => {
+      evt.preventDefault();
+      if (i != current) {
+        let currentpos = 0, droppedpos = 0;
+        for (let it=0; it<items.length; it++) {
+          if (current == items[it]) { currentpos = it; }
+          if (i == items[it]) { droppedpos = it; }
+        }
+        if (currentpos < droppedpos) {
+          i.parentNode.insertBefore(current, i.nextSibling);
+        } else {
+          i.parentNode.insertBefore(current, i);
+        }
+      }
+    };
+  }
+}
+*/

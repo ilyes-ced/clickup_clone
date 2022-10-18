@@ -33,7 +33,9 @@ const add_tag_to_task = async (req, res) => {
         }
 
         if(req.body.parent_task_if_exists){
-         
+            let tag_object = await User_model.findOne({_id: req.session.user_id}, {tags:{$elemMatch:{_id: ObjectID(req.body.tag_id)}}})
+            req.body.tag_id = tag_object.tags[0]
+
 
             await workspace_model.findOneAndUpdate({_id : req.body.parent_workspace, lists : {$elemMatch:{_id:ObjectID(req.body.parent_list)}}},{
                 $push : {
@@ -49,19 +51,16 @@ const add_tag_to_task = async (req, res) => {
 		    res.json({status: 'success'})
         }else{
    
-            const vv = await User_model.findOne({_id: req.session.user_id, tags:{$elemMatch:{_id: ObjectID(req.body.tag_id)}}}).exec( async (err, docs) => {
-                docs.tags.filter(obj => {
-                    if (obj._id == req.body.tag_id){
-                        console.log(obj)
-                        const tag = obj
-                    }
-                })
-            })
+            let tag_object = await User_model.findOne({_id: req.session.user_id}, {tags:{$elemMatch:{_id: ObjectID(req.body.tag_id)}}})
+            req.body.tag_id = tag_object.tags[0]
+
             
-            console.log('rbefore')
-           
-
-
+            let existing_tag_object = await workspace_model.findOne({_id: req.body.parent_workspace},
+            {lists: {$elemMatch: { _id: ObjectID(req.body.parent_list) }}},
+            {tasks:{$elemMatch:{_id: ObjectID(req.body.selected_task)}}},
+            {tags:{$elemMatch:{_id: req.body.tag_id._id}}},
+            ).exec()
+            console.log(existing_tag_object.lists[0].tasks)
 
             await workspace_model.findOneAndUpdate({_id : req.body.parent_workspace, lists : {$elemMatch:{_id:ObjectID(req.body.parent_list)}}},{
                 $push : {

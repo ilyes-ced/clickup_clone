@@ -6,7 +6,7 @@
                     no categories here
                 <% }else{ %>
                     <%for (let i = 0; i < user_data.categories.length; i++) { %>
-                        <li id="<%= user_data.categories[i]._id %>" class="selected_categorie" style="background-color: <%= user_data.categories[i].color %>"><%= user_data.categories[i].name %></li>
+                        <li id="<%= user_data.categories[i]._id %>" class="selected_category" style="background-color: <%= user_data.categories[i].color %>"><%= user_data.categories[i].name %></li>
                     <% } %>
                 <% } %>
             </ul>

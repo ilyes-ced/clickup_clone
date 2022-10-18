@@ -663,16 +663,16 @@ video {
   display: none;
 }
 
+.h-10 {
+  height: 2.5rem;
+}
+
 .h-full {
   height: 100%;
 }
 
 .h-screen {
   height: 100vh;
-}
-
-.h-10 {
-  height: 2.5rem;
 }
 
 .h-0\.5 {
@@ -717,6 +717,10 @@ video {
   height: 50%;
 }
 
+.w-32 {
+  width: 8rem;
+}
+
 .w-full {
   width: 100%;
 }
@@ -735,10 +739,6 @@ video {
 
 .w-96 {
   width: 24rem;
-}
-
-.w-32 {
-  width: 8rem;
 }
 
 .w-\[30rem\] {
@@ -855,16 +855,16 @@ video {
   overflow-x: hidden;
 }
 
+.rounded-md {
+  border-radius: 0.375rem;
+}
+
 .rounded-full {
   border-radius: 9999px;
 }
 
 .rounded-lg {
   border-radius: 0.5rem;
-}
-
-.rounded-md {
-  border-radius: 0.375rem;
 }
 
 .rounded-sm {
@@ -882,11 +882,6 @@ video {
 
 .border {
   border-width: 1px;
-}
-
-.border-y {
-  border-top-width: 1px;
-  border-bottom-width: 1px;
 }
 
 .border-b {
@@ -921,11 +916,6 @@ video {
   border-color: rgb(37 99 235 / var(--tw-border-opacity));
 }
 
-.border-primary {
-  --tw-border-opacity: 1;
-  border-color: rgb(29 32 62 / var(--tw-border-opacity));
-}
-
 .border-gray-800 {
   --tw-border-opacity: 1;
   border-color: rgb(31 41 55 / var(--tw-border-opacity));
@@ -934,6 +924,11 @@ video {
 .border-green-600 {
   --tw-border-opacity: 1;
   border-color: rgb(22 163 74 / var(--tw-border-opacity));
+}
+
+.bg-red-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
 }
 
 .bg-\[\#1d203e\] {
@@ -953,11 +948,6 @@ video {
 
 .bg-transparent {
   background-color: transparent;
-}
-
-.bg-red-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
 }
 
 .bg-\[rgb\(0\2c 0\2c 0\2c 0\.5\)\] {
@@ -1593,6 +1583,10 @@ video {
   background-color: rgb(147 197 253 / 1);
 }
 
+.p-6 {
+  padding: 1.5rem;
+}
+
 .p-8 {
   padding: 2rem;
 }
@@ -1613,8 +1607,8 @@ video {
   padding: 0px;
 }
 
-.p-6 {
-  padding: 1.5rem;
+.p-1 {
+  padding: 0.25rem;
 }
 
 .px-6 {
@@ -1677,6 +1671,11 @@ video {
   font-weight: 700;
 }
 
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -1717,6 +1716,10 @@ video {
 
 .duration-300 {
   transition-duration: 300ms;
+}
+
+.hover\:visible:hover {
+  visibility: visible;
 }
 
 @-webkit-keyframes spin {

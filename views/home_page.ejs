@@ -8,21 +8,24 @@
         <link rel="stylesheet" type="text/css" href="public/css/app.css" />
         <link rel="stylesheet" type="text/css" href="public/css/states.css" />
     </head>
-    <body class='text-white text-sm' data-pp="fezfzefzef">
+    <body class='text-white text-sm'>
         
-
+  
         <!-- must change to include on demand -->
         <%- include('components/success_modal') %>
         <%- include('components/create_list_modal') %>
         <%- include('components/create_task_modal') %>
         <%- include('components/create_space_modal') %>
-
-        
-
         <%- include('components/select_list_modal') %>
         <%- include('components/tags_modal') %>
         <%- include('components/types_modal') %>
         <%- include('components/categories_modal') %>
+
+
+
+
+
+
 
         <div id="hover_item" class="absolute hidden p-6 bg-red-600 rounded-md h-10 w-32">
             <div id="hover_item_content"> 
@@ -33,6 +36,16 @@
         <div class='flex flex-row h-full bg-[#1d203e]'>
             <%- include('components/side_bar') %>
             <div class='w-full h-screen overflow-y-auto'>
+                 <!--
+                <ul id="sortlist">
+                    <li>First</li>
+                    <li>Second</li>
+                    <li>Third</li>
+                    <li>Forth</li>
+                    <li>Fifth</li>
+                  </ul> -->
+                
+        
                 <%- include('components/nav_bar') %>                
                 <%- include('components/work_flow') %>
             </div>
