@@ -1607,10 +1607,6 @@ video {
   padding: 0px;
 }
 
-.p-1 {
-  padding: 0.25rem;
-}
-
 .px-6 {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
@@ -1671,11 +1667,6 @@ video {
   font-weight: 700;
 }
 
-.text-black {
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
-}
-
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -1716,10 +1707,6 @@ video {
 
 .duration-300 {
   transition-duration: 300ms;
-}
-
-.hover\:visible:hover {
-  visibility: visible;
 }
 
 @-webkit-keyframes spin {

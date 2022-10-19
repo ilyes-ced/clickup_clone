@@ -35,6 +35,8 @@ const add_type_to_task = async (req, res) => {
 
         if(req.body.parent_task_if_exists){
          
+            let type_object = await User_model.findOne({_id: req.session.user_id}, {types:{$elemMatch:{_id: ObjectID(req.body.type_id)}}})
+            req.body.type_id = type_object.types[0]
 
             await workspace_model.findOneAndUpdate({_id : req.body.parent_workspace, lists : {$elemMatch:{_id:ObjectID(req.body.parent_list)}}},{
                 $set : {
@@ -47,12 +49,13 @@ const add_type_to_task = async (req, res) => {
                     {"para3._id" : ObjectID(req.body.selected_task)},
                 ]   
             })
-            console.log(await User_model.findOne({_id : req.session.user_id}))
-		    res.json({status: 'success', name: '', color: ''})
+		    res.json({status: 'success', name: req.body.type_id.name, color: req.body.type_id.color})
         }else{
    
 
 
+            let type_object = await User_model.findOne({_id: req.session.user_id}, {types:{$elemMatch:{_id: ObjectID(req.body.type_id)}}})
+            req.body.type_id = type_object.types[0]
             await workspace_model.findOneAndUpdate({_id : req.body.parent_workspace, lists : {$elemMatch:{_id:ObjectID(req.body.parent_list)}}},{
                 $set : {
                     "lists.$[para1].tasks.$[para2].type": req.body.type_id
@@ -63,8 +66,7 @@ const add_type_to_task = async (req, res) => {
                     {"para2._id" : ObjectID(req.body.selected_task)},
                 ]   
             })
-            console.log(await User_model.findOne({_id : req.session.user_id}))
-		    res.json({status: 'success', name: '', color: ''})
+		    res.json({status: 'success', name: req.body.type_id.name, color: req.body.type_id.color})
         }
         
 

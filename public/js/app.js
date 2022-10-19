@@ -482,9 +482,10 @@ for( let i = 0; i < selected_type.length; i++ ) {
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         json = JSON.parse(this.response) 
-        alert(this.response)
         if(json.status == 'success'){
-          alert('gg')
+          document.getElementById(selected_task_type).getElementsByClassName('toggle_types_modal')[0].style.backgroundColor = json.color
+          document.getElementById(selected_task_type).getElementsByClassName('toggle_types_modal')[0].innerText = json.name
+          types_modal.classList.add('hidden')
         }else if(json.status == 'denied'){
           alert('ez')
         }else{

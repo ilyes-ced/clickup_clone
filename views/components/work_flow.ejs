@@ -71,15 +71,9 @@
                                         <div class="w-1/4 text-center">temp</div>
                                     <% } %>
                                     <% if(workspaces[i].lists[j].tasks[k].type){ %>
-                                        <%
-                                            user_data.types.filter(obj => {
-                                                if(obj._id== workspaces[i].lists[j].tasks[k].type){%>
-                                                    <div class="w-1/4 text-center hover:bg-green-600 h-full flex  items-center justify-center toggle_types_modal" style="background-color: <%= obj.color %>">
-                                                        <%= obj.name %>
-                                                    </div>
-                                               <% }
-                                            })
-                                        %>
+                                        <div class="w-1/4 text-center hover:bg-green-600 h-full flex  items-center justify-center toggle_types_modal" style="background-color: <%= workspaces[i].lists[j].tasks[k].type.color %>">
+                                            <%= workspaces[i].lists[j].tasks[k].type.name %>
+                                        </div>
                                     <% }else{ %>
                                         <div class="w-1/4 text-center hover:bg-green-600 h-full flex  items-center justify-center toggle_types_modal">-</div>
                                     <% } %>                     
@@ -139,15 +133,9 @@
                                             <div class="w-1/4 text-center">ico</div>
                                             <div class="w-1/4 text-center">ico</div> 
                                             <% if(workspaces[i].lists[j].tasks[k].sub_tasks[l].type){ %>
-                                                <%
-                                                    user_data.types.filter(obj => {
-                                                        if(obj._id== workspaces[i].lists[j].tasks[k].sub_tasks[l].type){%>
-                                                            <div class="w-1/4 text-center hover:bg-green-600 h-full flex  items-center justify-center toggle_types_modal" style="background-color: <%= obj.color %>">
-                                                                <%= obj.name %>
-                                                            </div>
-                                                       <% }
-                                                    })
-                                                %>
+                                                <div class="w-1/4 text-center hover:bg-green-600 h-full flex  items-center justify-center toggle_types_modal" style="background-color: <%= workspaces[i].lists[j].tasks[k].type.color %>">
+                                                    <%= workspaces[i].lists[j].tasks[k].type.name %>
+                                                </div>
                                             <% }else{ %>
                                                 <div class="w-1/4 text-center hover:bg-green-600 h-full flex  items-center justify-center toggle_types_modal">-</div>
                                             <% } %>  

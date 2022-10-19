@@ -57,9 +57,12 @@ const add_tag_to_task = async (req, res) => {
             
             let existing_tag_object = await workspace_model.findOne({_id: req.body.parent_workspace},
             {lists: {$elemMatch: { _id: ObjectID(req.body.parent_list) }}},
+            )
+            /*
+
             {tasks:{$elemMatch:{_id: ObjectID(req.body.selected_task)}}},
             {tags:{$elemMatch:{_id: req.body.tag_id._id}}},
-            ).exec()
+            */
             console.log(existing_tag_object.lists[0].tasks)
 
             await workspace_model.findOneAndUpdate({_id : req.body.parent_workspace, lists : {$elemMatch:{_id:ObjectID(req.body.parent_list)}}},{
@@ -141,7 +144,7 @@ const remove_tag_from_task = async (req,res) => {
 
             await workspace_model.findOneAndUpdate({_id : req.body.parent_workspace, lists : {$elemMatch:{_id:ObjectID(req.body.parent_list)}}},{
                 $pull : {
-                    "lists.$[para1].tasks.$[para2].sub_tasks.$[para3].tags": req.body.tag_id
+                    "lists.$[para1].tasks.$[para2].sub_tasks.$[para3].tags": {_id : ObjectID(req.body.tag_id)}
                     }
             },{
                 arrayFilters: [
@@ -157,7 +160,7 @@ const remove_tag_from_task = async (req,res) => {
 
             await workspace_model.findOneAndUpdate({_id : req.body.parent_workspace, lists : {$elemMatch:{_id:ObjectID(req.body.parent_list)}}},{
                 $pull : {
-                    "lists.$[para1].tasks.$[para2].tags": req.body.tag_id
+                    "lists.$[para1].tasks.$[para2].tags": {_id : ObjectID(req.body.tag_id)}
                     }
             },{
                 arrayFilters: [
