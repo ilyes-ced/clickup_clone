@@ -589,7 +589,9 @@ for( let i = 0; i < selected_category.length; i++ ) {
         json = JSON.parse(this.response) 
         alert(this.response)
         if(json.status == 'success'){
-          alert('gg')
+          document.getElementById(selected_task_category).firstElementChild.firstElementChild.firstElementChild.style.backgroundColor = json.color
+          document.getElementById(selected_task_category).firstElementChild.firstElementChild.style.borderColor = json.color
+          categories_modal.classList.add('hidden')
         }else if(json.status == 'denied'){
           alert('ez')
         }else{
@@ -692,7 +694,8 @@ for( let i = 0; i < selected_tag.length; i++ ) {
       if (this.readyState == 4 && this.status == 200) {
         json = JSON.parse(this.response) 
         if(json.status == 'success'){
-          alert('gg')
+          document.getElementById(selected_task_tag).getElementsByClassName('tags_container')[0].insertAdjacentHTML('beforeend', '<div class="mx-2 px-1 rounded-md flex flex-row" style="background-color: '+json.color+'"> '+json.name+' <div id="'+json.id+'" class="px-1 ml-1 remove_tag hover:bg-red-600 rounded-md">X</div> </div>')
+          tags_modal.classList.add('hidden')
         }else if(json.status == 'denied'){
           alert('ez')
         }else{
@@ -760,8 +763,8 @@ for( let i = 0; i < remove_tag.length; i++ ) {
 
 const table_element = '<div id="remove_on_error" class="border-y border-primary w-full flex flex-row bg-gray-800 hover:bg-gray-600 h-10 items-center px-2 cursor-pointer table_row"> \
                                 <div class="flex flex-row space-x-2 w-2/3"> \
-                                    <div class="border hover:border-blue-600 rounded-sm border-transparent p-0.5 self-center">     \
-                                        <div class="h-3 w-3 bg-blue-600 rounded-sm self-center "></div> \
+                                    <div class="border hover:border-white rounded-sm border-transparent p-0.5 self-center">     \
+                                        <div class="h-3 w-3 bg-white rounded-sm self-center "></div> \
                                     </div> \
                                     <div><input id="new_task_name" type="text" class=" bg-transparent"></div> \
                                     <div class="toggle_sub_tasks this_hidden_icons rounded-md border border-gray-800 w-5 h-5 hidden"><%= workspaces[i].lists[j].tasks[k].sub_tasks.length %></div> \
@@ -865,8 +868,8 @@ const sub_table_element = '<div id="remove_on_error" class="border-y border-prim
                 <div class="w-full h-1/2  border-b border-l rounded-bl-lg"></div>  \
             </div>  \
         </div>  \
-    <div class="border hover:border-blue-600 rounded-sm border-transparent p-0.5 self-center">    \
-        <div class="h-3 w-3 bg-blue-600 rounded-sm self-center "></div>  \
+    <div class="border hover:border-white rounded-sm border-transparent p-0.5 self-center">    \
+        <div class="h-3 w-3 bg-white rounded-sm self-center "></div>  \
     </div>  \
     <div><input id="new_task_name" type="text" class=" bg-transparent"></div>\
     <div class="this_hidden_icons rounded-md border border-gray-800 w-5 h-5 hidden">i</div>\
@@ -882,6 +885,22 @@ const sub_table_element = '<div id="remove_on_error" class="border-y border-prim
 </div> '
 
 
+const middle_sub_task = ' <div class="w-10 h-full flex flex-row divide-x"> \
+    <div class="w-1/4 h-full "></div> \
+    <div class="w-3/4 h-full "> \
+    <div class="w-full h-1/2  border-b rounded-bl-lg"></div> \
+    </div> \
+</div>'
+
+
+const final_sub_task = '<div class="w-10 h-full flex flex-row "> \
+    <div class="w-1/4 h-full "></div> \
+    <div class="w-3/4 h-full "> \
+        <div class="w-full h-1/2  border-b border-l rounded-bl-lg"></div> \
+    </div> \
+</div>'
+
+
 
 
 
@@ -889,6 +908,8 @@ const create_sub_task_in_list = document.getElementsByClassName('create_sub_task
 for( let i = 0; i < create_sub_task_in_list.length; i++ ) { 
   create_sub_task_in_list[i].addEventListener('click', (event) => {
     document.getElementsByClassName('hidden_sub_tasks')[i].classList.remove('hidden')
+    hidden_sub_tasks[i].lastElementChild.firstElementChild.firstElementChild.remove()
+    hidden_sub_tasks[i].lastElementChild.firstElementChild.firstElementChild.insertAdjacentHTML('beforebegin', middle_sub_task)
     document.getElementsByClassName('hidden_sub_tasks')[i].insertAdjacentHTML('beforeend', sub_table_element)
     const new_task_name = document.getElementById('new_task_name')
     console.log(event.target.parentElement)
@@ -930,6 +951,8 @@ for( let i = 0; i < create_sub_task_in_list.length; i++ ) {
     new_task_name.focus()
     new_task_name.addEventListener('blur', (event) => {
       document.getElementById('remove_on_error').remove()
+      hidden_sub_tasks[i].lastElementChild.firstElementChild.firstElementChild.remove()
+      hidden_sub_tasks[i].lastElementChild.firstElementChild.firstElementChild.insertAdjacentHTML('beforebegin', final_sub_task)
     })
   })
 }

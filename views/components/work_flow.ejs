@@ -25,22 +25,16 @@
                         <% for( let k = 0; k < workspaces[i].lists[j].tasks.length; k++ ) { %>
                             <div id="<%= workspaces[i].lists[j].tasks[k]._id %>" class=" w-full flex flex-row bg-gray-800 hover:bg-gray-600 h-10 items-center px-2 cursor-pointer table_row">
                                 <div class="flex flex-row space-x-2 w-2/3">
-                                    <% if(workspaces[i].lists[j].tasks[k].category){
-                                        user_data.categories.filter(obj => {
-                                            if(obj._id== workspaces[i].lists[j].tasks[k].category){%>
-                                                <div class="task_category_toggle border hover:border-blue-600 rounded-sm border-transparent p-0.5 self-center" onmouseover="this.style.borderColor='<%= obj.color %>';" onmouseout="this.style.borderColor='rgba(0,0,0,0)';">    
-                                                    <div class="h-3 w-3 bg-blue-600 rounded-sm self-center " style="background-color: <%= obj.color %>; "></div>
+                                    <% if(workspaces[i].lists[j].tasks[k].category){%>
+                                                <div class="task_category_toggle border hover:border-blue-600 rounded-sm border-transparent p-0.5 self-center" onmouseover="this.style.borderColor='<%= workspaces[i].lists[j].tasks[k].category.color %>';" onmouseout="this.style.borderColor='rgba(0,0,0,0)';">    
+                                                    <div class="h-3 w-3 bg-blue-600 rounded-sm self-center " style="background-color: <%= workspaces[i].lists[j].tasks[k].category.color %>; "></div>
                                                 </div>
-                                           <% }
-                                        })
-                                        
-                                        
-                                    }else{ %>
+                                    <% }else{ %>
                                         <div class="task_category_toggle border hover:border-white rounded-sm border-transparent p-0.5 self-center">    
                                             <div class="h-3 w-3 bg-white rounded-sm self-center "></div>
                                         </div>
                                     <% } %>
-                                    <div class="flex flex-row"><%=  workspaces[i].lists[j].tasks[k].name %> 
+                                    <div class="flex flex-row tags_container"><%=  workspaces[i].lists[j].tasks[k].name %> 
                                         <%workspaces[i].lists[j].tasks[k].tags.forEach(element =>{ %>
                                             <div class="mx-2 px-1 rounded-md flex flex-row" style="background-color: <%= element.color %>"> <%= element.name %> <div id="<%= element._id %>" class="px-1 ml-1 remove_tag hover:bg-red-600 rounded-md">X</div> </div>
                                         <% }) %>
@@ -120,7 +114,7 @@
                                                     <div class="h-3 w-3 bg-white rounded-sm self-center "></div>
                                                 </div>
                                             <% } %>
-                                            <div class="flex flex-row"><%=  workspaces[i].lists[j].tasks[k].sub_tasks[l].name %>
+                                            <div class="flex flex-row tags_container"><%=  workspaces[i].lists[j].tasks[k].sub_tasks[l].name %>
                                                 <%workspaces[i].lists[j].tasks[k].sub_tasks[l].tags.forEach(element =>{ %>
                                                    <div class="mx-2 px-1 rounded-md  flex flex-row" style="background-color: <%= element.color %>"> <%= element.name %> <div id="<%= element._id %>" class="px-1 ml-1 remove_tag hover:bg-red-600 rounded-md">X</div> </div>
                                                  <% }) %>

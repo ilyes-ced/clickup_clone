@@ -48,7 +48,7 @@ const add_tag_to_task = async (req, res) => {
                     {"para3._id" : ObjectID(req.body.selected_task)},
                 ]   
             })
-		    res.json({status: 'success'})
+		    res.json({status: 'success' , id: req.body.tag_id._id, name: req.body.tag_id.name, color: req.body.tag_id.color})
         }else{
    
             let tag_object = await User_model.findOne({_id: req.session.user_id}, {tags:{$elemMatch:{_id: ObjectID(req.body.tag_id)}}})
@@ -75,8 +75,8 @@ const add_tag_to_task = async (req, res) => {
                     {"para2._id" : ObjectID(req.body.selected_task)},
                 ]   
             })
-		    res.json({status: 'success'})
-        }
+		    res.json({status: 'success' , id: req.body.tag_id._id, name: req.body.tag_id.name, color: req.body.tag_id.color})
+       }
         
         
 

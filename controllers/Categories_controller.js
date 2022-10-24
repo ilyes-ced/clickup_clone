@@ -34,7 +34,8 @@ const add_category_to_task = async (req, res) => {
     }
 
     if(req.body.parent_task_if_exists){
-     
+        let category_object = await User_model.findOne({_id: req.session.user_id}, {categories:{$elemMatch:{_id: ObjectID(req.body.category_id)}}})
+        req.body.category_id = category_object.categories[0]
 
         await workspace_model.findOneAndUpdate({_id : req.body.parent_workspace, lists : {$elemMatch:{_id:ObjectID(req.body.parent_list)}}},{
             $set : {
@@ -51,6 +52,8 @@ const add_category_to_task = async (req, res) => {
     }else{
 
 
+        let category_object = await User_model.findOne({_id: req.session.user_id}, {categories:{$elemMatch:{_id: ObjectID(req.body.category_id)}}})
+        req.body.category_id = category_object.categories[0]
 
         await workspace_model.findOneAndUpdate({_id : req.body.parent_workspace, lists : {$elemMatch:{_id:ObjectID(req.body.parent_list)}}},{
             $set : {
@@ -62,7 +65,7 @@ const add_category_to_task = async (req, res) => {
                 {"para2._id" : ObjectID(req.body.selected_task)},
             ]   
         })
-        res.json({status: 'success', name: '', color: ''})
+        res.json({status: 'success', id: req.body.category_id._id, name: req.body.category_id.name, color: req.body.category_id.color})
     }
     
 
