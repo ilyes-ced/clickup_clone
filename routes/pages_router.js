@@ -56,7 +56,7 @@ router.get('/', is_auth_middleware, async (req, res) => {
         })
         */
 
-        const data = await user_model.findOne({_id : req.session.user_id},{ tags: { $elemMatch: { _id: ObjectID('634a87164ef596fc10370bce') } }})
+        //const data = await user_model.findOne({_id : req.session.user_id},{ tags: { $elemMatch: { _id: ObjectID('634a87164ef596fc10370bce') } }})
         //await BooksModel.find( { book_id:"2"},{ pages: { $elemMatch: { page_number: "2" } }}, {"$project": {"pages":"1", "_id": "0"}}).exec();
 
        // console.log(data)
@@ -67,6 +67,9 @@ router.get('/', is_auth_middleware, async (req, res) => {
         
         var workspaces = await workspace_model.find({owner: req.session.user_id})
         var user_data = await user_model.findOne({_id: req.session.user_id}).select('-_id tags types categories')
+
+        console.log(workspaces)
+
 
         res.render('home_page', {workspaces: workspaces, user_data: user_data})
     }catch(e){

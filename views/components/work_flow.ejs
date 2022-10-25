@@ -72,9 +72,9 @@
                                         <div class="w-1/4 text-center hover:bg-green-600 h-full flex  items-center justify-center toggle_types_modal">-</div>
                                     <% } %>                     
                                         <div class="w-1/4 flex items-center">
-                                            <div class="text-green-600 px-1"><%= workspaces[i].lists[j].tasks[k].progress %>%</div>
+                                            <div class="text-green-600 px-1"><%= Math.round(workspaces[i].lists[j].tasks[k].sub_tasks.reduce((total, next) => total + next.progress , 0)/ workspaces[i].lists[j].tasks[k].sub_tasks.length) %>%</div>
                                             <div class="w-full rounded-full border border-green-600 h-2">
-                                                <div class="h-full rounded-full bg-green-600" style="width:<%= workspaces[i].lists[j].tasks[k].progress %>%"></div>    
+                                                <div class="h-full rounded-full bg-green-600" style="width:<%= Math.round(workspaces[i].lists[j].tasks[k].sub_tasks.reduce((total, next) => total + next.progress , 0)/ workspaces[i].lists[j].tasks[k].sub_tasks.length) %>%"></div>    
                                             </div>
                                         </div>
                                 </div>

@@ -8,6 +8,8 @@ lists[0].classList.add('active_list')
 current_active_space = spaces[0].id
 current_active_list = lists[0].id
 document.getElementById('active.tasks.list_'+current_active_list).classList.remove('hidden')
+
+/*
 for( let i = 0; i < lists.length; i++ ) { 
   lists[i].addEventListener('click', (event) => {
     if(!event.target.classList.contains('active_list')){
@@ -24,7 +26,7 @@ for( let i = 0; i < lists.length; i++ ) {
     }
   })
 }
-
+*/
 
 
 

@@ -9,7 +9,7 @@ const is_object = (arg) =>{
     if(!mongoose.isValidObjectId(arg.parent_space)){
         res.json({status: "denied"})
         return
-        }
+    }
 }
 const list_exists = async (arg) =>{
     if(await workspace_model.exists({_id: arg.parent_space, lists: {$elemMatch: { name: arg.name } }})){

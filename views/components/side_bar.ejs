@@ -19,7 +19,7 @@
                 <input type="hidden" id="parent.id_<%=workspaces[i].id%>">
                 create new list 
             </div>
-            <div id="parent_<%= workspaces[i].id %>">
+            <div id="parent_<%= workspaces[i].id %>" class="list_names_container">
                 <% for( let k = 0; k < workspaces[i].lists.length; k++ ) { %>
                     <div id="<%= workspaces[i].lists[k]._id %>" class="list_names px-10 h-10 flex items-center">
                         <%= workspaces[i].lists[k].name %>

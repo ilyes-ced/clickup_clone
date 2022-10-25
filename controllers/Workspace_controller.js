@@ -6,10 +6,18 @@ const ObjectID = require('mongodb').ObjectId
 
 const create_list =  async (req, res) => {
     try{
-        validation.is_object(req.body)
-        validation.list_exists(req.body)
-        validation.list_owned(req.body, req.session.user_id)
-      
+        if(!mongoose.isValidObjectId(res.body.parent_space)){
+            res.json({status: "denied"})
+            return
+        }
+        if(await workspace_model.exists({_id: req.body.parent_space, lists: {$elemMatch: { name: req.body.name } }})){
+            res.json({status: "exists"})
+            return
+        }
+        if(!await workspace_model.exists({_id: req.body.parent_space, owner: req.session.user_id})){
+            res.json({status: "denied"})
+            return
+        }
         const obj = {
             _id : new ObjectID(),
             name : req.body.name,
