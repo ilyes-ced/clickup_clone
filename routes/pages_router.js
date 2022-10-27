@@ -68,7 +68,7 @@ router.get('/', is_auth_middleware, async (req, res) => {
         var workspaces = await workspace_model.find({owner: req.session.user_id})
         var user_data = await user_model.findOne({_id: req.session.user_id}).select('-_id tags types categories')
 
-        console.log(workspaces)
+        //console.log(workspaces)
 
 
         res.render('home_page', {workspaces: workspaces, user_data: user_data})
