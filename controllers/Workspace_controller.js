@@ -1,10 +1,11 @@
 const workspace_model = require("../models/work_space")
-const validation = require("../middleware/validation")
+//const validation = require("../middleware/validation")
 const mongoose = require('mongoose')
 const ObjectID = require('mongodb').ObjectId
 
 
 const create_list =  async (req, res) => {
+    console.log(req.body)
     try{
         if(!mongoose.isValidObjectId(res.body.parent_space)){
             res.json({status: "denied"})
