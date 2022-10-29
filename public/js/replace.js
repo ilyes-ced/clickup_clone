@@ -44,30 +44,14 @@ for( let i = 0; i < lists.length; i++ ) {
 
 
 
-const toggle_spaces_list = document.getElementsByClassName('toggle_spaces_list')
-const toggle_spaces = document.getElementsByClassName('toggle_spaces')
-for( let i = 0; i < toggle_spaces.length; i++ ) { 
-  toggle_spaces[i].addEventListener('click', (event) => {
-    toggle_spaces_list[i].classList.toggle('hidden')
-  })
-}
 
 
 
 
 
 
-const create_list_modal = document.getElementById('create_list_modal')
-const toggle_create_list_modal = document.getElementsByClassName('toggle_create_list_modal')
-for( let i = 0; i < toggle_spaces.length; i++ ) { 
-  toggle_create_list_modal[i].addEventListener('click', (event) => {
-    current_workspace = event.target.getElementsByTagName('input')[0].id.split('_')[1]
-    create_list_modal.classList.toggle('hidden')
-    if(!create_list_modal.classList.contains('hidden')){
-      document.getElementById('name_create_list').focus()
-    }
-  })
-}
+
+
 
 // for the modal close button
 /*
@@ -176,59 +160,7 @@ for( let i = 0; i < table_row.length; i++ ) {
 
 
 
-const close_success_modal = document.getElementById('close_success_modal')
-close_success_modal.addEventListener('click', (event) => {
-  success_modal.classList.add('hidden')
-})
 
-
-
-const name_create_list = document.getElementById('name_create_list')
-const submit_create_list = document.getElementById('submit_create_list')
-name_create_list.addEventListener("keyup", function(event) {
-    event.preventDefault();
-    if (event.keyCode === 13) {
-      submit_create_list.click();
-    }
-});
-
-
-
-submit_create_list.addEventListener('click', (event) => { 
-  const xhttp = new XMLHttpRequest();
-  let json = JSON.stringify({
-    name: name_create_list.value,
-    parent_space: current_workspace
-  });
-  xhttp.open("POST", "/create_list");
-  xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-  xhttp.send(json);
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      json = JSON.parse(this.response) 
-      name_create_list.value=""
-      if(json.status == 'success'){
-        create_list_modal.classList.add('hidden')
-        success_modal.classList.remove('hidden')
-        setTimeout(()=>{
-          success_modal.classList.add('hidden')
-        }, 5000);
-
-        document.getElementById("parent.id_"+current_workspace).parentElement.nextElementSibling.insertAdjacentHTML('beforeend', '<div id="'+json.id+'" class="list_names px-10 h-10 flex items-center">'+json.name+'</div>')
-       
-        success_modal.classList.remove('hidden')
-        setTimeout(()=>{
-          success_modal.classList.add('hidden')
-        }, 5000);
-        
-      }else if(json.status == 'exists'){
-        name_create_list.parentElement.appendChild(document.createTextNode(" This text was added to the DIV."));
-      }else{
-
-      }
-    }
-  };
-})
 
 
 

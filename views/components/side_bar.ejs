@@ -9,30 +9,29 @@
     </div>
 
     <% for( let i = 0; i < workspaces.length; i++ ) { %>
-        <div id="<%= workspaces[i].id %>" class="toggle_spaces p-2 h-12 border-b border-transparent flex justify-between items-center hover:bg-blue-800">
-            <div  class="text-lg"><%= workspaces[i].name %></div>
-            <div>V</div>
-        </div>
-
-        <div id="" class="hidden toggle_spaces_list">
-            <div class="bg-gray-600 rounded-md m-2 text-center toggle_create_list_modal" id="">
-                <input type="hidden" id="parent.id_<%=workspaces[i].id%>">
-                create new list 
+        <div id="<%= workspaces[i].id %>" class="border-b border-transparent flex flex-col  ">
+            <div class="toggle_spaces hover:bg-blue-800 w-full h-full p-2 flex justify-between items-center">
+                <div  class="text-lg"><%= workspaces[i].name %></div>
+                <div>V</div>
             </div>
-            <div id="parent_<%= workspaces[i].id %>" class="list_names_container">
-                <% for( let k = 0; k < workspaces[i].lists.length; k++ ) { %>
-                    <div id="<%= workspaces[i].lists[k]._id %>" class="list_names px-10 h-10 flex items-center">
-                        <%= workspaces[i].lists[k].name %>
-                    </div>
-                <%}%>
+            <div id="" class="hidden toggle_spaces_list">
+                <div class="bg-gray-600 rounded-md m-2 text-center toggle_create_list_modal" id="<%=workspaces[i].id%>">
+                    <input type="hidden">
+                    create new list 
+                </div>
+                <div id="parent_<%= workspaces[i].id %>" class="list_names_container">
+                    <% for( let k = 0; k < workspaces[i].lists.length; k++ ) { %>
+                        <div id="<%= workspaces[i].lists[k]._id %>" class="list_names px-10 h-10 flex items-center">
+                            <%= workspaces[i].lists[k].name %>
+                        </div>
+                    <%}%>
+                </div>
             </div>
         </div>
-
     <%}%>
 
 
 
 
 
-</aside>   
-
+</aside>

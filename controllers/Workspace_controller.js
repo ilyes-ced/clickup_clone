@@ -7,7 +7,7 @@ const ObjectID = require('mongodb').ObjectId
 const create_list =  async (req, res) => {
     console.log(req.body)
     try{
-        if(!mongoose.isValidObjectId(res.body.parent_space)){
+        if(!mongoose.isValidObjectId(req.body.parent_space)){
             res.json({status: "denied"})
             return
         }
@@ -29,7 +29,7 @@ const create_list =  async (req, res) => {
         await workspace_model.findOneAndUpdate(
             { _id:  req.body.parent_space}, 
             { $push: { 
-                      lists: obj
+                    lists: obj
                     }
         })
         res.json({status: "success",id: obj._id,name:obj.name})
