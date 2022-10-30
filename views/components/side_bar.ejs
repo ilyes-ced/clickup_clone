@@ -14,12 +14,12 @@
                 <div  class="text-lg"><%= workspaces[i].name %></div>
                 <div>V</div>
             </div>
-            <div id="" class="hidden toggle_spaces_list">
-                <div class="bg-gray-600 rounded-md m-2 text-center toggle_create_list_modal" id="<%=workspaces[i].id%>">
+            <div  class="hidden toggle_spaces_list">
+                <div class="bg-gray-600 rounded-md m-2 text-center toggle_create_list_modal">
                     <input type="hidden">
                     create new list 
                 </div>
-                <div id="parent_<%= workspaces[i].id %>" class="list_names_container">
+                <div class="list_names_container">
                     <% for( let k = 0; k < workspaces[i].lists.length; k++ ) { %>
                         <div id="<%= workspaces[i].lists[k]._id %>" class="list_names px-10 h-10 flex items-center">
                             <%= workspaces[i].lists[k].name %>

@@ -1,7 +1,10 @@
 //declared variables
-var active_workspace
-var active_list
+var active_space = document.getElementsByClassName('toggle_spaces')[0].parentElement.id
+var active_list = document.getElementsByClassName('list_names_container')[0].firstElementChild.id
 
+var json
+var selected_task
+var selected_task_parent_task = null
 
 
 
@@ -17,7 +20,17 @@ const create_list_modal = document.getElementById('create_list_modal')
 const close_success_modal = document.getElementById('close_success_modal')
 const name_create_list = document.getElementById('name_create_list')
 const submit_create_list = document.getElementById('submit_create_list')
-
+const create_space_modal = document.getElementById('create_space_modal')
+const create_task_modal = document.getElementById('create_task_modal')
+const toggle_create_task_modal = document.getElementById('toggle_create_task_modal')
+const name_create_space = document.getElementById('name_create_space')
+const submit_create_space = document.getElementById('submit_create_space')
+const task_create_select_input = document.getElementById('task_create_select_input')
+const task_create_select_input_toggle = document.getElementById('task_create_select_input_toggle')
+const types_modal_content = document.getElementById('types_modal_content')
+const types_modal = document.getElementById('types_modal')
+const categories_modal = document.getElementById('categories_modal')
+const categories_modal_content = document.getElementById('categories_modal_content')
 
 
 
@@ -25,6 +38,30 @@ const submit_create_list = document.getElementById('submit_create_list')
 
 //declared functions
 
+const http_request = (url, type, data) => {
+    const xhttp = new XMLHttpRequest()
+    xhttp.open(type, url);
+    xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xhttp.send(data);
+    return xhttp
+}
+
+
+
+
+
+const show_success_modal = () => {
+    success_modal.classList.remove('hidden')
+    setTimeout(()=>{
+        success_modal.classList.add('hidden')
+    }, 5000);
+}
+
+
+
+
+
+//get the hovered row
 const define_hovered_row = (target) => {
     if(target.classList.contains('table_row')){
         return target
@@ -45,15 +82,39 @@ const define_hovered_row = (target) => {
 
 
 
+//created list
+const create_list_success = () => {
+    create_list_modal.classList.add('hidden')
+    success_modal.classList.remove('hidden')
+    document.getElementById(active_space).getElementsByClassName('list_names_container')[0].insertAdjacentHTML('beforeend', '<div id="'+json.id+'" class="list_names px-10 h-10 flex items-center">'+json.name+'</div>')
+    show_success_modal()
+}
 
 
 
 
 
-
-
-
-
+//created space
+const create_space_success = () => {
+    create_space_modal.classList.add('hidden')
+    sidebar_menu.insertAdjacentHTML('beforeend',' \
+        <div id="'+json.id+'" class="border-b border-transparent flex flex-col  "> \
+            <div class="toggle_spaces hover:bg-blue-800 w-full h-full p-2 flex justify-between items-center"> \
+                <div  class="text-lg">'+json.name+'</div> \
+                <div>V</div> \
+            </div> \
+            <div  class="hidden toggle_spaces_list"> \
+                <div class="bg-gray-600 rounded-md m-2 text-center toggle_create_list_modal"> \
+                    <input type="hidden"> \
+                    create new list  \
+                </div> \
+                <div class="list_names_container"> \
+                </div> \
+            </div> \
+        </div> \ '
+    )
+    show_success_modal()
+}
 
 
 

@@ -47,14 +47,14 @@ router.get('/', is_auth_middleware, async (req, res) => {
         await user_model.findOneAndUpdate({_id : req.session.user_id},{
             $push : {
                 categories: {$each:
-                   [ {_id: new ObjectID(), name: "tech",color: 'rgb(200,120,210)'},
-                    {_id: new ObjectID(), name: "to do",color: 'rgb(90,15,200)'},
-                    {_id: new ObjectID(), name: "house",color: 'rgb(30,70,20)'},
-                    {_id: new ObjectID(), name: "maintenance",color: 'rgb(150,200,45)'},]
+                   [ {_id: new ObjectID(), name: "carts",color: 'rgb(00,120,210)'},
+                    {_id: new ObjectID(), name: "to taa",color: 'rgb(90,150,250)'},
+                    {_id: new ObjectID(), name: "fafa",color: 'rgb(30,170,20)'},
+                    {_id: new ObjectID(), name: "ran",color: 'rgb(150,200,245)'},]
                 }
             }    
-        })
-        */
+        })*/
+        
 
         //const data = await user_model.findOne({_id : req.session.user_id},{ tags: { $elemMatch: { _id: ObjectID('634a87164ef596fc10370bce') } }})
         //await BooksModel.find( { book_id:"2"},{ pages: { $elemMatch: { page_number: "2" } }}, {"$project": {"pages":"1", "_id": "0"}}).exec();

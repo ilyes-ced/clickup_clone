@@ -55,7 +55,10 @@ const create_list =  async (req, res) => {
 
 const create_space =  async (req, res) => {
     try{
-        validation.workspace_exists(req.body)
+        if(await workspace_model.exists({name: req.body.name})){
+            res.json({status: "exists"})
+            return
+        }
         new_workspace = new workspace_model({
             _id : new ObjectID(),
             name: req.body.name,

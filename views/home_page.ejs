@@ -16,9 +16,9 @@
         <script src="public/js/frontend_events.js" defer></script>
         <script src="public/js/backend_events.js" defer></script>
     </head>
-    <body class='text-white text-sm'>
+    <body class='text-white sm:text-sm md:text-md lg:text-lg'>
         
-  
+        
         <!-- must change to include on demand -->
         <%- include('modals/success_modal') %>
         <%- include('modals/create_list_modal') %>
@@ -45,26 +45,25 @@
         <div class='flex flex-row h-full bg-[#1d203e]'>
             <%- include('components/side_bar') %>
             <div class='w-full h-screen overflow-y-auto'>
-                 <!--
+                
+                <!--
                 <ul id="sortlist">
                     <li>First</li>
                     <li>Second</li>
                     <li>Third</li>
                     <li>Forth</li>
                     <li>Fifth</li>
-                  </ul> -->
+                </ul> -->
                 
-        
                 <%- include('components/nav_bar') %>                
                 <%- include('components/work_flow') %>
             </div>
         </div>
 
-      
         <button id="toggle_create_task_modal"
         class="fixed z-90 bottom-6 right-6 bg-blue-600 w-10 h-10 rounded-full drop-shadow-lg flex
-         justify-center items-center text-white text-4xl hover:bg-blue-700 hover:drop-shadow-2xl
-          hover:animate-spin duration-300">&#9593;</button>
+        justify-center items-center text-white text-4xl hover:bg-blue-700 hover:drop-shadow-2xl
+        hover:animate-spin duration-300">&#9593;</button>
 
     </body>
 </html>
