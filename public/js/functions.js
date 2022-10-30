@@ -31,6 +31,8 @@ const types_modal_content = document.getElementById('types_modal_content')
 const types_modal = document.getElementById('types_modal')
 const categories_modal = document.getElementById('categories_modal')
 const categories_modal_content = document.getElementById('categories_modal_content')
+const hover_item = document.getElementById('hover_item')
+const hover_item_content = document.getElementById('hover_item_content')
 
 
 

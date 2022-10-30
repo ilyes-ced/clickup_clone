@@ -89,16 +89,11 @@ types_modal_content.addEventListener('click', (event) => {
 
 
 
-
-
-
-
 //change categories
 categories_modal_content.addEventListener('click', (event) => {
-    console.log('grezgr')
     if(event.target.classList.contains('selected_category')){
         http_request('/add_category_to_task', 'POST', JSON.stringify({
-            selected_task : selected_task_category,
+            selected_task : selected_task,
             category_id : event.target.id,
             parent_workspace : active_space,
             parent_list : active_list,
@@ -109,8 +104,8 @@ categories_modal_content.addEventListener('click', (event) => {
                 name_create_list.value=""
                 console.log(json)
                 if(json.status == 'success'){
-                    document.getElementById(selected_task_category).firstElementChild.firstElementChild.firstElementChild.style.backgroundColor = json.color
-                    document.getElementById(selected_task_category).firstElementChild.firstElementChild.style.borderColor = json.color
+                    document.getElementById(selected_task).firstElementChild.firstElementChild.firstElementChild.style.backgroundColor = json.color
+                    document.getElementById(selected_task).firstElementChild.firstElementChild.style.borderColor = json.color
                     categories_modal.classList.add('hidden')
                 }else if(json.status == 'exists'){
     

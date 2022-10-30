@@ -98,7 +98,8 @@ for( let i = 0; i < list_of_tasks.length; i++ ) {
         if(event.target.classList.contains('add_task_in_list')){
             alert('create')
         }
-
+        
+        //show type modal
         if(event.target.classList.contains('toggle_types_modal')){
             console.log('ggg')
             selected_task_type = event.target.parentElement.parentElement.id
@@ -113,7 +114,7 @@ for( let i = 0; i < list_of_tasks.length; i++ ) {
 
 
 
-
+        //show category modal
         if(event.target.classList.contains('task_category_toggle')){
             selected_task = event.target.parentElement.parentElement.id
             if(event.target.parentElement.parentElement.parentElement.classList.contains('hidden_sub_tasks')){
@@ -122,7 +123,7 @@ for( let i = 0; i < list_of_tasks.length; i++ ) {
             categories_modal.classList.remove('hidden')
             categories_modal_content.style.top = (event.target.offsetTop+40)+'px'
             categories_modal_content.style.left = event.target.offsetLeft+'px'
-        }else{
+        }else if(event.target.parentElement.classList.contains('task_category_toggle')){
             selected_task = event.target.parentElement.parentElement.parentElement.id
             if(event.target.parentElement.parentElement.parentElement.parentElement.classList.contains('hidden_sub_tasks')){
                 selected_task_parent_task=event.target.parentElement.parentElement.parentElement.parentElement.previousElementSibling.id
