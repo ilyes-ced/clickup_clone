@@ -1,7 +1,6 @@
 //declared variables
 var active_space = document.getElementsByClassName('toggle_spaces')[0].parentElement.id
 var active_list = document.getElementsByClassName('list_names_container')[0].firstElementChild.id
-
 var json
 var selected_task
 var selected_task_parent_task = null
@@ -34,7 +33,8 @@ const hover_item = document.getElementById('hover_item')
 const hover_item_content = document.getElementById('hover_item_content')
 const tags_modal_content = document.getElementById('tags_modal_content')
 const tags_modal = document.getElementById('tags_modal')
-
+const task_modal = document.getElementById('task_modal')
+const task_modal_content = document.getElementById('task_modal_content')
 
 
 

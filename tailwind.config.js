@@ -16,6 +16,7 @@ module.exports = {
                 'tertiary': '#393d5e',
                 'light_purple': '#cba4ee',
                 'dark_purple': '#8060d4',
+                'modal-color': 'rgba(0, 0, 0, 0.54)',
             },
         },
     },
