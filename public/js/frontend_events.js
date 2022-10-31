@@ -21,8 +21,18 @@ sidebar_menu.addEventListener('click', (event) => {
             document.getElementById('name_create_list').focus()
         }
     }
-
+    //set active list
+    if(event.target.classList.contains('list_names')){
+        
+    }
 })
+
+
+
+
+
+
+
 
 
 
@@ -60,13 +70,34 @@ name_create_space.addEventListener("keyup", function(event) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // show and hide icons on table row on hover
 var row
 const list_of_tasks = document.getElementsByClassName('list_of_tasks')
 for( let i = 0; i < list_of_tasks.length; i++ ) {
     list_of_tasks[i].addEventListener('mouseover', (event) => {
         row = define_hovered_row(event.target)
-        if (event.target.matches('.table_row,.table_row *')) {
+        if (event.target.matches('.table_row, .table_row *')) {
             row.getElementsByClassName('row_hidden_icons')[0].classList.remove('hidden')
             row.getElementsByClassName('row_hidden_icons')[1].classList.remove('hidden')
             row.getElementsByClassName('row_hidden_icons')[2].classList.remove('hidden')
@@ -78,11 +109,13 @@ for( let i = 0; i < list_of_tasks.length; i++ ) {
             hover_item.style.left = event.target.offsetLeft+'px'
             hover_item_content.innerText = 'this tech'
         }
+
+        
     })
 
     list_of_tasks[i].addEventListener('mouseout', (event) => {
         row = define_hovered_row(event.target)
-        if (event.target.matches('.table_row,.table_row *')) {
+        if (event.target.matches('.table_row, .table_row *')) {
             row.getElementsByClassName('row_hidden_icons')[0].classList.add('hidden')
             row.getElementsByClassName('row_hidden_icons')[1].classList.add('hidden')
             row.getElementsByClassName('row_hidden_icons')[2].classList.add('hidden')
@@ -95,8 +128,46 @@ for( let i = 0; i < list_of_tasks.length; i++ ) {
 
 
     list_of_tasks[i].addEventListener('click', (event) => {
+        //show and hide sub tasks
+        if(event.target.classList.contains('toggle_sub_tasks')){
+            event.target.parentElement.parentElement.parentElement.getElementsByClassName('hidden_sub_tasks')[0].classList.toggle('hidden')
+        }
+        //create sub task
+        if(event.target.classList.contains('create_sub_task_in_list')){
+            event.target.parentElement.parentElement.parentElement.getElementsByClassName('hidden_sub_tasks')[0].classList.remove('hidden')
+            //event.target.parentElement.parentElement.parentElement.getElementsByClassName('hidden_sub_tasks')[0].lastElementChild.firstElementChild.firstElementChild.remove()
+            //event.target.parentElement.parentElement.parentElement.getElementsByClassName('hidden_sub_tasks')[0].lastElementChild.firstElementChild.firstElementChild.insertAdjacentHTML('beforebegin', middle_sub_task)
+            event.target.parentElement.parentElement.parentElement.getElementsByClassName('hidden_sub_tasks')[0].insertAdjacentHTML('beforeend', sub_table_element)
+            new_task_name = document.getElementById('new_task_name')
+            selected_task_parent_task = event.target.parentElement.parentElement.parentElement.id
+            new_task_name.addEventListener("keyup", function(event) {
+                event.preventDefault();
+                if (event.keyCode === 13) {
+                    create_sub_task_in_list()
+                }
+            })
+            new_task_name.focus()
+            new_task_name.addEventListener('blur', (event) => {
+                document.getElementById('remove_on_error').remove()
+                hidden_sub_tasks[i].lastElementChild.firstElementChild.firstElementChild.remove()
+                hidden_sub_tasks[i].lastElementChild.firstElementChild.firstElementChild.insertAdjacentHTML('beforebegin', final_sub_task)
+            })
+}
+
+
         if(event.target.classList.contains('add_task_in_list')){
-            alert('create')
+            event.target.insertAdjacentHTML('beforebegin', table_element)
+            new_task_name = document.getElementById('new_task_name')
+            new_task_name.addEventListener("keyup", function(event) {
+                event.preventDefault();
+                if (event.keyCode === 13) {
+                    create_task_in_list()
+                }
+            });
+            new_task_name.focus()
+            new_task_name.addEventListener('blur', (event) => {
+                document.getElementById('remove_on_error').remove()
+            })
         }
         
         //show type modal
@@ -104,7 +175,7 @@ for( let i = 0; i < list_of_tasks.length; i++ ) {
             console.log('ggg')
             selected_task_type = event.target.parentElement.parentElement.id
             if(event.target.parentElement.parentElement.parentElement.classList.contains('hidden_sub_tasks')){
-                selected_task_parent_task=event.target.parentElement.parentElement.parentElement.previousElementSibling.id
+                selected_task_parent_task=event.target.parentElement.parentElement.parentElement.parentElement.id
             }
             types_modal.classList.remove('hidden')
             types_modal_content.style.top = (event.target.offsetTop+40)+'px'
@@ -118,7 +189,7 @@ for( let i = 0; i < list_of_tasks.length; i++ ) {
         if(event.target.classList.contains('task_category_toggle')){
             selected_task = event.target.parentElement.parentElement.id
             if(event.target.parentElement.parentElement.parentElement.classList.contains('hidden_sub_tasks')){
-                selected_task_parent_task=event.target.parentElement.parentElement.parentElement.previousElementSibling.id
+                selected_task_parent_task=event.target.parentElement.parentElement.parentElement.parentElement.id
             }
             categories_modal.classList.remove('hidden')
             categories_modal_content.style.top = (event.target.offsetTop+40)+'px'
@@ -126,20 +197,34 @@ for( let i = 0; i < list_of_tasks.length; i++ ) {
         }else if(event.target.parentElement.classList.contains('task_category_toggle')){
             selected_task = event.target.parentElement.parentElement.parentElement.id
             if(event.target.parentElement.parentElement.parentElement.parentElement.classList.contains('hidden_sub_tasks')){
-                selected_task_parent_task=event.target.parentElement.parentElement.parentElement.parentElement.previousElementSibling.id
+                selected_task_parent_task=event.target.parentElement.parentElement.parentElement.parentElement.parentElement.id
             }
             categories_modal.classList.remove('hidden')
             categories_modal_content.style.top = (event.target.offsetTop+40)+'px'
             categories_modal_content.style.left = event.target.offsetLeft+'px'
         }
+
+
+        if(event.target.classList.contains('toggle_tags_modal')){
+            selected_task = event.target.parentElement.parentElement.id
+            //for sub tasks needs fixing
+            if(event.target.parentElement.parentElement.parentElement.classList.contains('hidden_sub_tasks')){
+                selected_task_parent_task=event.target.parentElement.parentElement.parentElement.parentElement.id
+            }
+            tags_modal.classList.remove('hidden')
+            tags_modal_content.style.top = (event.target.offsetTop+30)+'px'
+            tags_modal_content.style.left = event.target.offsetLeft+'px'
+        }
+
+
+        if(event.target.classList.contains('remove_tag')){
+            selected_task_parent_task = null
+            selected_task = event.target.parentElement.parentElement.parentElement.parentElement.id
+            if(event.target.parentElement.parentElement.parentElement.parentElement.parentElement.classList.contains('hidden_sub_tasks')){
+                selected_task_parent_task=event.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.id
+            }
+            remove_tag(event.target)
+        }
     })
 }
-
-
-
-
-
-
-
-
 

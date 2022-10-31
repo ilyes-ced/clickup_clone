@@ -67,3 +67,12 @@ categories_modal.addEventListener('click', (event) => {
         categories_modal.classList.toggle('hidden')
     }
 })
+
+
+
+//close tags modal
+tags_modal.addEventListener('click', (event) => {
+    if(event.target == event.currentTarget) {
+        tags_modal.classList.toggle('hidden')
+    }
+})

@@ -5,8 +5,7 @@ var active_list = document.getElementsByClassName('list_names_container')[0].fir
 var json
 var selected_task
 var selected_task_parent_task = null
-
-
+var new_task_name
 
 
 
@@ -33,6 +32,8 @@ const categories_modal = document.getElementById('categories_modal')
 const categories_modal_content = document.getElementById('categories_modal_content')
 const hover_item = document.getElementById('hover_item')
 const hover_item_content = document.getElementById('hover_item_content')
+const tags_modal_content = document.getElementById('tags_modal_content')
+const tags_modal = document.getElementById('tags_modal')
 
 
 
@@ -142,26 +143,40 @@ const create_space_success = () => {
 
 
 
-
-
 //declare html comps
-const table_element = '<div id="remove_on_error" class="border-y border-primary w-full flex flex-row bg-gray-800 hover:bg-gray-600 h-10 items-center px-2 cursor-pointer table_row"> \
-                                <div class="flex flex-row space-x-2 w-2/3"> \
-                                    <div class="border hover:border-white rounded-sm border-transparent p-0.5 self-center">     \
-                                        <div class="h-3 w-3 bg-white rounded-sm self-center "></div> \
-                                    </div> \
-                                    <div><input id="new_task_name" type="text" class=" bg-transparent"></div> \
-                                    <div class="toggle_sub_tasks this_hidden_icons rounded-md border border-gray-800 w-5 h-5 hidden"><%= workspaces[i].lists[j].tasks[k].sub_tasks.length %></div> \
-                                    <div class="toggle_tags_modal this_hidden_icons rounded-md border border-gray-800 w-5 h-5 hidden">i</div> \
-                                    <div class="this_hidden_icons rounded-md border border-gray-800 w-5 h-5 hidden">i</div> \
-                                </div> \
-                                <div class="flex flex-row w-1/3"> \
-                                    <div class="w-1/4 text-center">temp</div> \
-                                    <div class="w-1/4 text-center">temp</div> \
-                                    <div class="w-1/4 text-center">temp</div> \
-                                    <div class="w-1/4 text-center">temp</div> \
-                                </div> \
-                            </div> '
+const table_element = ' \
+<div id="remove_on_error" class=" w-full flex flex-row bg-gray-800 hover:bg-gray-600 h-10 items-center px-2 cursor-pointer table_row"> \
+    <div class="flex flex-row space-x-2 w-2/3"> \
+        <div class="task_category_toggle border hover:border-white rounded-sm border-transparent p-0.5 self-center"> \
+            <div class="h-3 w-3 bg-white rounded-sm self-center "></div> \
+        </div> \
+        <div class="flex flex-row tags_container"><input id="new_task_name" type="text" class=" bg-transparent"></div> \
+        <div class=" row_hidden_icons rounded-md border border-gray-800 w-10 h-5 hidden flex flex-row divide-x" > \
+            <div class="toggle_sub_tasks w-5 flex items-center justify-center"> \
+                0 \
+            </div> \
+            <div class="w-5 flex items-center justify-center create_sub_task_in_list" > \
+                + \
+            </div> \
+        </div> \
+        <div class="row_hidden_icons toggle_tags_modal rounded-md border border-gray-800 w-5 h-5 hidden">i</div> \
+        <div class="row_hidden_icons rounded-md border border-gray-800 w-5 h-5 hidden">i</div> \
+    </div> \
+    <div class="flex flex-row w-1/3 h-full items-center"> \
+        <div class="w-1/4 text-center"> \
+            ib \
+        </div> \
+        <div class="w-1/4 text-center">temp</div> \
+        <div class="w-1/4 text-center hover:bg-green-600 h-full flex  items-center justify-center toggle_types_modal">-</div> \
+        <div class="w-1/4 flex items-center"> \
+            <div class="text-green-600 px-1">0%</div> \
+            <div class="w-full rounded-full border border-green-600 h-2"> \
+                <div class="h-full rounded-full bg-green-600" style="width:0%"></div> \
+            </div> \
+        </div> \
+    </div> \
+    <div class="hidden hidden_sub_tasks"></div> \
+</div> '
 
 
 
@@ -204,3 +219,96 @@ const final_sub_task = '<div class="w-10 h-full flex flex-row "> \
         <div class="w-full h-1/2  border-b border-l rounded-bl-lg"></div> \
     </div> \
 </div>'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+'<div id="remove_on_error" class="border-y border-primary w-full flex flex-row bg-gray-800 hover:bg-gray-600 h-10 items-center px-2 cursor-pointer table_row"> \
+                                <div class="flex flex-row space-x-2 w-2/3"> \
+                                    <div class="border hover:border-white rounded-sm border-transparent p-0.5 self-center">     \
+                                        <div class="h-3 w-3 bg-white rounded-sm self-center "></div> \
+                                    </div> \
+                                    <div><input id="new_task_name" type="text" class=" bg-transparent"></div> \
+                                    <div class="toggle_sub_tasks this_hidden_icons rounded-md border border-gray-800 w-5 h-5 hidden"><%= workspaces[i].lists[j].tasks[k].sub_tasks.length %></div> \
+                                    <div class="toggle_tags_modal this_hidden_icons rounded-md border border-gray-800 w-5 h-5 hidden">i</div> \
+                                    <div class="this_hidden_icons rounded-md border border-gray-800 w-5 h-5 hidden">i</div> \
+                                </div> \
+                                <div class="flex flex-row w-1/3"> \
+                                    <div class="w-1/4 text-center">temp</div> \
+                                    <div class="w-1/4 text-center">temp</div> \
+                                    <div class="w-1/4 text-center">temp</div> \
+                                    <div class="w-1/4 text-center">temp</div> \
+                                </div> \
+                            </div> '*/

@@ -46,11 +46,11 @@ router.get('/', is_auth_middleware, async (req, res) => {
        /*
         await user_model.findOneAndUpdate({_id : req.session.user_id},{
             $push : {
-                categories: {$each:
-                   [ {_id: new ObjectID(), name: "carts",color: 'rgb(00,120,210)'},
-                    {_id: new ObjectID(), name: "to taa",color: 'rgb(90,150,250)'},
-                    {_id: new ObjectID(), name: "fafa",color: 'rgb(30,170,20)'},
-                    {_id: new ObjectID(), name: "ran",color: 'rgb(150,200,245)'},]
+                tags: {$each:
+                   [ {_id: new ObjectID(), name: "carts",color: 'rgb(200,120,210)'},
+                    {_id: new ObjectID(), name: "to taa",color: 'rgb(200,150,20)'},
+                    {_id: new ObjectID(), name: "fafa",color: 'rgb(130,170,20)'},
+                    {_id: new ObjectID(), name: "ran",color: 'rgb(150,20,245)'},]
                 }
             }    
         })*/
@@ -62,8 +62,8 @@ router.get('/', is_auth_middleware, async (req, res) => {
        // console.log(data)
 
 
-
-
+        const vv = await workspace_model.findOne({ 'lists.tasks.tags._id':  ObjectID('635fa4ebfc47442a12d7ea05')  }, {'lists.tasks.tags._id': ObjectID('635fa4ebfc47442a12d7ea05')  })
+        console.log(vv)
         
         var workspaces = await workspace_model.find({owner: req.session.user_id})
         var user_data = await user_model.findOne({_id: req.session.user_id}).select('-_id tags types categories')
