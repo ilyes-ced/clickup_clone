@@ -1,3 +1,4 @@
+
 <% for( let i = 0; i < workspaces.length; i++ ) { %>
     <% for( let j = 0; j < workspaces[i].lists.length; j++ ) { %>
 
@@ -79,7 +80,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="hidden hidden_sub_tasks">
+                                <div class="hidden hidden_sub_tasks ">
                                     <% for( let l = 0; l < workspaces[i].lists[j].tasks[k].sub_tasks.length; l++ ) { %>
                                         <div id="<%= workspaces[i].lists[j].tasks[k].sub_tasks[l]._id %>" class="w-full flex flex-row bg-gray-800 hover:bg-gray-600 h-10 items-center px-2 cursor-pointer table_row">
                                             <div class="flex flex-row space-x-2 w-2/3 h-full items-center">

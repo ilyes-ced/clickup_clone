@@ -18,9 +18,7 @@ const ObjectID = require('mongodb').ObjectId
 
 router.get('/', is_auth_middleware, async (req, res) => {
     try{
-        
-        
-/*
+        /*
         console.log(await workspace_model.findOne({_id : '6349567708492d5e6aebb33c', lists : {$elemMatch:{_id:ObjectID('634956e6d3b6946a1e4c2c5b')}}}))
         await workspace_model.findOneAndUpdate({_id : '6349567708492d5e6aebb33c', lists : {$elemMatch:{_id:ObjectID('634956e6d3b6946a1e4c2c5b')}}},{
             $push : {
@@ -36,41 +34,46 @@ router.get('/', is_auth_middleware, async (req, res) => {
                                 _id: new ObjectID(), name:'sub task 1444444', description: "some text", createdAt:Date.now(), updatedAt:Date.now()
                             }], createdAt:Date.now(), updatedAt:Date.now()
                         }}
-                   
         },{
             arrayFilters: [
                 {"para1._id" : ObjectID('634956e6d3b6946a1e4c2c5b')},
             ]
         })
         */
-       /*
+        /*
         await user_model.findOneAndUpdate({_id : req.session.user_id},{
             $push : {
                 tags: {$each:
-                   [ {_id: new ObjectID(), name: "carts",color: 'rgb(200,120,210)'},
+                    [ {_id: new ObjectID(), name: "carts",color: 'rgb(200,120,210)'},
                     {_id: new ObjectID(), name: "to taa",color: 'rgb(200,150,20)'},
                     {_id: new ObjectID(), name: "fafa",color: 'rgb(130,170,20)'},
                     {_id: new ObjectID(), name: "ran",color: 'rgb(150,20,245)'},]
                 }
             }    
-        })*/
-        
+        })
+        */
+
+
+
+
 
         //const data = await user_model.findOne({_id : req.session.user_id},{ tags: { $elemMatch: { _id: ObjectID('634a87164ef596fc10370bce') } }})
         //await BooksModel.find( { book_id:"2"},{ pages: { $elemMatch: { page_number: "2" } }}, {"$project": {"pages":"1", "_id": "0"}}).exec();
 
        // console.log(data)
 
-
-        const vv = await workspace_model.findOne({ 'lists.tasks.tags._id':  ObjectID('635fa4ebfc47442a12d7ea05')  }, {'lists.tasks.tags._id': ObjectID('635fa4ebfc47442a12d7ea05')  })
+/*
+        const vv = await workspace_model.aggregate( [ { $unwind: { path: "$lists" } },{ $unwind: { path: "$lists.tasks" } },{ $unwind: { path: "$lists.tasks.name" } },
+            { $sort: { "lists.tasks.category.name": 1 } },
+            { $group: { _id: "$_id", details: { $push: "$tasks" } } }] )
+*/
+        const vv = await workspace_model.aggregate( [{ $match: {owner: req.session.user_id } }, { $unwind: { path: "$lists" } }, { $unwind: { path: "$lists.tasks" } },{ $sort: { "lists.tasks.category.name": 1 } },{ $group: { _id: "$_id", tasks: { $push: "$lists.tasks" } } } ] )
         console.log(vv)
         
+
+
         var workspaces = await workspace_model.find({owner: req.session.user_id})
         var user_data = await user_model.findOne({_id: req.session.user_id}).select('-_id tags types categories')
-
-        //console.log(workspaces)
-
-
         res.render('home_page', {workspaces: workspaces, user_data: user_data})
     }catch(e){
         console.log(e)
