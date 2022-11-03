@@ -67,7 +67,13 @@ router.get('/', is_auth_middleware, async (req, res) => {
             { $sort: { "lists.tasks.category.name": 1 } },
             { $group: { _id: "$_id", details: { $push: "$tasks" } } }] )
 */
-        const vv = await workspace_model.aggregate( [{ $match: {owner: req.session.user_id } }, { $unwind: { path: "$lists" } }, { $unwind: { path: "$lists.tasks" } },{ $sort: { "lists.tasks.category.name": 1 } },{ $group: { _id: "$_id", tasks: { $push: "$lists.tasks" } } } ] )
+        const vv = await workspace_model.aggregate([
+            { $match: {owner: req.session.user_id/*, lists: {$elemMatch:{_id : ObjectID('635c28f056f63404209b1415')}} */} },
+            { $unwind: { path: "$lists" } },
+            { $unwind: { path: "$lists.tasks" } },
+            { $sort: { "lists.tasks.category.name": 1 } },
+            { $group: { _id: "$_id", name: { "$first": "$name" }, owner: { "$first": "$owner" }, tasks: { $push: "$lists.tasks" },} } 
+        ])
         console.log(vv)
         
 
