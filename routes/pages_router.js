@@ -67,15 +67,24 @@ router.get('/', is_auth_middleware, async (req, res) => {
             { $sort: { "lists.tasks.category.name": 1 } },
             { $group: { _id: "$_id", details: { $push: "$tasks" } } }] )
 */
-        const vv = await workspace_model.aggregate([
-            { $match: {owner: req.session.user_id/*, lists: {$elemMatch:{_id : ObjectID('635c28f056f63404209b1415')}} */} },
+        /*const vv = await workspace_model.aggregate([
+            { $match: {owner: req.session.user_id/} },
+            { $project:{ name:1, lists:1} },
             { $unwind: { path: "$lists" } },
             { $unwind: { path: "$lists.tasks" } },
             { $sort: { "lists.tasks.category.name": 1 } },
-            { $group: { _id: "$_id", name: { "$first": "$name" }, owner: { "$first": "$owner" }, tasks: { $push: "$lists.tasks" },} } 
+            { $group: { _id: "$_id", task: { $push: "$lists.tasks" },} } 
         ])
-        console.log(vv)
+        console.log(vv[0].task)*/
+        //console.log(vv[0].tasks.length)
         
+        const vv = await workspace_model.find({$and :[
+            {_id : ObjectID('6349567708492d5e6aebb33c')},
+            {lists : {$elemMatch : {_id : ObjectID('634c2d5647398f929e2ad893')}}},
+            {"lists.tasks" : {$elemMatch : {_id : ObjectID('634ed96381831b083b4a8646')}}},
+            {"lists.tasks.tags"  : {$elemMatch : {_id : ObjectID('634a87164ef596fc10370bcf')}}},
+        ]})
+        console.log(vv)
 
 
         var workspaces = await workspace_model.find({owner: req.session.user_id})

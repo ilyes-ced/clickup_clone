@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const workspace_model = require("../models/work_space")
 const User_model = require("../models/User")
+const { info } = require('autoprefixer')
 const ObjectID = require('mongodb').ObjectId
 //mongoose.set('debug', true)
 
@@ -36,6 +37,8 @@ const add_tag_to_task = async (req, res) => {
             let tag_object = await User_model.findOne({_id: req.session.user_id}, {tags:{$elemMatch:{_id: ObjectID(req.body.tag_id)}}})
             req.body.tag_id = tag_object.tags[0]
 
+           
+
 
             await workspace_model.findOneAndUpdate({_id : req.body.parent_workspace, lists : {$elemMatch:{_id:ObjectID(req.body.parent_list)}}},{
                 $push : {
@@ -53,17 +56,18 @@ const add_tag_to_task = async (req, res) => {
    
             let tag_object = await User_model.findOne({_id: req.session.user_id}, {tags:{$elemMatch:{_id: ObjectID(req.body.tag_id)}}})
             req.body.tag_id = tag_object.tags[0]
-
             
-            let existing_tag_object = await workspace_model.findOne({_id: req.body.parent_workspace},
-            {lists: {$elemMatch: { _id: ObjectID(req.body.parent_list) }}},
-            )
-            /*
+            /*if(await workspace_model.exists({$and :[
+                {_id : ObjectID(req.body.parent_workspace)},
+                {lists : {$elemMatch : {_id : ObjectID(req.body.parent_list)}}},
+                {"lists.tasks" : {$elemMatch : {_id : ObjectID(req.body.selected_task)}}},
+                {"lists.tasks.tags"  : {$elemMatch : {_id : ObjectID(req.body.tag_id._id)}}},
+            ]})){
+                res.json({status: "exists"})
+                return
+            }*/
+            
 
-            {tasks:{$elemMatch:{_id: ObjectID(req.body.selected_task)}}},
-            {tags:{$elemMatch:{_id: req.body.tag_id._id}}},
-            */
-            console.log(existing_tag_object.lists[0].tasks)
 
             await workspace_model.findOneAndUpdate({_id : req.body.parent_workspace, lists : {$elemMatch:{_id:ObjectID(req.body.parent_list)}}},{
                 $push : {
@@ -80,16 +84,6 @@ const add_tag_to_task = async (req, res) => {
         
         
 
-/*
-        await workspace_model.findOneAndUpdate({_id : req.body.parent_workspace, lists : {$elemMatch:{_id:ObjectID(req.body.parent_list)}}},{
-            $push : {
-                "lists.$[para1].tasks": {_id : new ObjectID(), name:req.body.name, description: "", sub_tasks:[], createdAt:Date.now(), updatedAt:Date.now()}}
-                },{
-                arrayFilters: [
-                    {"para1._id" : ObjectID(req.body.parent_list)},
-            ]   
-        })*/
-		
 	}catch(e){
 		res.json({status: 'error'})
         console.log(e)

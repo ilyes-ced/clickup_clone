@@ -101,6 +101,9 @@ categories_modal_content.addEventListener('click', (event) => {
 //add tags
 tags_modal_content.addEventListener('click', (event) => {
     if(event.target.classList.contains('selected_tag')){
+        /*if(document.getElementById(selected_task).getElementsByClassName('tags_container')[0].(event.target.id)){
+            console.log('it exist')
+        }*/
         http_request('/add_tag_to_task', 'POST', JSON.stringify({
             selected_task : selected_task,
             tag_id : event.target.id,
@@ -111,7 +114,6 @@ tags_modal_content.addEventListener('click', (event) => {
             if (this.readyState == 4 && this.status == 200) {
                 json = JSON.parse(this.response)
                 name_create_list.value=""
-                console.log(json)
                 if(json.status == 'success'){
                     document.getElementById(selected_task).getElementsByClassName('tags_container')[0].insertAdjacentHTML('beforeend', '<div class="mx-2 px-1 rounded-md flex flex-row" style="background-color: '+json.color+'"> '+json.name+' <div id="'+json.id+'" class="px-1 ml-1 remove_tag hover:bg-red-600 rounded-md">X</div> </div>')
                     tags_modal.classList.add('hidden')
