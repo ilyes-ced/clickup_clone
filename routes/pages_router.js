@@ -84,7 +84,7 @@ router.get('/', is_auth_middleware, async (req, res) => {
             {"lists.tasks" : {$elemMatch : {_id : ObjectID('634ed96381831b083b4a8646')}}},
             {"lists.tasks.tags"  : {$elemMatch : {_id : ObjectID('634a87164ef596fc10370bcf')}}},
         ]})
-        console.log(vv)
+        //console.log(vv)
 
 
         var workspaces = await workspace_model.find({owner: req.session.user_id})

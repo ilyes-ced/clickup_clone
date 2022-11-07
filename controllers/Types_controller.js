@@ -8,7 +8,7 @@ const ObjectID = require('mongodb').ObjectId
 
 
 const add_type_to_task = async (req, res) => {
-  
+    console.log(req.body)
     try{	
 		if(!(mongoose.isValidObjectId(req.body.selected_task) && mongoose.isValidObjectId(req.body.type_id) && mongoose.isValidObjectId(req.body.parent_workspace) && mongoose.isValidObjectId(req.body.parent_list))){
 			res.json({status: "denied"})

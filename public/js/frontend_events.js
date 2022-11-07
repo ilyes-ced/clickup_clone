@@ -193,8 +193,9 @@ document.addEventListener('click', (event) => {
     //show type modal
     if(event.target.classList.contains('toggle_types_modal')){
         console.log('ggg')
-        selected_task_type = event.target.parentElement.parentElement.id
+        selected_task_type = event.target.parentElement.parentElement.parentElement.id
         if(event.target.parentElement.parentElement.parentElement.classList.contains('hidden_sub_tasks')){
+            selected_task_type=event.target.parentElement.parentElement.id
             selected_task_parent_task=event.target.parentElement.parentElement.parentElement.parentElement.id
         }
         types_modal.classList.remove('hidden')
@@ -323,7 +324,7 @@ document.addEventListener('click', (event) => {
 
 
 
-
+/*
 slist(document.getElementById("tempo"));
 
 
@@ -383,3 +384,4 @@ function slist (target) {
     };
   }
 }
+*/

@@ -1,6 +1,6 @@
 const user_model = require('../models/User')
 const bcrypt = require('bcrypt')
-
+const ObjectID = require('mongodb').ObjectId
 
 
 
@@ -32,7 +32,9 @@ const register = async (req, res)=>{
 		username: req.body.username,
 		email: req.body.email,
 		password: hash_password,
-		chat_rooms:[],
+		tags :[],
+		types :[],
+		categories :[{_id: new ObjectID(),name: "to do",color:'rgb(255,255,255)'}]
 	})
 	await user.save()
 	res.redirect('/login')
