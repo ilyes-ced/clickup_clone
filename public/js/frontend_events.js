@@ -148,6 +148,10 @@ document.addEventListener('mouseout', (event) => {
 
 
 document.addEventListener('click', (event) => {
+    //show and hide list of tasks 
+    if(event.target.classList.contains('toggle_list_of_tasks')){
+        event.target.parentElement.getElementsByClassName('list_of_tasks')[0].classList.toggle('hidden')
+    }
     //show and hide sub tasks
     if(event.target.classList.contains('toggle_sub_tasks')){
         event.target.parentElement.parentElement.parentElement.getElementsByClassName('hidden_sub_tasks')[0].classList.toggle('hidden')
@@ -155,11 +159,15 @@ document.addEventListener('click', (event) => {
     //create sub task
     if(event.target.classList.contains('create_sub_task_in_list')){
         event.target.parentElement.parentElement.parentElement.getElementsByClassName('hidden_sub_tasks')[0].classList.remove('hidden')
-        //event.target.parentElement.parentElement.parentElement.getElementsByClassName('hidden_sub_tasks')[0].lastElementChild.firstElementChild.firstElementChild.remove()
-        //event.target.parentElement.parentElement.parentElement.getElementsByClassName('hidden_sub_tasks')[0].lastElementChild.firstElementChild.firstElementChild.insertAdjacentHTML('beforebegin', middle_sub_task)
+        //not working when 0 sub tasks
+        if(event.target.parentElement.parentElement.parentElement.getElementsByClassName('hidden_sub_tasks')[0].lastElementChild){
+            event.target.parentElement.parentElement.parentElement.getElementsByClassName('hidden_sub_tasks')[0].lastElementChild.firstElementChild.firstElementChild.remove()
+            event.target.parentElement.parentElement.parentElement.getElementsByClassName('hidden_sub_tasks')[0].lastElementChild.firstElementChild.firstElementChild.insertAdjacentHTML('beforebegin', middle_sub_task)
+        }
         event.target.parentElement.parentElement.parentElement.getElementsByClassName('hidden_sub_tasks')[0].insertAdjacentHTML('beforeend', sub_table_element)
         new_task_name = document.getElementById('new_task_name')
         selected_task_parent_task = event.target.parentElement.parentElement.parentElement.id
+        list_category = event.target.parentElement.parentElement.parentElement.parentElement.id
         new_task_name.addEventListener("keyup", function(event) {
             event.preventDefault();
             if (event.keyCode === 13) {
@@ -176,8 +184,13 @@ document.addEventListener('click', (event) => {
 
 
     if(event.target.classList.contains('add_task_in_list')){
-        event.target.insertAdjacentHTML('beforebegin', table_element)
+        console.log(event.target.previousElementSibling.id)
+        event.target.previousElementSibling.insertAdjacentHTML('beforeend', table_element)
+        tempo = document.getElementById('remove_on_error').firstElementChild.firstElementChild
+        tempo.style.borderColor = 'transparent'
+        tempo.firstElementChild.style.backgroundColor = 'red'
         new_task_name = document.getElementById('new_task_name')
+        list_category = event.target.previousElementSibling.id
         new_task_name.addEventListener("keyup", function(event) {
             event.preventDefault();
             if (event.keyCode === 13) {
@@ -192,13 +205,14 @@ document.addEventListener('click', (event) => {
     
     //show type modal
     if(event.target.classList.contains('toggle_types_modal')){
-        console.log('ggg')
         selected_task_type = event.target.parentElement.parentElement.parentElement.id
         if(event.target.parentElement.parentElement.parentElement.classList.contains('hidden_sub_tasks')){
             selected_task_type=event.target.parentElement.parentElement.id
             selected_task_parent_task=event.target.parentElement.parentElement.parentElement.parentElement.id
         }
         types_modal.classList.remove('hidden')
+        console.log(event.target.offsetTop+40+'/'+event.target.offsetLeft)
+
         types_modal_content.style.top = (event.target.offsetTop+40)+'px'
         types_modal_content.style.left = event.target.offsetLeft+'px'
     }

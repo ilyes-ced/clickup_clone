@@ -5,7 +5,8 @@ var json
 var selected_task
 var selected_task_parent_task = null
 var new_task_name
-
+var list_category
+var tempo
 
 
 
@@ -89,7 +90,9 @@ const define_hovered_row = (target) => {
 const create_list_success = () => {
     create_list_modal.classList.add('hidden')
     success_modal.classList.remove('hidden')
-    document.getElementById(active_space).getElementsByClassName('list_names_container')[0].insertAdjacentHTML('beforeend', '<div id="'+json.id+'" class="list_names px-10 h-10 flex items-center">'+json.name+'</div>')
+    document.getElementById(active_space).getElementsByClassName('list_names_container')[0].insertAdjacentHTML('beforeend', 
+        '<div id="'+json.id+'" class="list_names px-10 h-10 flex items-center">'+json.name+'</div>'
+    )
     show_success_modal()
 }
 
@@ -147,8 +150,8 @@ const create_space_success = () => {
 const table_element = ' \
 <div id="remove_on_error" class=" w-full flex flex-row bg-gray-800 hover:bg-gray-600 h-10 items-center px-2 cursor-pointer table_row"> \
     <div class="flex flex-row space-x-2 w-2/3"> \
-        <div class="task_category_toggle border hover:border-white rounded-sm border-transparent p-0.5 self-center"> \
-            <div class="h-3 w-3 bg-white rounded-sm self-center "></div> \
+        <div class="task_category_toggle border  rounded-sm border-transparent p-0.5 self-center"> \
+            <div class="h-3 w-3  rounded-sm self-center "></div> \
         </div> \
         <div class="flex flex-row tags_container"><input id="new_task_name" type="text" class=" bg-transparent"></div> \
         <div class=" row_hidden_icons rounded-md border border-gray-800 w-10 h-5 hidden flex flex-row divide-x" > \

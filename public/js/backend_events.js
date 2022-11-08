@@ -81,8 +81,13 @@ categories_modal_content.addEventListener('click', (event) => {
                 name_create_list.value=""
                 console.log(json)
                 if(json.status == 'success'){
-                    document.getElementById(selected_task).firstElementChild.firstElementChild.firstElementChild.style.backgroundColor = json.color
-                    document.getElementById(selected_task).firstElementChild.firstElementChild.style.borderColor = json.color
+                    if(!json.parent){
+                        document.getElementById(selected_task).firstElementChild.firstElementChild.firstElementChild.style.backgroundColor = json.color
+                        document.getElementById(selected_task).firstElementChild.firstElementChild.style.borderColor = json.color
+                    }else{
+                        document.getElementById(selected_task).firstElementChild.firstElementChild.nextElementSibling.firstElementChild.style.backgroundColor = json.color
+                        document.getElementById(selected_task).firstElementChild.firstElementChild.nextElementSibling.style.borderColor = json.color
+                    }
                     categories_modal.classList.add('hidden')
                 }else if(json.status == 'exists'){
     
@@ -160,6 +165,7 @@ const create_sub_task_in_list = () => {
         parent_workspace : active_space,
         parent_list : active_list,
         parent_task : selected_task_parent_task,
+        category : list_category,
     })).onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             json = JSON.parse(this.response)
@@ -189,6 +195,7 @@ const create_task_in_list = () => {
         name: new_task_name.value,
         parent_workspace : active_space,
         parent_list : active_list,
+        category : list_category,
     })).onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             json = JSON.parse(this.response)
