@@ -39,7 +39,6 @@ const task_modal_content = document.getElementById('task_modal_content')
 
 
 
-
 //declared functions
 
 const http_request = (url, type, data) => {

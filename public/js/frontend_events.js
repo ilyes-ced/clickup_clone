@@ -146,8 +146,17 @@ document.addEventListener('mouseout', (event) => {
     }
 })
 
-
+task_create_select_input_toggle.addEventListener('input', (event) => {
+    event.target.value
+})
 document.addEventListener('click', (event) => {
+    if(event.target.id == "task_create_select_input_toggle"){
+        task_create_select_input.classList.toggle('hidden')
+    }
+    if(event.target.classList.contains('selected_list_to_add_task')){
+        task_create_select_input_toggle.innerText = event.target.innerText
+        task_create_select_input.classList.add('hidden')  
+    }
     //show and hide list of tasks 
     if(event.target.classList.contains('toggle_list_of_tasks')){
         event.target.parentElement.getElementsByClassName('list_of_tasks')[0].classList.toggle('hidden')

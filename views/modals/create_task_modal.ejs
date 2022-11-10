@@ -1,36 +1,38 @@
 <!-- flex items-center justify-center-->
-<div  class="h-full w-full absolute hidden bg-transparent flex justify-end items-end " id="create_task_modal" >
-    <div tabindex="-1" aria-hidden="true" class="inside_modal bg-red-600  overflow-x-hidden z-50 h-modal justify-center items-center w-[30rem] h-4/5 mx-6 mb-20">
+<div  class="h-full w-full absolute hidden bg-transparent" id="create_task_modal" >
+    <div class="create_task_modal_content bg-red-600 absolute overflow-x-hidden z-50  justify-center items-center w-[500px] right-6 bottom-6">
         <div class="w-full h-full bg-secondary overflow-y-auto">
-            <div class="relative  shadow"> 
+            <div class="relative shadow"> 
                 
 
 
 
                 <div class="flex flex-col">
-
                     ico
-                    <input class="bg-black" type="text" id="name_create_task" placeholder="create task" required>
+                    <input class="bg-blue-600 border border-red-600 " type="text" id="name_create_task" placeholder="create task" required>
                     <div class="w-full">
-                        <input class="bg-black w-full" type="text" placeholder="select list" id="task_create_select_input">
-                        <div class="absolute bg-red-600 h-fit w-full  hidden" id="task_create_select_input_toggle">
+                        <div class="bg-blue-600 h-10  border border-red-600 w-full" type="text" id="task_create_select_input_toggle">
+                            <input type="hidden" id="task_create_select_input_id">
+                        </div>
+                        <div class="absolute bg-red-600 h-fit w-full  hidden" id="task_create_select_input">
+                            <input id="selected_list_to_add_task_search" type="text" class="bg-blue-600 h-10  border border-red-600 w-full">
                             <% for (let i = 0; i < workspaces.length; i++) { %>
-                                <%= workspaces[i].name %>
-                                <ul>
+                                <%= workspaces[i].name %>fuck
+
                                     <% for (let k = 0; k < workspaces[i].lists.length; k++) { %>
-                                        <li id="<%= workspaces[i].id %>__<%= workspaces[i].lists[k]._id %>" class="selected_list_to_add_task px-6 hover:bg-green-600"><%= workspaces[i].lists[k].name %></li>
+                                        <div id="<%= workspaces[i].id %>__<%= workspaces[i].lists[k]._id %>" class="selected_list_to_add_task px-6 hover:bg-green-600"><%= workspaces[i].lists[k].name %></div>
                                     <% } %>
-                                </ul>
                                 
                             <% } %>
                         </div>
                     </div>
-                    <textarea class="bg-black" name="" id="" cols="30" rows="10"></textarea>
+                    <textarea class="bg-blue-600  border border-red-600 " placeholder="desc" name="" id="" cols="30" rows="10"></textarea>
                     
-                    <input type="text">
+                    <input class="bg-blue-600  border border-red-600 " type="text">
                     <div class="my-12 bg-black">+add subtask press to add input </div>
                     <div class="my-12 bg-black">set tags </div>
-                    <div class="my-12 bg-black">set due date</div> <input type="date" name="" id="">
+                    <div class="my-12 bg-black">set due date</div>
+                    <input class="bg-blue-600  border border-red-600 " type="date" name="" id="">
                     <div class="my-12 bg-black">set priority</div>
                     <button id="submit_create_task">submit</button>
                 </div>
