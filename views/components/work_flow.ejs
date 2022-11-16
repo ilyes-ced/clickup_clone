@@ -49,9 +49,9 @@
                                     <div class="w-1/4 text-center">progress</div>
                                 </div>
                             </div>
-                                <div class="list_of_tasks" id="<%= user_data.categories[ii]._id %>">
-                                    <% for( let k = 0; k < the_tasks[user_data.categories[ii].name].length; k++ ) { %>
-                                        <div id="<%= the_tasks[user_data.categories[ii].name][k]._id %>" class=" w-full flex flex-col bg-[#2b343b] hover:bg-gray-600  cursor-pointer table_row">
+                            <div class="list_of_tasks" id="<%= user_data.categories[ii]._id %>">
+                                <% for( let k = 0; k < the_tasks[user_data.categories[ii].name].length; k++ ) { %>
+                                    <div id="<%= the_tasks[user_data.categories[ii].name][k]._id %>" class=" w-full flex flex-col bg-[#2b343b] hover:bg-gray-600  cursor-pointer table_row">
                                                 <div class="flex flex-row  space-x-2 w-full h-10 items-center pl-2 justify-between">
                                                     <% if(the_tasks[user_data.categories[ii].name][k].category){%>
                                                         <div class="task_category_toggle border hover:border-blue-600 rounded-sm border-transparent p-0.5 self-center" onmouseover="this.style.borderColor='<%= the_tasks[user_data.categories[ii].name][k].category.color %>';" onmouseout="this.style.borderColor='rgba(0,0,0,0)';">    
@@ -168,11 +168,12 @@
                                                         </div>
                                                     <% } %>
                                                 </div>
-                                        </div>
-                                    <% } %>
+                                    </div>
+                                <% } %>
+
+                                <div class="rounded-md hover:bg-gray-700 w-fit mt-2 px-2 add_task_in_list">
+                                    + add task
                                 </div>
-                            <div class="rounded-md hover:bg-gray-700 w-fit mt-2 px-2 add_task_in_list">
-                                + add task
                             </div>
                         </div>
                     </div>

@@ -150,6 +150,11 @@ task_create_select_input_toggle.addEventListener('input', (event) => {
     event.target.value
 })
 document.addEventListener('click', (event) => {
+    
+    if(event.target.id == "create_sub_task_input"){
+        event.target.insertAdjacentHTML('beforebegin', '<input class="bg-blue-600  border border-red-600 " placeholder="new sub task" type="text">')
+    }
+
     if(event.target.id == "task_create_select_input_toggle"){
         task_create_select_input.classList.toggle('hidden')
     }
@@ -194,12 +199,12 @@ document.addEventListener('click', (event) => {
 
     if(event.target.classList.contains('add_task_in_list')){
         console.log(event.target.previousElementSibling.id)
-        event.target.previousElementSibling.insertAdjacentHTML('beforeend', table_element)
+        event.target.insertAdjacentHTML('beforebegin', table_element)
         tempo = document.getElementById('remove_on_error').firstElementChild.firstElementChild
         tempo.style.borderColor = 'transparent'
         tempo.firstElementChild.style.backgroundColor = 'red'
         new_task_name = document.getElementById('new_task_name')
-        list_category = event.target.previousElementSibling.id
+        list_category = event.target.parentElement.id
         new_task_name.addEventListener("keyup", function(event) {
             event.preventDefault();
             if (event.keyCode === 13) {
