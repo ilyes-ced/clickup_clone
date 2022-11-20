@@ -19,14 +19,16 @@ const add_type_to_task = async (req, res) => {
                 return
             }
         }
-		if(!(await workspace_model.exists({_id : req.body.parent_workspace, lists: {$elemMatch: { _id: ObjectID(req.body.parent_list) }}}))){
+		if(!(await workspace_model.exists({_id : req.body.parent_workspace, owner: req.session.user_id,lists: {$elemMatch: { _id: ObjectID(req.body.parent_list) }}}))){
 			res.json({status: "denied"})
 			return
 		}
-        if(!(await workspace_model.exists({_id: req.body.parent_workspace, owner: req.session.user_id}) || User_model.exists({types : {$elemMatch:{_id: ObjectID(req.body.type_id)}}}))){
+        /*
+        if(!(await workspace_model.exists({_id: req.body.parent_workspace, owner: req.session.user_id}))){
             res.json({status: "denied"})
             return
         }
+        */
         if(!await User_model.exists({_id: req.session.user_id, types:{$elemMatch:{_id: ObjectID(req.body.type_id)}}}).select('-_id types')){
             res.json({status: "denied"})
             return

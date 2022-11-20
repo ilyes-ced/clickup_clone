@@ -19,14 +19,16 @@ const add_tag_to_task = async (req, res) => {
                 return
             }
         }
-		if(!(await workspace_model.exists({_id : req.body.parent_workspace, lists: {$elemMatch: { _id: ObjectID(req.body.parent_list) }}}))){
+		if(!(await workspace_model.exists({_id : req.body.parent_workspace, owner: req.session.user_id,lists: {$elemMatch: { _id: ObjectID(req.body.parent_list) }}}))){
 			res.json({status: "denied"})
 			return
 		}
-        if(!(await workspace_model.exists({_id: req.body.parent_workspace, owner: req.session.user_id}) || User_model.exists({tags : {$elemMatch:{_id: ObjectID(req.body.tag_id)}}}))){
+        /*
+        if(!(await workspace_model.exists({_id : req.body.parent_workspace, owner: req.session.user_id}))){
             res.json({status: "denied"})
             return
         }
+        */
         if(!await User_model.exists({_id: req.session.user_id, tags:{$elemMatch:{_id: ObjectID(req.body.tag_id)}}}).select('-_id tags')){
             res.json({status: "denied"})
             return
@@ -123,7 +125,7 @@ const remove_tag_from_task = async (req,res) => {
 			res.json({status: "denied"})
 			return
 		}
-        if(!(await workspace_model.exists({_id: req.body.parent_workspace, owner: req.session.user_id}) || User_model.exists({tags : {$elemMatch:{_id: ObjectID(req.body.tag_id)}}}))){
+        if(!(await workspace_model.exists({_id: req.body.parent_workspace, owner: req.session.user_id}))){
             res.json({status: "denied"})
             return
         }

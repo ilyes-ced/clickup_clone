@@ -60,4 +60,23 @@ app.use('/add_type_to_task', pages_route)
 app.use('/remove_type_from_task', pages_route)
 app.use('/add_category_to_task', pages_route)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.listen(3000);
