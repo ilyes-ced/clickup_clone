@@ -1,3 +1,29 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
 active_space = document.getElementsByClassName('toggle_spaces')[0].parentElement.id
 active_list = document.getElementsByClassName('list_names')[0].id
 document.getElementsByClassName('toggle_spaces')[0].classList.add('active_space')
@@ -275,15 +301,6 @@ document.addEventListener('click', (event) => {
         remove_tag(event.target)
     }
 })
-
-
-
-
-
-
-
-
-
 
 
 
