@@ -5,22 +5,22 @@
 
 <% for( let i = 0; i < workspaces.length; i++ ) { %>
     <% for( let j = 0; j < workspaces[i].lists.length; j++ ) { %>
-        <% const ff = workspaces[i].lists[j].tasks.reduce(
+        
+        <%#  const ff = workspaces[i].lists[j].tasks.reduce(
             (entryMap, e) => entryMap.set(e.category.name, [...entryMap.get(e.category.name)||[], e]),
             new Map()
         );
-        %>
+        %>  
         <%
             var the_tasks = workspaces[i].lists[j].tasks.reduce((r, a) => {
                 r[a.category.name] = [...r[a.category.name] || [], a];
                 return r;
             }, {});
-            console.log(the_tasks)
         %>
 
 
 
-        <div class="m-6 p-4 border border-gray-700 rounded-lg  space-y-6" id="<%= workspaces[i].lists[j]._id %>">
+        <div class="m-6 p-4 border border-gray-700 rounded-lg hidden space-y-6 list_tasks_box " id="list_tasks_box_<%= workspaces[i].lists[j]._id %>">
             <h1 class="text-xl mb-6 flex flex-row">
                 <%= workspaces[i].lists[j].name %>
                 <div class="rounded-md hover:bg-gray-700 w-fit mt-2 px-2 text-sm">

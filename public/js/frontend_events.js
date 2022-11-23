@@ -1,33 +1,10 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
 active_space = document.getElementsByClassName('toggle_spaces')[0].parentElement.id
 active_list = document.getElementsByClassName('list_names')[0].id
 document.getElementsByClassName('toggle_spaces')[0].classList.add('active_space')
 document.getElementsByClassName('list_names')[0].classList.add('active_list')
+document.getElementsByClassName('list_tasks_box')[0].classList.remove('hidden')
+
 
 
 //side bar show/hide
@@ -55,12 +32,18 @@ sidebar_menu.addEventListener('click', (event) => {
     }
     //set active list
     if(event.target.classList.contains('list_names')){
+
         document.getElementsByClassName('active_space')[0].classList.remove('active_space')
         document.getElementsByClassName('active_list')[0].classList.remove('active_list')
+        document.getElementById('list_tasks_box_'+active_list).classList.add('hidden')
         event.target.classList.add('active_list')
         event.target.parentElement.parentElement.parentElement.firstElementChild.classList.add('active_space')
         active_space = event.target.parentElement.parentElement.parentElement.id
         active_list = event.target.id
+        document.getElementById('list_tasks_box_'+active_list).classList.remove('hidden')
+
+        console.log(active_list)
+        //list_tasks_box_
     }
 })
 
@@ -205,6 +188,10 @@ document.addEventListener('click', (event) => {
             event.target.parentElement.parentElement.parentElement.getElementsByClassName('hidden_sub_tasks')[0].lastElementChild.firstElementChild.firstElementChild.insertAdjacentHTML('beforebegin', middle_sub_task)
         }
         event.target.parentElement.parentElement.parentElement.getElementsByClassName('hidden_sub_tasks')[0].insertAdjacentHTML('beforeend', sub_table_element)
+        tempo = event.target.parentElement.parentElement.firstElementChild.firstElementChild.style.backgroundColor
+        document.getElementById('remove_on_error').firstElementChild.firstElementChild.nextElementSibling.style.borderColor = tempo
+        document.getElementById('remove_on_error').firstElementChild.firstElementChild.nextElementSibling.firstElementChild.style.backgroundColor = tempo
+        //remove_on_error
         new_task_name = document.getElementById('new_task_name')
         selected_task_parent_task = event.target.parentElement.parentElement.parentElement.id
         list_category = event.target.parentElement.parentElement.parentElement.parentElement.id
@@ -228,7 +215,10 @@ document.addEventListener('click', (event) => {
         event.target.insertAdjacentHTML('beforebegin', table_element)
         tempo = document.getElementById('remove_on_error').firstElementChild.firstElementChild
         tempo.style.borderColor = 'transparent'
-        tempo.firstElementChild.style.backgroundColor = 'red'
+        
+        tempo.firstElementChild.style.backgroundColor = event.target.parentElement.firstElementChild.firstElementChild.firstElementChild.firstElementChild.style.backgroundColor
+
+        tempo.style.borderColor = 'transparent'
         new_task_name = document.getElementById('new_task_name')
         list_category = event.target.parentElement.id
         new_task_name.addEventListener("keyup", function(event) {
