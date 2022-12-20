@@ -1,6 +1,7 @@
 
 active_space = document.getElementsByClassName('toggle_spaces')[0].parentElement.id
 active_list = document.getElementsByClassName('list_names')[0].id
+document.getElementById('current_active_space_element').innerText = document.getElementById(active_space).firstElementChild.firstElementChild.innerText
 document.getElementsByClassName('toggle_spaces')[0].classList.add('active_space')
 document.getElementsByClassName('list_names')[0].classList.add('active_list')
 document.getElementsByClassName('list_tasks_box')[0].classList.remove('hidden')
@@ -24,7 +25,6 @@ sidebar_menu.addEventListener('click', (event) => {
     //open create list modal
     if(event.target.classList.contains('toggle_create_list_modal')){
         active_space = event.target.parentElement.parentElement.id
-        console.log(active_space)
         create_list_modal.classList.toggle('hidden')
         if(!create_list_modal.classList.contains('hidden')){
             document.getElementById('name_create_list').focus()
@@ -39,6 +39,8 @@ sidebar_menu.addEventListener('click', (event) => {
         event.target.classList.add('active_list')
         event.target.parentElement.parentElement.parentElement.firstElementChild.classList.add('active_space')
         active_space = event.target.parentElement.parentElement.parentElement.id
+        console.log(document.getElementById(active_space).firstElementChild.firstElementChild.innerText)
+        document.getElementById('current_active_space_element').innerText = document.getElementById(active_space).firstElementChild.firstElementChild.innerText
         active_list = event.target.id
         document.getElementById('list_tasks_box_'+active_list).classList.remove('hidden')
 
