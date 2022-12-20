@@ -1,30 +1,35 @@
-<aside id="sidebar_menu" class=" hidden flex flex-col overflow-x-hidden w-[400px]  h-screen bg-[#2b343b] border-r border-[#1e272e]" aria-label="Sidebar">
-
+<aside id="sidebar_menu" class=" hidden flex flex-col overflow-x-hidden  w-[400px]  h-screen bg-[#2b343b] border-r border-[#1e272e]" aria-label="Sidebar">
+ 
     <div class="p-2 h-12 border-b border-[#1e272e] flex justify-between items-center">
         <div>icon here</div>
         <div>icon also</div>
     </div>
-    <div class="bg-gray-600 rounded-md m-2 text-center" id="toggle_create_space_modal">
+    <div class="bg-gray-600 rounded-md m-2 hover:bg-[#1e272e] cursor-pointer text-center" id="toggle_create_space_modal">
         create new space 
     </div>
 
     <% for( let i = 0; i < workspaces.length; i++ ) { %>
         <div id="<%= workspaces[i].id %>" class="border-b border-transparent flex flex-col  ">
-            <div class="toggle_spaces hover:bg-blue-800 w-full h-full p-2 flex justify-between items-center">
+            <div class="toggle_spaces hover:bg-gray-600 w-full h-full p-2 flex justify-between items-center border-b border-[#1e272e]">
                 <div  class="text-lg"><%= workspaces[i].name %></div>
-                <div>V</div>
+                <div><%- include('../icons/chevron_down.svg') %> </div>
             </div>
             <div  class="hidden toggle_spaces_list">
                 <div class="bg-gray-600 rounded-md m-2 text-center toggle_create_list_modal">
                     <input type="hidden">
                     create new list 
                 </div>
-                <div class="list_names_container">
+                <div class="list_names_container border-b border-[#1e272e]">
                     <% for( let k = 0; k < workspaces[i].lists.length; k++ ) { %>
-                        <div id="<%= workspaces[i].lists[k]._id %>" class="list_names px-10 h-10 flex items-center">
+                        <div id="<%= workspaces[i].lists[k]._id %>" class="list_names px-10 h-10 flex items-center cursor-pointer hover:bg-[#1e272e]">
                             <%= workspaces[i].lists[k].name %>
                         </div>
                     <%}%>
+                    <% if(workspaces[i].lists.length == 0 ){ %>
+                        <div class="p-2 flex items-center justify-center">
+                            no lists in this workspace 
+                        </div>
+                    <% } %>
                 </div>
             </div>
         </div>

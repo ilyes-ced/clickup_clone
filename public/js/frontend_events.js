@@ -115,14 +115,14 @@ name_create_space.addEventListener("keyup", function(event) {
 var row
 //const list_of_tasks = document.getElementsByClassName('list_of_tasks')
 //for( let i = 0; i < list_of_tasks.length; i++ ) {}
-
+/*
 document.addEventListener('dblclick', (event) => {
     if (event.target.matches('.table_row, .table_row *')) {
         row = define_hovered_row(event.target)
         task_modal.classList.remove('hidden')
     }
 })
-
+*/
 
 
 

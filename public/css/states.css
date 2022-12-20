@@ -1,11 +1,15 @@
 .active_space{
-    background-color: pink;
-
+    background-color: #7c68ee30;
+    border-left: solid 4px #7c68ee;
 }
 
 
 .active_list{
     background-color: rebeccapurple;
+
+
+    background-color: rgba(102, 51, 153, 0.3);
+    border-left: solid 4px rebeccapurple;
 }
 
 
