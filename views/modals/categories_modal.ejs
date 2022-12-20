@@ -1,18 +1,17 @@
 <div class="absolute hidden w-full h-full bg-transparent" id="categories_modal">
-    <div class="absolute bg-red-600 h-32 w-32"  id="categories_modal_content">
+    <div class="absolute bg-gray-600 h-32 w-32 p-2"  id="categories_modal_content">
         <div class="divide-y">
-            <ul>
-                <% if(user_data.categories.length == 0){ %>
-                    no categories here
-                <% }else{ %>
-                    <%for (let i = 0; i < user_data.categories.length; i++) { %>
-                        <li id="<%= user_data.categories[i]._id %>" class="selected_category" style="background-color: <%= user_data.categories[i].color %>"><%= user_data.categories[i].name %></li>
-                    <% } %>
+            <% if(user_data.categories.length == 0){ %>
+                no categories here
+            <% }else{ %>
+                <%for (let i = 0; i < user_data.categories.length; i++) { %>
+                    <div id="<%= user_data.categories[i]._id %>" class="selected_type rounded-lg flex flex-row cursor-pointer p-2 overflow-hidden truncate" onmouseenter="this.style.backgroundColor = '<%= user_data.categories[i].color %>'" onmouseleave="this.style.backgroundColor = 'transparent'">
+                        <div class="w-5 h-5 rounded-md" style="background-color: <%= user_data.categories[i].color %>" > </div>
+                        &nbsp;&nbsp;
+                        <%= user_data.categories[i].name %>
+                    </div>
                 <% } %>
-            </ul>
-            <div>
-                you can add and edit categories in the seetings page
-            </div>
+            <% } %>
         </div>
     
     </div>
