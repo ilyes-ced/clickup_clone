@@ -128,7 +128,8 @@ router.post('/add_tag_to_task', Tags_controller.add_tag_to_task)
 router.post('/remove_tag_from_task', Tags_controller.remove_tag_from_task)
 router.post('/add_type_to_task', Types_controller.add_type_to_task)
 router.post('/remove_type_from_task', Types_controller.remove_type_from_task)
-router.post('/add_category_to_task', Categories_controller.add_category_to_task)
+router.post('/delete_task', Tasks_controller.delete_task)
+router.post('/delete_sub_task', Tasks_controller.delete_sub_task)
 
 
 

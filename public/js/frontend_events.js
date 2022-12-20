@@ -224,10 +224,14 @@ task_create_select_input_toggle.addEventListener('input', (event) => {
 
 document.addEventListener('click', (event) => {
     if(event.target.id == "delete_task"){
+        delete_task(event.target.parentElement.parentElement.parentElement.parentElement.id)
+        //yes yes as long as the wall of china to reduce the number of tasks at the start of the list container
+        event.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.firstElementChild.nextElementSibling.innerText = parseInt(event.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.firstElementChild.nextElementSibling.innerText)-1+" tasks"
         event.target.parentElement.parentElement.parentElement.parentElement.remove()
     }
     
     if(event.target.id == "delete_sub_task"){
+        delete_sub_task(event.target.parentElement.parentElement.parentElement.parentElement.parentElement.id, event.target.parentElement.parentElement.parentElement.id)
         event.target.parentElement.parentElement.parentElement.remove()
     }
 

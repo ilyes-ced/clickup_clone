@@ -1,18 +1,17 @@
 <div class="absolute hidden w-full h-full" id="types_modal">
-    <div class="absolute bg-red-600 h-32 w-32"  id="types_modal_content">
+    <div class="absolute bg-gray-600 h-32 w-32 p-2 shadow-lg "  id="types_modal_content">
         <div class="divide-y">
-            <ul>
-                <% if(user_data.types.length == 0){ %>
-                    no types here
-                <% }else{ %>
-                    <%for (let i = 0; i < user_data.types.length; i++) { %>
-                        <li id="<%= user_data.types[i]._id %>" class="selected_type" style="background-color: <%= user_data.types[i].color %>"><%= user_data.types[i].name %></li>
-                    <% } %>
+            <% if(user_data.types.length == 0){ %>
+                no types here
+            <% }else{ %>
+                <%for (let i = 0; i < user_data.types.length; i++) { %>
+                    <div id="<%= user_data.types[i]._id %>" class="selected_type rounded-lg flex flex-row cursor-pointer p-2" onmouseenter="this.style.backgroundColor = '<%= user_data.types[i].color %>'" onmouseleave="this.style.backgroundColor = 'transparent'">
+                        <div class="w-5 h-5 rounded-md" style="background-color: <%= user_data.types[i].color %>" > </div>
+                        &nbsp;&nbsp;
+                        <%= user_data.types[i].name %>
+                    </div>
                 <% } %>
-            </ul>
-            <div>
-                you can add and edit types in the seetings page
-            </div>
+            <% } %>
         </div>
     
     </div>

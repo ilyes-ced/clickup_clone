@@ -5,7 +5,6 @@ const ObjectID = require('mongodb').ObjectId
 
 
 const create_new_task_in_list = async (req, res) => {
-	console.log(req.body)
 	try{	
 		if(!(mongoose.isValidObjectId(req.body.parent_workspace) && mongoose.isValidObjectId(req.body.parent_list))){
 			res.json({status: "denied"})
@@ -15,12 +14,7 @@ const create_new_task_in_list = async (req, res) => {
 			res.json({status: "denied"})
 			return
 		}
-		/*
-		if(!await workspace_model.exists({_id: req.body.parent_workspace, owner: req.session.user_id})){
-            res.json({status: "denied"})
-            return
-        }
-		*/
+		
 		let cat_obj = await User_model.findOne({_id: req.session.user_id}, {categories:{$elemMatch:{_id: ObjectID(req.body.category)}}})
 		cat_obj = cat_obj.categories[0]
 		let obj = new ObjectID()
@@ -49,8 +43,7 @@ const create_new_task_in_list = async (req, res) => {
 
 
 const create_new_sub_task_in_list = async (req, res) => {
-	try{	
-        console.log(req.body)
+	try{
 		if(!(mongoose.isValidObjectId(req.body.parent_workspace) && mongoose.isValidObjectId(req.body.parent_list))){
 			res.json({status: "denied"})
 			return
@@ -59,12 +52,7 @@ const create_new_sub_task_in_list = async (req, res) => {
 			res.json({status: "denied"})
 			return
 		}
-		/*
-		if(!await workspace_model.exists({_id: req.body.parent_workspace, owner: req.session.user_id})){
-            res.json({status: "denied"})
-            return
-        }
-		*/
+		
 		let cat_obj = await User_model.findOne({_id: req.session.user_id}, {categories:{$elemMatch:{_id: ObjectID(req.body.category)}}})
 		cat_obj = cat_obj.categories[0]
 		var obj = new ObjectID()
@@ -90,12 +78,67 @@ const create_new_sub_task_in_list = async (req, res) => {
 
 
 
+const delete_task = async(req, res) => {
+	try{	
+		if(!(mongoose.isValidObjectId(req.body.parent_workspace) && mongoose.isValidObjectId(req.body.parent_list))){
+			res.json({status: "denied"})
+			return
+		}
+		if(!(await workspace_model.findOne({_id : req.body.parent_workspace, owner: req.session.user_id, lists: {$elemMatch: { _id: ObjectID(req.body.parent_list) }}}))){
+			res.json({status: "denied"})
+			return
+		}
+		
+        await workspace_model.findOneAndUpdate({_id : req.body.parent_workspace, lists : {$elemMatch:{_id:ObjectID(req.body.parent_list)}}},{
+            $pull : {
+                "lists.$[para1].tasks": {
+					_id:ObjectID(req.body.task)
+				}
+			}
+        },{
+                arrayFilters: [
+                    {"para1._id" : ObjectID(req.body.parent_list)},
+            ]   
+        })
+		
+		res.json({status: 'success'})
+	}catch(e){
+		res.json({status: 'error'})
+        console.log(e)
+	}
+}
 
 
 
+const delete_sub_task = async(req, res) => {
+	console.log(req.body)
+	try{
+		if(!(mongoose.isValidObjectId(req.body.parent_workspace) && mongoose.isValidObjectId(req.body.parent_list))){
+			res.json({status: "denied"})
+			return
+		}
+		if(!(await workspace_model.findOne({_id : req.body.parent_workspace, owner: req.session.user_id,lists: {$elemMatch: { _id: ObjectID(req.body.parent_list) }}}))){
+			res.json({status: "denied"})
+			return
+		}
+        await workspace_model.findOneAndUpdate({_id : req.body.parent_workspace, lists : {$elemMatch:{_id:ObjectID(req.body.parent_list)}}},{
+            $pull : {
+                "lists.$[para1].tasks.$[para2].sub_tasks": {_id:ObjectID(req.body.task)}
+			}
+                },{
+                arrayFilters: [
+                    {"para1._id" : ObjectID(req.body.parent_list)},
+                    {"para2._id" : ObjectID(req.body.parent_task)},
+            ]   
+        })
 
-
+		res.json({status: 'success'})
+	}catch(e){
+		res.json({status: 'error'})
+        console.log(e)
+	}
+}
 
 module.exports = {
-    create_new_task_in_list,create_new_sub_task_in_list
+    create_new_task_in_list, create_new_sub_task_in_list, delete_task, delete_sub_task
 }
