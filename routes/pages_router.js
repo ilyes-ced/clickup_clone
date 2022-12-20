@@ -30,7 +30,7 @@ router.get('/', is_auth_middleware, async (req, res) => {
 
         /*
         console.log(await workspace_model.findOne({_id : '6349567708492d5e6aebb33c', lists : {$elemMatch:{_id:ObjectID('634956e6d3b6946a1e4c2c5b')}}}))
-        await workspace_model.findOneAndUpdate({_id : '6349567708492d5e6aebb33c', lists : {$elemMatch:{_id:ObjectID('634956e6d3b6946a1e4c2c5b')}}},{
+        await workspace_model.findOneAndUpdate({_id : '63a18ab323aedabdf9e63330', lists : {$elemMatch:{_id:ObjectID('63a18ab323aedabdf9e6332f')}}},{
             $push : {
                 "lists.$[para1].tasks": {
                 

@@ -51,7 +51,6 @@ const create_list =  async (req, res) => {
 
 
 
-
 const create_space =  async (req, res) => {
     try{
         if(await workspace_model.exists({name: req.body.name})){

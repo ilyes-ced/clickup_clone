@@ -123,6 +123,33 @@ document.addEventListener('dblclick', (event) => {
     }
 })
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 document.addEventListener('mouseover', (event) => {
     //shows 3 hidden icons on hover
     if (event.target.matches('.table_row, .table_row *')) {
@@ -142,6 +169,20 @@ document.addEventListener('mouseover', (event) => {
     
 })
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 document.addEventListener('mouseout', (event) => {
     if (event.target.matches('.table_row, .table_row *')) {
         row = define_hovered_row(event.target)
@@ -155,9 +196,30 @@ document.addEventListener('mouseout', (event) => {
     }
 })
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 task_create_select_input_toggle.addEventListener('input', (event) => {
     event.target.value
 })
+
+
+
+
+
+
+
 document.addEventListener('click', (event) => {
     
     if(event.target.id == "create_sub_task_input"){
@@ -211,7 +273,6 @@ document.addEventListener('click', (event) => {
 
 
     if(event.target.classList.contains('add_task_in_list')){
-        console.log(event.target.previousElementSibling.id)
         event.target.insertAdjacentHTML('beforebegin', table_element)
         tempo = document.getElementById('remove_on_error').firstElementChild.firstElementChild
         tempo.style.borderColor = 'transparent'
