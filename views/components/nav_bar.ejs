@@ -44,14 +44,43 @@
             <div class="mt-1 flex flex-row items-center space-x-2 group-hover:text-gray-600 "> <%- include('../icons/timeline.svg') %> &nbsp; timeline  </div>
             <div class="rounded-t bg-transparent h-1 w-full  group-hover:bg-gray-600"></div>
         </button>
+
+        <div class="h-3/5 border-r border-[#1e272e]">  </div>
+
+
+        <button id="extend_sidebar" class="flex flex-col justify-between px-2 h-full group">
+            <div></div>
+            <div class="mt-1 flex flex-row items-center space-x-2 group-hover:text-gray-600 "> <%- include('../icons/add.svg') %> &nbsp; add views  </div>
+            <div class="rounded-t bg-transparent h-1 w-full  group-hover:bg-gray-600"></div>
+        </button>
         
     </div>
 
-    <div class="w-full bg-[#2b343b] h-8">
-        <div>
-            <div></div>
+    <div class="w-full bg-[#2b343b] h-8 flex justify-between px-4">
+        <div class="flex flex-row items-center">
             <div>
-                <input type="text">
+                <%- include('../icons/search.svg') %>
+            </div>
+            <div>
+                <input class='bg-transparent px-2 mx-2' placeholder="search" type="text">
+            </div>
+            <div class="cursor-pointer hover:text-[#7c68ee]">
+                <%- include('../icons/chevron_down.svg') %>
+            </div>
+            <div class="h-3/5 border-r border-[#1e272e] ml-4">  </div>
+        </div>
+        <div class="flex flex-row">
+            <div class='flex flex-row items-center hover:bg-gray-700 hover:text-[#7c68ee] rounded-lg cursor-pointer px-2 h-4/6 self-center'>
+                <%- include('../icons/filter.svg') %> &nbsp;&nbsp;
+                filter
+            </div>
+            <div class="px-2"></div>
+            <div class='flex flex-row items-center hover:bg-gray-700 hover:text-[#7c68ee] rounded-lg cursor-pointer px-2 h-4/6 self-center'>
+                <%- include('../icons/collection.svg') %> &nbsp;&nbsp;
+                group by : category
+            </div>
+            <div class="flex items-center hover:bg-gray-700 hover:text-[#7c68ee] rounded-lg cursor-pointer px-2 h-4/6 self-center">
+                <%- include('../icons/three_dots.svg') %>
             </div>
             <div></div>
         </div>
