@@ -1,6 +1,8 @@
-<!-- flex items-center justify-center-->
-<div  class="h-full w-full absolute hidden bg-transparent" id="create_task_modal" >
-    <div class="create_task_modal_content  absolute overflow-x-hidden overflow-y-auto z-50  justify-center items-center w-[500px] right-6 bottom-24  bg-red-600">
+
+
+
+<div  class="h-full w-full absolute hidden bg-transparent flex items-end justify-end" id="create_task_modal" >
+    <div class="create_task_modal_content   overflow-x-hidden overflow-y-auto   justify-center items-center  w-[500px] h-[500px] bg-green-600">
         <div class="w-full h-full  overflow-y-auto">
             <div class="shadow overflow-y-auto bg-[#303436] "> 
                 
@@ -29,7 +31,7 @@
                         <div class="absolute bg-red-600 h-fit w-full  hidden" id="task_create_select_input">
                             <input id="selected_list_to_add_task_search" type="text" class="bg-blue-600 h-10  border border-red-600 w-full">
                             <% for (let i = 0; i < workspaces.length; i++) { %>
-                                <%= workspaces[i].name %>fuck
+                                <%= workspaces[i].name %>
 
                                     <% for (let k = 0; k < workspaces[i].lists.length; k++) { %>
                                         <div id="<%= workspaces[i].id %>__<%= workspaces[i].lists[k]._id %>" class="selected_list_to_add_task px-6 hover:bg-green-600"><%= workspaces[i].lists[k].name %></div>
@@ -58,3 +60,13 @@
     </div>
 </div>
 
+<!-- 
+<div class="h-full w-full absolute bg-transparent hidden" id="create_task_modal" >
+    <div class="h-[100px] w-[100px] absolute top-6 left-6 bg-red-600">
+        <div id="task_create_select_input_toggle " class="w-full h-full">
+            hh
+        </div>
+    </div>
+</div>
+
+-->

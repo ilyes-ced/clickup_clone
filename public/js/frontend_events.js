@@ -223,6 +223,15 @@ task_create_select_input_toggle.addEventListener('input', (event) => {
 
 
 document.addEventListener('click', (event) => {
+    if(event.target.id == "delete_task"){
+        event.target.parentElement.parentElement.parentElement.parentElement.remove()
+    }
+    
+    if(event.target.id == "delete_sub_task"){
+        event.target.parentElement.parentElement.parentElement.remove()
+    }
+
+    
     
     if(event.target.id == "create_sub_task_input"){
         event.target.insertAdjacentHTML('beforebegin', '<input class="bg-blue-600  border border-red-600 " placeholder="new sub task" type="text">')

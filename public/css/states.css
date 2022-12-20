@@ -1,3 +1,11 @@
+svg{
+  pointer-events: none;
+}
+path{
+  pointer-events: none;
+}
+
+
 .active_space{
     background-color: #7c68ee30;
     border-left: solid 4px #7c68ee;
