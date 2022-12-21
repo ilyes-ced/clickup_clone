@@ -5,7 +5,7 @@
                 no tags here
             <% }else{ %>
                 <%for (let i = 0; i < user_data.tags.length; i++) { %>
-                    <div id="<%= user_data.tags[i]._id %>" class="selected_type rounded-lg flex flex-row cursor-pointer p-2 overflow-hidden truncate" onmouseenter="this.style.backgroundColor = '<%= user_data.tags[i].color %>'" onmouseleave="this.style.backgroundColor = 'transparent'">
+                    <div id="<%= user_data.tags[i]._id %>" class="selected_tag rounded-lg flex flex-row cursor-pointer p-2 overflow-hidden truncate" onmouseenter="this.style.backgroundColor = '<%= user_data.tags[i].color %>'" onmouseleave="this.style.backgroundColor = 'transparent'">
                         <div class="w-5 h-5 rounded-md" style="background-color: <%= user_data.tags[i].color %>" > </div>
                         &nbsp;&nbsp;
                         <%= user_data.tags[i].name %>

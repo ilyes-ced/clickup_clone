@@ -131,6 +131,7 @@ router.post('/remove_type_from_task', Types_controller.remove_type_from_task)
 router.post('/delete_task', Tasks_controller.delete_task)
 router.post('/delete_sub_task', Tasks_controller.delete_sub_task)
 
+router.post('/add_category_to_task', Categories_controller.add_category_to_task)
 
 
 

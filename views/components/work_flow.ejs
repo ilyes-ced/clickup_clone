@@ -2,6 +2,8 @@
     usefull for sorting
     workspaces[i].lists[j].tasks.sort((a,b) => a.category.name > b.category.name ? 1 : -1)
 -->  
+<img src="/public/67d22002d95c775b2f62c32af9b91f88.png" alt="">
+<img src="/public/a63af6532012cdb51ab341a6929c72de--ux-design-mobile-ui.jpg" alt="">
 
 <% for( let i = 0; i < workspaces.length; i++ ) { %>
     <% for( let j = 0; j < workspaces[i].lists.length; j++ ) { %>
@@ -30,9 +32,9 @@
             <% for( let ii = 0; ii < user_data.categories.length; ii++ ) { %>
                 <% if(the_tasks[user_data.categories[ii].name]){ %>
                     <div class="w-full flex flex-row">
-                        <div class="h-5 w-5 mt-1  border rounded-full mr-1  toggle_list_of_tasks flex items-center justify-center cursor-pointer"  style="border-color: <%= user_data.categories[ii].color %>; color: <%= user_data.categories[ii].color %>"><%- include('../icons/chevron_down.svg') %> </div>
-                        <div class="flex flex-col w-full">
-                            <div class="w-full flex flex-row  ">
+                        <div class="h-5 w-5  border rounded-full mr-1  toggle_list_of_tasks flex items-center justify-center cursor-pointer"  style="border-color: <%= user_data.categories[ii].color %>; color: <%= user_data.categories[ii].color %>"><%- include('../icons/chevron_down.svg') %> </div>
+                        <div class="flex flex-col w-full ">
+                            <div class="w-full flex flex-row h-5">
                                 <div class="flex flex-row space-x-2 w-2/3">
                                     <% if(the_tasks[user_data.categories[ii].name]){ %>
                                         <div class="rounded-t-md px-2" style="background-color: <%= user_data.categories[ii].color %>"><%= user_data.categories[ii].name %></div>
