@@ -223,6 +223,13 @@ task_create_select_input_toggle.addEventListener('input', (event) => {
 
 
 document.addEventListener('click', (event) => {
+
+    if(event.target.classList.contains('edit_task')){
+        console.log(event.target.parentElement.firstElementChild.nextElementSibling.innerText)
+        event.target.parentElement.firstElementChild.nextElementSibling.innerHTML = '<input id="changing_task_name" type="text" value="" class=" bg-transparent">'
+        document.getElementById('changing_task_name').focus()
+        
+    }
     if(event.target.id == "delete_task"){
         delete_task(event.target.parentElement.parentElement.parentElement.parentElement.id)
         //yes yes as long as the wall of china to reduce the number of tasks at the start of the list container

@@ -13,9 +13,10 @@ var tempo
 
 
 //decallred elements
+const toggle_spaces = document.getElementsByClassName('toggle_spaces')
+const edit_task = document.getElementsByClassName('edit_task')
 const success_modal = document.getElementById('success_modal')
 const extend_sidebar = document.getElementById('extend_sidebar')
-const toggle_spaces = document.getElementsByClassName('toggle_spaces')
 const create_list_modal = document.getElementById('create_list_modal')
 const close_success_modal = document.getElementById('close_success_modal')
 const name_create_list = document.getElementById('name_create_list')
