@@ -273,3 +273,55 @@ const delete_sub_task = (parent_id, id) => {
         }
     }
 }
+
+
+
+
+
+
+
+const rename_task = (id) => {
+    http_request('/rename_task', 'POST', JSON.stringify({
+        parent_workspace : active_space,
+        parent_list : active_list,
+        parent_task: parent_id,
+        task : id,
+    })).onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            json = JSON.parse(this.response)
+            name_create_list.value=""
+            console.log(json)
+            if(json.status == 'success'){
+                success_modal.classList.remove('hidden')
+                show_success_modal()
+            }else if(json.status == 'denied'){
+                alert('error')
+            }else{
+                alert('error, please check your internet connection')
+            }
+        }
+    }
+}
+
+const rename_sub_task = (parent_id, id) => {
+    http_request('/rename_sub_task', 'POST', JSON.stringify({
+        parent_workspace : active_space,
+        parent_list : active_list,
+        parent_task: parent_id,
+        task : id,
+    })).onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            json = JSON.parse(this.response)
+            name_create_list.value=""
+            console.log(json)
+            if(json.status == 'success'){
+                success_modal.classList.remove('hidden')
+                show_success_modal()
+            }else if(json.status == 'denied'){
+                alert('error')
+            }else{
+                alert('error, please check your internet connection')
+            }
+        }
+    }
+}

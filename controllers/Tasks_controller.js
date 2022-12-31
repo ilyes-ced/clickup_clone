@@ -111,7 +111,6 @@ const delete_task = async(req, res) => {
 
 
 const delete_sub_task = async(req, res) => {
-	console.log(req.body)
 	try{
 		if(!(mongoose.isValidObjectId(req.body.parent_workspace) && mongoose.isValidObjectId(req.body.parent_list))){
 			res.json({status: "denied"})
@@ -139,6 +138,25 @@ const delete_sub_task = async(req, res) => {
 	}
 }
 
+
+
+const rename_task = async(req, res) => {
+
+}
+
+
+
+const rename_sub_task = async(req, res) => {
+
+}
+
+
+
 module.exports = {
-    create_new_task_in_list, create_new_sub_task_in_list, delete_task, delete_sub_task
+    create_new_task_in_list,
+	create_new_sub_task_in_list,
+	delete_task,
+	delete_sub_task,
+	rename_task,
+	rename_sub_task
 }

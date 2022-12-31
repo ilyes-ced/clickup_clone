@@ -14,11 +14,12 @@
 </div>
 -->
 
-<div class="w-96 h-12 bg-[rgba(115,68,250,0.1)] border absolute right-10 top-20 flex items-center hidden" id="success_modal" >
-    <div id="close_success_modal">
-        X
-    </div>
-    <div class="px-10">
+<!-- absolute not working here idk why -->
+<div class="w-96 h-12 text-[#7c68ee] border  hidden flex items-center justify-between px-4" id="success_modal"  style="position: absolute; top:80px; right:24px; border-color: #7c68ee ; background-color: rgba(56, 46, 109);">
+    <div class="">
         success must be changed later
+    </div>
+    <div  class="cursor-pointer" id="close_success_modal">
+        <%- include('../icons/close.svg') %> 
     </div>
 </div>

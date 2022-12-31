@@ -225,10 +225,31 @@ task_create_select_input_toggle.addEventListener('input', (event) => {
 document.addEventListener('click', (event) => {
 
     if(event.target.classList.contains('edit_task')){
-        console.log(event.target.parentElement.firstElementChild.nextElementSibling.innerText)
-        event.target.parentElement.firstElementChild.nextElementSibling.innerHTML = '<input id="changing_task_name" type="text" value="" class=" bg-transparent">'
-        document.getElementById('changing_task_name').focus()
-        
+        if(event.target.parentElement.parentElement.parentElement.classList.contains('hidden_sub_tasks')){
+            tempo = event.target.parentElement.firstElementChild.nextElementSibling.nextElementSibling.innerHTML = '<input id="changing_task_name" type="text" value="'+event.target.parentElement.firstElementChild.nextElementSibling.innerText+'" class=" bg-transparent">'
+        }else{
+            tempo = event.target.parentElement.firstElementChild.nextElementSibling.innerHTML = '<input id="changing_task_name" type="text" value="'+event.target.parentElement.firstElementChild.nextElementSibling.innerText+'" class=" bg-transparent">'
+        }
+        tempo = document.getElementById('changing_task_name')
+        // to go to the end of the text in the input
+        tempo.selectionStart = tempo.selectionEnd = tempo.value.length;
+        tempo.focus()
+        tempo.addEventListener('keydown', (event) => {
+            if (event.keyCode === 13) {
+                tempo.insertAdjacentHTML("beforebegin", tempo.value)
+                if(event.target.parentElement.parentElement.parentElement.classList.contains('hidden_sub_tasks')){
+                    rename_task(event.target.parentElement.parentElement.parentElement.parentElement.parentElement.id, event.target.parentElement.parentElement.parentElement.id)
+                }else{
+                    rename_task(event.target.parentElement.parentElement.parentElement.id)
+                }
+                tempo.remove()
+            }
+        })
+        //here send request to change      
+        tempo.addEventListener('blur', (event) => {
+            tempo.insertAdjacentHTML("beforebegin", tempo.value)
+            tempo.remove()
+        })
     }
     if(event.target.id == "delete_task"){
         delete_task(event.target.parentElement.parentElement.parentElement.parentElement.id)

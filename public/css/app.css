@@ -563,6 +563,10 @@ video {
   position: absolute;
 }
 
+.relative {
+  position: relative;
+}
+
 .bottom-6 {
   bottom: 1.5rem;
 }
