@@ -85,6 +85,17 @@ task_modal.addEventListener('click', (event) => {
 })
 
 
+//show and hide user menu
+
+
+toggle_user_menu.addEventListener('click', (event) => {
+    user_menu.classList.toggle('hidden')
+})
+
+
+
+
+
 //hide loading animation
 window.addEventListener('load', () => {
     document.getElementById('loader_parent').style.display = 'none';

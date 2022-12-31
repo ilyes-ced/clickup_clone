@@ -37,6 +37,8 @@ const tags_modal_content = document.getElementById('tags_modal_content')
 const tags_modal = document.getElementById('tags_modal')
 const task_modal = document.getElementById('task_modal')
 const task_modal_content = document.getElementById('task_modal_content')
+const toggle_user_menu = document.getElementById('toggle_user_menu')
+const user_menu = document.getElementById('user_menu')
 
 
 

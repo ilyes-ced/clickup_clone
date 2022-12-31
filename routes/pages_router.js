@@ -88,17 +88,11 @@ router.get('/', is_auth_middleware, async (req, res) => {
         console.log(vv[0].task)*/
         //console.log(vv[0].tasks.length)
         
-        const vv = await workspace_model.find({$and :[
-            {_id : ObjectID('6349567708492d5e6aebb33c')},
-            {lists : {$elemMatch : {_id : ObjectID('634c2d5647398f929e2ad893')}}},
-            {"lists.tasks" : {$elemMatch : {_id : ObjectID('634ed96381831b083b4a8646')}}},
-            {"lists.tasks.tags"  : {$elemMatch : {_id : ObjectID('634a87164ef596fc10370bcf')}}},
-        ]})
-        //console.log(vv)
+
 
 
         var workspaces = await workspace_model.find({owner: req.session.user_id})
-        var user_data = await user_model.findOne({_id: req.session.user_id}).select('-_id tags types categories')
+        var user_data = await user_model.findOne({_id: req.session.user_id}).select('-_id username email profile_image tags types categories')
         res.render('home_page', {workspaces: workspaces, user_data: user_data})
     }catch(e){
         console.log(e)

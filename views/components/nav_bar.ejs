@@ -1,58 +1,73 @@
 <nav class="w-full bg-[#2b343b]  flex flex-col items-center">
-    <div class="flex items-center w-full h-full  h-12 border-b border-[#1e272e]"><!--divide-x divide-green-600-->
+    <div class="flex items-center  justify-between w-full     h-12 border-b border-[#1e272e]"><!--divide-x divide-green-600-->
+        <div class="flex items-center h-full">
+            <button id="extend_sidebar" class="flex flex-col justify-between px-2 h-full group">
+                <div></div>
+                <div class="mt-1 flex flex-row items-center space-x-2  group-hover:text-gray-600 font-extrabold"><%- include('../icons/list.svg') %> &nbsp; <div id="current_active_space_element">current space</div>  </div>
+                <div class="rounded-t bg-transparent h-1 w-full   group-hover:bg-gray-600 "></div>
+            </button>
+            <!-- group-hover:bg-red-600 -->
+            <div class="h-3/5 border-r border-[#1e272e]">  </div>
+    
+            <button id="extend_sidebar" class="flex flex-col justify-between px-2 h-full group">
+                <div></div>
+                <div class="mt-1 flex flex-row items-center space-x-2 text-[#7c68ee] group-hover:text-gray-600"><%- include('../icons/tasks.svg') %> &nbsp; list </div>
+                <div class="rounded-t bg-transparent h-1 w-full bg-[#7c68ee]  group-hover:bg-gray-600 "></div>
+            </button>
+    
+            
+            <div class="h-3/5 border-r border-[#1e272e]">  </div>
+    
+            <button id="extend_sidebar" class="flex flex-col justify-between px-2 h-full group">
+                <div></div>
+                <div class="mt-1 flex flex-row items-center space-x-2 group-hover:text-gray-600 "> <%- include('../icons/board.svg') %> &nbsp; board  </div>
+                <div class="rounded-t bg-transparent h-1 w-full  group-hover:bg-gray-600"></div>
+            </button>
+    
+            
+            <div class="h-3/5 border-r border-[#1e272e]">  </div>
+    
+    
+            <button id="extend_sidebar" class="flex flex-col justify-between px-2 h-full group">
+                <div></div>
+                <div class="mt-1 flex flex-row items-center space-x-2 group-hover:text-gray-600 "> <%- include('../icons/grid.svg') %> &nbsp; workflow  </div>
+                <div class="rounded-t bg-transparent h-1 w-full  group-hover:bg-gray-600"></div>
+            </button>
+    
+            
+            <div class="h-3/5 border-r border-[#1e272e]">  </div>
+    
+    
+            <button id="extend_sidebar" class="flex flex-col justify-between px-2 h-full group">
+                <div></div>
+                <div class="mt-1 flex flex-row items-center space-x-2 group-hover:text-gray-600 "> <%- include('../icons/timeline.svg') %> &nbsp; timeline  </div>
+                <div class="rounded-t bg-transparent h-1 w-full  group-hover:bg-gray-600"></div>
+            </button>
+    
+            <div class="h-3/5 border-r border-[#1e272e]">  </div>
+    
+    
+            <button id="extend_sidebar" class="flex flex-col justify-between px-2 h-full group">
+                <div></div>
+                <div class="mt-1 flex flex-row items-center space-x-2 group-hover:text-gray-600 "> <%- include('../icons/add.svg') %> &nbsp; add views  </div>
+                <div class="rounded-t bg-transparent h-1 w-full  group-hover:bg-gray-600"></div>
+            </button>
+            
+        </div>
+        <div class="h-full flex flex-row items-center mr-4">
+            <div class="mr-2">
+                <img class="h-10 w-10 rounded-full" src="/public/images/<%= user_data.profile_image %>" alt="">
+            </div>
+            <div id="toggle_user_menu" class="flex flex-row items-center hover:bg-gray-700 hover:text-[#7c68ee] rounded-lg cursor-pointer px-2 h-4/6 self-center space-x-2">
+                <div>username</div>
+                <%- include('../icons/chevron_down.svg') %>
+            </div>
+            <div id="user_menu" class=" absolute top-12 right-4  transition-all duration-200 ease-in-out  rounded-lg bg-[#384047] py-2">
+                <div class="py-2 pr-24 pl-2 hover:text-[#7c68ee] hover:bg-gray-600 cursor-pointer flex flex-row items-center "><%- include('../icons/settings.svg') %> &nbsp; settings</div>
+                <div class="py-2 pr-24 pl-2 hover:text-[#7c68ee] hover:bg-gray-600 cursor-pointer flex flex-row items-center "><%- include('../icons/logout.svg') %> &nbsp; logout</div>
+            </div>
+        </div>
 
-        <button id="extend_sidebar" class="flex flex-col justify-between px-2 h-full group">
-            <div></div>
-            <div class="mt-1 flex flex-row items-center space-x-2  group-hover:text-gray-600 font-extrabold"><%- include('../icons/list.svg') %> &nbsp; <div id="current_active_space_element">current space</div>  </div>
-            <div class="rounded-t bg-transparent h-1 w-full   group-hover:bg-gray-600 "></div>
-        </button>
-        <!-- group-hover:bg-red-600 -->
-        <div class="h-3/5 border-r border-[#1e272e]">  </div>
-
-        <button id="extend_sidebar" class="flex flex-col justify-between px-2 h-full group">
-            <div></div>
-            <div class="mt-1 flex flex-row items-center space-x-2 text-[#7c68ee] group-hover:text-gray-600"><%- include('../icons/tasks.svg') %> &nbsp; list </div>
-            <div class="rounded-t bg-transparent h-1 w-full bg-[#7c68ee]  group-hover:bg-gray-600 "></div>
-        </button>
-
-        
-        <div class="h-3/5 border-r border-[#1e272e]">  </div>
-
-        <button id="extend_sidebar" class="flex flex-col justify-between px-2 h-full group">
-            <div></div>
-            <div class="mt-1 flex flex-row items-center space-x-2 group-hover:text-gray-600 "> <%- include('../icons/board.svg') %> &nbsp; board  </div>
-            <div class="rounded-t bg-transparent h-1 w-full  group-hover:bg-gray-600"></div>
-        </button>
-
-        
-        <div class="h-3/5 border-r border-[#1e272e]">  </div>
-
-
-        <button id="extend_sidebar" class="flex flex-col justify-between px-2 h-full group">
-            <div></div>
-            <div class="mt-1 flex flex-row items-center space-x-2 group-hover:text-gray-600 "> <%- include('../icons/grid.svg') %> &nbsp; workflow  </div>
-            <div class="rounded-t bg-transparent h-1 w-full  group-hover:bg-gray-600"></div>
-        </button>
-
-        
-        <div class="h-3/5 border-r border-[#1e272e]">  </div>
-
-
-        <button id="extend_sidebar" class="flex flex-col justify-between px-2 h-full group">
-            <div></div>
-            <div class="mt-1 flex flex-row items-center space-x-2 group-hover:text-gray-600 "> <%- include('../icons/timeline.svg') %> &nbsp; timeline  </div>
-            <div class="rounded-t bg-transparent h-1 w-full  group-hover:bg-gray-600"></div>
-        </button>
-
-        <div class="h-3/5 border-r border-[#1e272e]">  </div>
-
-
-        <button id="extend_sidebar" class="flex flex-col justify-between px-2 h-full group">
-            <div></div>
-            <div class="mt-1 flex flex-row items-center space-x-2 group-hover:text-gray-600 "> <%- include('../icons/add.svg') %> &nbsp; add views  </div>
-            <div class="rounded-t bg-transparent h-1 w-full  group-hover:bg-gray-600"></div>
-        </button>
-        
     </div>
 
     <div class="w-full bg-[#2b343b] h-8 flex justify-between px-4">
