@@ -280,12 +280,12 @@ const delete_sub_task = (parent_id, id) => {
 
 
 
-const rename_task = (id) => {
+const rename_task = (id, new_name) => {
     http_request('/rename_task', 'POST', JSON.stringify({
         parent_workspace : active_space,
         parent_list : active_list,
-        parent_task: parent_id,
         task : id,
+        new_name: new_name
     })).onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             json = JSON.parse(this.response)
@@ -303,12 +303,13 @@ const rename_task = (id) => {
     }
 }
 
-const rename_sub_task = (parent_id, id) => {
+const rename_sub_task = (parent_id, id, new_name) => {
     http_request('/rename_sub_task', 'POST', JSON.stringify({
         parent_workspace : active_space,
         parent_list : active_list,
         parent_task: parent_id,
         task : id,
+        new_name: new_name
     })).onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             json = JSON.parse(this.response)

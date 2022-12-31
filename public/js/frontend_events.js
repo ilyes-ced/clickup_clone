@@ -238,9 +238,9 @@ document.addEventListener('click', (event) => {
             if (event.keyCode === 13) {
                 tempo.insertAdjacentHTML("beforebegin", tempo.value)
                 if(event.target.parentElement.parentElement.parentElement.classList.contains('hidden_sub_tasks')){
-                    rename_task(event.target.parentElement.parentElement.parentElement.parentElement.parentElement.id, event.target.parentElement.parentElement.parentElement.id)
+                    rename_task(event.target.parentElement.parentElement.parentElement.parentElement.parentElement.id, event.target.parentElement.parentElement.parentElement.id, tempo.value)
                 }else{
-                    rename_task(event.target.parentElement.parentElement.parentElement.id)
+                    rename_task(event.target.parentElement.parentElement.parentElement.id, tempo.value)
                 }
                 tempo.remove()
             }

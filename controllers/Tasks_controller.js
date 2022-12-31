@@ -141,7 +141,30 @@ const delete_sub_task = async(req, res) => {
 
 
 const rename_task = async(req, res) => {
-
+	try{
+		if(!(mongoose.isValidObjectId(req.body.parent_workspace) && mongoose.isValidObjectId(req.body.parent_list))){
+			res.json({status: "denied"})
+			return
+		}
+		if(!(await workspace_model.findOne({_id : req.body.parent_workspace, owner: req.session.user_id,lists: {$elemMatch: { _id: ObjectID(req.body.parent_list) }}}))){
+			res.json({status: "denied"})
+			return
+		}
+        await workspace_model.findOneAndUpdate({_id : req.body.parent_workspace, lists : {$elemMatch:{_id:ObjectID(req.body.parent_list)}}},{
+            $set : {
+                "lists.$[para1].tasks.$[para2]": {name: req.body.new_name}
+			}
+                },{
+                arrayFilters: [
+                    {"para1._id" : ObjectID(req.body.parent_list)},
+                    {"para2._id" : ObjectID(req.body.task)},
+            ]   
+        })
+		res.json({status: 'success'})
+	}catch(e){
+		res.json({status: 'error'})
+        console.log(e)
+	}
 }
 
 
