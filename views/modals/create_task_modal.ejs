@@ -1,8 +1,8 @@
 
 
 
-<div  class="h-full w-full absolute hidden bg-transparent flex items-end justify-end" id="create_task_modal" >
-    <div class="create_task_modal_content   overflow-x-hidden overflow-y-auto   justify-center items-center  w-[500px] h-[500px] bg-green-600">
+<div  class="h-full w-full absolute hidden bg-transparent flex items-end justify-end" id="create_task_modal"  >
+    <div class="create_task_modal_content   overflow-x-hidden overflow-y-auto justify-center items-center bg-emerald-600 border p-4" style="position: absolute; bottom:72px; right: 24px; width: 600px;" >
         <div class="w-full h-full  overflow-y-auto">
             <div class="shadow overflow-y-auto bg-[#303436] "> 
                 
@@ -10,17 +10,17 @@
 
 
                 <div class="flex flex-col overflow-y-auto">
-                    <div class="flex flex-row">
-                        <div class="task_category_toggle_task_modal border hover:border-white rounded-sm border-transparent p-0.5 self-center">    
+                    <div class="flex flex-row py-2 items-center space-x-4">
+                        <div class="task_category_toggle_task_modal border hover:border-white rounded-sm border-transparent p-0.5 self-center cursor-pointer">    
                             <div class="h-3 w-3 bg-white rounded-sm self-center "></div>
                             <input id="task_category_toggle_task_modal_value" type="hidden" name="">
                         </div>
                         <div class="hidden">
                             categories here
                         </div>
-                        <input class="bg-transparent  " type="text" id="name_create_task" placeholder="create task" required>
-                        <div>
-                            icons here
+                        <input class="bg-transparent p-2 w-full outline-none " type="text" id="name_create_task" placeholder="create task" required>
+                        <div class="text-xl p-2 hover:bg-red-600 rounded-full">
+                            <%- include('../icons/close.svg') %>
                         </div>
                     </div>
                     
@@ -59,14 +59,3 @@
         </div>
     </div>
 </div>
-
-<!-- 
-<div class="h-full w-full absolute bg-transparent hidden" id="create_task_modal" >
-    <div class="h-[100px] w-[100px] absolute top-6 left-6 bg-red-600">
-        <div id="task_create_select_input_toggle " class="w-full h-full">
-            hh
-        </div>
-    </div>
-</div>
-
--->
