@@ -5,6 +5,8 @@ module.exports = {
     content: [
         './views/*.ejs',
         './views/components/*.ejs',
+        './views/modals/*.ejs',
+        './views/icons/*.ejs',
     ],
 
 
