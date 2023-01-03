@@ -2,7 +2,7 @@
 
 
 <div  class="h-full w-full absolute hidden bg-transparent flex items-end justify-end" id="create_task_modal"  >
-    <div class="create_task_modal_content   overflow-x-hidden overflow-y-auto justify-center items-center bg-emerald-600 border p-4" style="position: absolute; bottom:72px; right: 24px; width: 600px;" >
+    <div class="create_task_modal_content   overflow-x-hidden overflow-y-auto justify-center items-center bg-gray-600 border border-[#2b343b] p-4" style="position: absolute; bottom:72px; right: 24px; width: 600px;" >
         <div class="w-full h-full  overflow-y-auto">
             <div class="shadow overflow-y-auto bg-[#303436] "> 
                 
@@ -18,18 +18,21 @@
                         <div class="hidden">
                             categories here
                         </div>
-                        <input class="bg-transparent p-2 w-full outline-none " type="text" id="name_create_task" placeholder="create task" required>
-                        <div class="text-xl p-2 hover:bg-red-600 rounded-full">
+                        <input class="bg-transparent p-2 w-full outline-none mx-2" type="text" id="name_create_task" placeholder="create task" required>
+                        <div class="text-xl p-2 hover:bg-[#1e272e] hover:text-[#7c68ee] cursor-pointer rounded-full">
                             <%- include('../icons/close.svg') %>
                         </div>
                     </div>
                     
                     <div class="w-full">
-                        <div class="bg-blue-600 h-10  border border-red-600 w-full" type="text" id="task_create_select_input_toggle">
-                            <input type="hidden" id="task_create_select_input_id">
+                        <div class="flex flex-row items-center my-2">
+                            <p>in</p>
+                            <div class="ml-2 h-10  border border-[#2b343b] rounded-full" style="width:50%;"  type="text" id="task_create_select_input_toggle">
+                                <input type="hidden" id="task_create_select_input_id">
+                            </div>
                         </div>
                         <div class="absolute bg-red-600 h-fit w-full  hidden" id="task_create_select_input">
-                            <input id="selected_list_to_add_task_search" type="text" class="bg-blue-600 h-10  border border-red-600 w-full">
+                            <input id="selected_list_to_add_task_search" type="text" class="p-2  border border-red-600 w-full">
                             <% for (let i = 0; i < workspaces.length; i++) { %>
                                 <%= workspaces[i].name %>
 
@@ -40,13 +43,13 @@
                             <% } %>
                         </div>
                     </div>
-                    <textarea class="bg-blue-600  border border-red-600 " placeholder="desc" name="" id="" cols="30" rows="10"></textarea>
+                    <textarea class=" border border-red-600 " placeholder="desc" name="" id="" cols="30" rows="10"></textarea>
                     
-                    <input class="bg-blue-600  border border-red-600 " type="text">
+                    <input class=" border border-red-600 " type="text">
                     <div class="my-12 bg-black cursor-pointer " id="create_sub_task_input" >+add subtask press to add input </div>
                     <div class="my-12 bg-black">set tags </div>
                     <div class="my-12 bg-black">set due date</div>
-                    <input class="bg-blue-600  border border-red-600 " type="date" name="" id="">
+                    <input class=" border border-red-600 " type="date" name="" id="">
                     <div class="my-12 bg-black">set priority</div>
                     <button id="submit_create_task">submit</button>
                 </div>
