@@ -92,7 +92,9 @@ toggle_user_menu.addEventListener('click', (event) => {
     user_menu.classList.toggle('hidden')
 })
 
-
+add_tags_in_list.addEventListener('click', (event) => {
+    add_tags_in_list_modal.classList.toggle('hidden')
+})
 
 
 

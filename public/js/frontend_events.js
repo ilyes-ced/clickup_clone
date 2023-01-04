@@ -280,7 +280,7 @@ document.addEventListener('click', (event) => {
             }
         });
     }
-
+    
     if(event.target.id == "task_create_select_input_toggle"){
         task_create_select_input.classList.toggle('hidden')
     }
