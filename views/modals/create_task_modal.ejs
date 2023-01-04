@@ -27,7 +27,7 @@
                     <div class="w-full">
                         <div class="flex flex-row items-center my-2">
                             <p>in</p>
-                            <div class="ml-2 h-10  border border-[#2b343b] rounded-full" style="width:50%;"  type="text" id="task_create_select_input_toggle">
+                            <div class="ml-2 h-10  border border-[#2b343b] rounded-full flex items-center p-2" style="width:50%;"  type="text" id="task_create_select_input_toggle">
                                 <input type="hidden" id="task_create_select_input_id">
                             </div>
                         </div>
@@ -46,11 +46,15 @@
                     <textarea class=" border border-red-600 " placeholder="desc" name="" id="" cols="30" rows="10"></textarea>
                     
                     <input class=" border border-red-600 " type="text">
-                    <div class="my-12 bg-black cursor-pointer " id="create_sub_task_input" >+add subtask press to add input </div>
-                    <div class="my-12 bg-black">set tags </div>
-                    <div class="my-12 bg-black">set due date</div>
+                    <div id="new_sub_tasks_tempo" class="flex flex-col p-2 bg-green-600"></div>
+                    <div class="my-2 bg-black cursor-pointer " id="create_sub_task_input" >+add subtask press to add input </div>
+                    <div class="my-2 bg-black">set tags </div>
+                    <div id="">
+                        + add tag
+                    </div>
+                    <div class="my-2 bg-black">set due date</div>
                     <input class=" border border-red-600 " type="date" name="" id="">
-                    <div class="my-12 bg-black">set priority</div>
+                    <div class="my-2 bg-black">set priority</div>
                     <button id="submit_create_task">submit</button>
                 </div>
 

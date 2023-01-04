@@ -253,7 +253,6 @@ document.addEventListener('click', (event) => {
     }
     if(event.target.id == "delete_task"){
         delete_task(event.target.parentElement.parentElement.parentElement.parentElement.id)
-        //yes yes as long as the wall of china to reduce the number of tasks at the start of the list container
         event.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.firstElementChild.nextElementSibling.innerText = parseInt(event.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.firstElementChild.nextElementSibling.innerText)-1+" tasks"
         event.target.parentElement.parentElement.parentElement.parentElement.remove()
     }
@@ -266,7 +265,20 @@ document.addEventListener('click', (event) => {
     
     
     if(event.target.id == "create_sub_task_input"){
-        event.target.insertAdjacentHTML('beforebegin', '<input class="bg-blue-600  border border-red-600 " placeholder="new sub task" type="text">')
+        event.target.insertAdjacentHTML('beforebegin', '<input class="bg-blue-600  border border-red-600 " id="remove_on_error" placeholder="new sub task" type="text">')
+        tempo = document.getElementById('remove_on_error')
+        tempo.focus()
+        tempo.addEventListener('blur', () => {
+            tempo.remove()
+        })
+        tempo.addEventListener("keyup", function(event) {
+            event.preventDefault();
+            if (event.keyCode === 13) {
+                console.log('ues')
+                new_sub_tasks_tempo.innerHTML += '<div class="flex flex-row bg-red-600">'+tempo.value+' <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg> </div>'
+                tempo.value = ""
+            }
+        });
     }
 
     if(event.target.id == "task_create_select_input_toggle"){
