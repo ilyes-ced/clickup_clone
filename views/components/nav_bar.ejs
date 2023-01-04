@@ -75,8 +75,9 @@
             <div>
                 <%- include('../icons/search.svg') %>
             </div>
-            <div>
-                <input class='bg-transparent px-2 mx-2' placeholder="search" type="text">
+            <div class="relative">
+                <input class='bg-transparent px-2 mx-2' placeholder="search" type="text"> 
+                <div class="absolute top-[2px] right-2 cursor-pointer  hover:text-[#7c68ee] rounded-full " onclick="this.previousElementSibling.value=''" ><%- include('../icons/close.svg') %></div>
             </div>
             <div class="cursor-pointer hover:text-[#7c68ee]">
                 <%- include('../icons/chevron_down.svg') %>

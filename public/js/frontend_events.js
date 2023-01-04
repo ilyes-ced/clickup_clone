@@ -113,44 +113,7 @@ name_create_space.addEventListener("keyup", function(event) {
 
 
 
-// show and hide icons on table row on hover
 var row
-//const list_of_tasks = document.getElementsByClassName('list_of_tasks')
-//for( let i = 0; i < list_of_tasks.length; i++ ) {}
-/*
-document.addEventListener('dblclick', (event) => {
-    if (event.target.matches('.table_row, .table_row *')) {
-        row = define_hovered_row(event.target)
-        task_modal.classList.remove('hidden')
-    }
-})
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 document.addEventListener('mouseover', (event) => {
     //shows 3 hidden icons on hover
@@ -171,20 +134,6 @@ document.addEventListener('mouseover', (event) => {
     
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 document.addEventListener('mouseout', (event) => {
     if (event.target.matches('.table_row, .table_row *')) {
         row = define_hovered_row(event.target)
@@ -198,29 +147,9 @@ document.addEventListener('mouseout', (event) => {
     }
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 task_create_select_input_toggle.addEventListener('input', (event) => {
     event.target.value
 })
-
-
-
-
-
-
 
 document.addEventListener('click', (event) => {
 
@@ -476,7 +405,7 @@ document.addEventListener('click', (event) => {
 
 
 /*
-slist(document.getElementById("tempo"));
+slist(document.getElementsByClassName("ffgg")[0])
 
 
 

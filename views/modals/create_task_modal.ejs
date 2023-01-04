@@ -53,7 +53,13 @@
                         + add tag
                     </div>
                     <div id="add_tags_in_list_modal" class="bg-red-600 hidden">
-                        zz
+                        <%for (let i = 0; i < user_data.tags.length; i++) { %>
+                            <div id="<%= user_data.tags[i]._id %>" class="selected_tag_in_list rounded-lg flex flex-row cursor-pointer p-2 overflow-hidden truncate" onmouseenter="this.style.backgroundColor = '<%= user_data.tags[i].color %>'" onmouseleave="this.style.backgroundColor = 'transparent'">
+                                <div class="w-5 h-5 rounded-md" style="background-color: <%= user_data.tags[i].color %>" > </div>
+                                &nbsp;&nbsp;
+                                <%= user_data.tags[i].name %>
+                            </div>
+                        <% } %>
                     </div>
                     <div class="my-2 bg-black">set due date</div>
                     <input class=" border border-red-600 " type="date" name="" id="">
