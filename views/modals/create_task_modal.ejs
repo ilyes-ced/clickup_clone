@@ -9,7 +9,7 @@
 
 
 
-                <div class="flex flex-col overflow-y-auto">
+                <div class="flex flex-col overflow-y-auto relative">
                     <div class="flex flex-row py-2 items-center space-x-4">
                         <div class="task_category_toggle_task_modal border hover:border-white rounded-sm border-transparent p-0.5 self-center cursor-pointer">    
                             <div class="h-3 w-3 bg-white rounded-sm self-center "></div>
@@ -27,23 +27,23 @@
                     <div class="w-full">
                         <div class="flex flex-row items-center my-2">
                             <p>in</p>
-                            <div class="ml-2 h-10  border border-[#2b343b] rounded-full flex items-center p-2" style="width:50%;"  type="text" id="task_create_select_input_toggle">
+                            <div class="ml-2 h-10  border border-[#1e272e] rounded-full flex items-center p-2 w-1/2" type="text" id="task_create_select_input_toggle">
                                 <input type="hidden" id="task_create_select_input_id">
                             </div>
                         </div>
-                        <div class="absolute bg-red-600 h-fit w-full  hidden" id="task_create_select_input">
-                            <input id="selected_list_to_add_task_search" type="text" class="p-2  border border-red-600 w-full">
+                        <div class="absolute border rounded-lg bg-[#2b343b] h-fit w-1/2 p-2 left-8 hidden" id="task_create_select_input">
+                            <input id="selected_list_to_add_task_search" type="text" class="outline-none w-full bg-transparent border-b border-[#1e272e] " placeholder="Search workspaces and lists . . .">
                             <% for (let i = 0; i < workspaces.length; i++) { %>
-                                <%= workspaces[i].name %>
-
-                                    <% for (let k = 0; k < workspaces[i].lists.length; k++) { %>
-                                        <div id="<%= workspaces[i].id %>__<%= workspaces[i].lists[k]._id %>" class="selected_list_to_add_task px-6 hover:bg-green-600"><%= workspaces[i].lists[k].name %></div>
-                                    <% } %>
-                                
+                                <div class="flex flex-row items-center">
+                                    <%- include('../icons/chevron_down.svg') %><%= workspaces[i].name %>
+                                </div>
+                                <% for (let k = 0; k < workspaces[i].lists.length; k++) { %>
+                                    <div id="<%= workspaces[i].id %>__<%= workspaces[i].lists[k]._id %>" class="selected_list_to_add_task px-6 hover:bg-green-600"><%= workspaces[i].lists[k].name %></div>
+                                <% } %>
                             <% } %>
                         </div>
                     </div>
-                    <textarea class=" border border-red-600 " placeholder="desc" name="" id="" cols="30" rows="10"></textarea>
+                    <textarea class="bg-transparent border border-[#1e272e] p-2" placeholder="desc" name="" id="" cols="30" rows="10" ></textarea>
                     
                     <input class=" border border-red-600 " type="text">
                     <div id="new_sub_tasks_tempo" class="flex flex-col p-2 bg-green-600"></div>
@@ -63,7 +63,14 @@
                     </div>
                     <div class="my-2 bg-black">set due date</div>
                     <input class=" border border-red-600 " type="date" name="" id="">
-                    <div class="my-2 bg-black">set priority</div>
+                    <div class="my-2 bg-black" id="task_create_priority_toggle" >set priority</div>
+                    <div class="absolute border rounded-lg bg-[#2b343b] h-fit w-fit p-2 left-0 bottom-12 hidden" id="task_create_priority">
+                        <div class="px-2 py-1 hover:bg-gray-600 cursor-pointer rounded-lg">none</div>
+                        <div class="px-2 py-1 hover:bg-gray-600 cursor-pointer rounded-lg">low</div>
+                        <div class="px-2 py-1 hover:bg-gray-600 cursor-pointer rounded-lg">normal</div>
+                        <div class="px-2 py-1 hover:bg-gray-600 cursor-pointer rounded-lg">high</div>
+                        <div class="px-2 py-1 hover:bg-gray-600 cursor-pointer rounded-lg">urgent</div>
+                    </div>
                     <button id="submit_create_task">submit</button>
                 </div>
 

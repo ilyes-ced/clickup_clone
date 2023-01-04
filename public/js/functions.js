@@ -43,6 +43,8 @@ const user_menu = document.getElementById('user_menu')
 const new_sub_tasks_tempo = document.getElementById('new_sub_tasks_tempo')
 const add_tags_in_list = document.getElementById('add_tags_in_list')
 const add_tags_in_list_modal = document.getElementById('add_tags_in_list_modal')
+const task_create_priority_toggle = document.getElementById('task_create_priority_toggle')
+const task_create_priority = document.getElementById('task_create_priority')
 
 
 

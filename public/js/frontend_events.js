@@ -210,6 +210,11 @@ document.addEventListener('click', (event) => {
         });
     }
     
+    
+
+    if(event.target.id == "task_create_priority_toggle"){
+        task_create_priority.classList.toggle('hidden')
+    }
     if(event.target.id == "task_create_select_input_toggle"){
         task_create_select_input.classList.toggle('hidden')
     }
