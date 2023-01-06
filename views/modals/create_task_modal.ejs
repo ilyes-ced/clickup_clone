@@ -47,8 +47,8 @@
                     
                     <input class=" border border-red-600 " type="text">
                     <div id="new_sub_tasks_tempo" class="flex flex-col p-2 bg-green-600"></div>
-                    <div class="my-2 bg-black cursor-pointer flex flex-row items-center cursor-pointer" id="create_sub_task_input" > <%- include('../icons/add_full.svg') %> add subtask press to add input </div>
-                    <div class="my-2 bg-black"> set tags </div>
+                    <div class="my-2 cursor-pointer flex flex-row items-center cursor-pointer" id="create_sub_task_input" > <%- include('../icons/add_full.svg') %> add subtask press to add input </div>
+                    <div class="my-2"> set tags </div>
                     <div id="add_tags_in_list" class="flex flex-row items-center cursor-pointer">
                         <%- include('../icons/add_full.svg') %> add tag
                     </div>
@@ -61,9 +61,9 @@
                             </div>
                         <% } %>
                     </div>
-                    <div class="my-2 bg-black">set due date</div>
+                    <div class="my-2">set due date</div>
                     <input class=" border border-red-600 " type="date" name="" id="">
-                    <div class="my-2 bg-black" id="task_create_priority_toggle" >set priority</div>
+                    <div class="my-2" id="task_create_priority_toggle" >set priority</div>
                     <div class="absolute border rounded-lg bg-[#2b343b] h-fit w-fit p-2 left-0 bottom-12 hidden" id="task_create_priority">
                         <div class="px-2 py-1 hover:bg-gray-600 cursor-pointer rounded-lg">none</div>
                         <div class="px-2 py-1 hover:bg-gray-600 cursor-pointer rounded-lg">low</div>
