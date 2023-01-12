@@ -82,7 +82,7 @@ router.get('/', is_auth_middleware, async (req, res) => {
         //await workspace_model.findOneAndUpdate({_id : '6357f0a0f8c05325a1b490c7', lists : {$elemMatch:{_id:ObjectID('63a1bec62640e928808ef796')}}},{
         //    $push : {
         //        "lists.$[para1].tasks": {
-        //            _id : new ObjectID(), name:"test", description: '', tags:[], due_date: '', priority: '', category: {_id:  ObjectID('634d99a76d2fbfb2878c1393'),name: 'tech', color: 'rgb(200,120,210)'} , type: '', progress: 0, sub_tasks:[], createdAt:Date.now(), updatedAt:Date.now()
+        //            _id : new ObjectID(), name:"test", description: '', tags:[], due_date: '', priority: '', category: {_id:  ObjectID('634d99a76d2fbfb2878c1393'),name: 'to do', color: 'rgb(150,150,150)'} , type: '', progress: 0, sub_tasks:[], createdAt:Date.now(), updatedAt:Date.now()
         //        }
         //    }
         //},{

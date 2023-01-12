@@ -92,7 +92,7 @@
                                                 <% if(the_tasks[user_data.categories[ii].name][k].priority){ %>
                                                     azdazd
                                                 <% }else{ %>
-                                                    <div class="w-1/5 text-center h-full flex justify-center items-center hover:bg-red-600"><%- include('../icons/flag.svg') %> </div>
+                                                    <div class="w-1/5 text-center h-full flex justify-center items-center hover:bg-red-600 "><%- include('../icons/flag.svg') %> </div>
                                                 <% } %>
                                                 <% if(the_tasks[user_data.categories[ii].name][k].type){ %>
                                                     <div class="w-1/5 text-center hover:bg-green-600 h-full flex  items-center justify-center toggle_types_modal" style="background-color: <%= the_tasks[user_data.categories[ii].name][k].type.color %>">
@@ -159,7 +159,7 @@
                                                     </div>
                                                     <div class="flex flex-row w-1/3 h-full items-center">
                                                         <div class="w-1/5 text-center h-full hover:bg-red-600 flex items-center justify-center"> <%- include('../icons/calendar.svg') %>  </div>
-                                                        <div class="w-1/5 text-center h-full hover:bg-red-600 flex items-center justify-center"> <%- include('../icons/flag.svg') %>  </div> 
+                                                        <div class="w-1/5 text-center h-full hover:bg-red-600 flex items-center justify-center "> <%- include('../icons/flag.svg') %>  </div> 
                                                         <% if(the_tasks[user_data.categories[ii].name][k].sub_tasks[l].type){ %>
                                                             <div class="w-1/5 text-center hover:bg-green-600 h-full flex  items-center justify-center toggle_types_modal" style="background-color: <%= the_tasks[user_data.categories[ii].name][k].type.color %>">
                                                                 <%= the_tasks[user_data.categories[ii].name][k].type.name %>
