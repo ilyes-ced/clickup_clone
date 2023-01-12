@@ -157,7 +157,7 @@ document.addEventListener('click', (event) => {
     in_list_types
     in_list_selected_type
     if(event.target.classList.contains('clicked_type_in_list')){
-        toggle_in_list_types.firstElementChild.innerHTML=  '<div class="h-full w-full flex items-center justify-center"> '+event.target.innerText+' </div>'
+        toggle_in_list_types.firstElementChild.innerHTML=  '<div class="h-full w-full flex items-center justify-center rounded-tr-md"> '+event.target.innerText+' </div>'
         toggle_in_list_types.firstElementChild.firstElementChild.style.backgroundColor = event.target.style.backgroundColor 
     }
 
