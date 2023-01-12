@@ -27,14 +27,14 @@
                     <div class="w-full">
                         <div class="flex flex-row items-center my-2">
                             <p>in</p>
-                            <div class="ml-2 h-10  border border-[#1e272e] rounded-full flex items-center p-2 w-1/2" type="text" id="task_create_select_input_toggle">&
+                            <div class="ml-2 h-8  border border-[#1e272e] rounded-full flex items-center p-2 w-1/2" type="text" id="task_create_select_input_toggle">&
                                 <input type="hidden" id="task_create_select_input_id">
                             </div>
                         </div>
-                        <div class="absolute border rounded-lg bg-[#2b343b] h-fit w-1/2 p-2 left-8 hidden" id="task_create_select_input">
+                        <div class="absolute border border-[#1e272e] rounded-lg bg-[#2b343b] h-fit w-1/2 p-2 left-8 hidden" id="task_create_select_input">
                             <input id="selected_list_to_add_task_search" type="text" class="outline-none w-full bg-transparent border-b border-[#1e272e] " placeholder="Search workspaces and lists . . .">
                             <% for (let i = 0; i < workspaces.length; i++) { %>
-                                <div class="flex flex-row items-center">
+                                <div class="flex flex-row items-center p-2  hover:bg-red-600">
                                     <%- include('../icons/chevron_down.svg') %><%= workspaces[i].name %>
                                 </div>
                                 <% for (let k = 0; k < workspaces[i].lists.length; k++) { %>
@@ -43,9 +43,18 @@
                             <% } %>
                         </div>
                     </div>
-                    <textarea class="bg-transparent border border-[#1e272e] p-2" placeholder="desc" name="" id="" cols="30" rows="10" ></textarea>
+                    <textarea class="bg-transparent border border-[#1e272e] p-2 outline-none h-24 rounded-md" placeholder="description" name="" id="" cols="30" rows="10" ></textarea>
                     
-                    <input class=" border border-red-600 " type="text">
+                    <div class="w-full border border-[#1e272e] my-2 rounded-md flex flex-col divide-y-[1px] divide-[#1e272e]">
+                        <div class="flex flex-row h-6 w-full divide-x-[1px] divide-[#1e272e]">
+                            <div class="w-1/2 px-2 ">type</div>
+                            <div class="w-1/2 flex items-center justify-center cursor-pointer">-</div>
+                        </div>
+                        <div class="flex flex-row h-6 w-full divide-x-[1px] divide-[#1e272e]">
+                            <div class="w-1/2 px-2 ">progress</div>
+                            <div class="w-1/2 flex items-center justify-center"> <input type="range" value="0" class="" name="" id=""> </div>
+                        </div>
+                    </div>
                     <div id="new_sub_tasks_tempo" class="flex flex-col p-2 bg-green-600"></div>
                     <div class="my-2 cursor-pointer flex flex-row items-center cursor-pointer" id="create_sub_task_input" > <%- include('../icons/add_full.svg') %> add subtask press to add input </div>
                     <div class="my-2"> set tags </div>
