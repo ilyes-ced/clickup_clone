@@ -59,8 +59,8 @@
 
                         <div class="flex flex-row h-8  items-center w-full divide-x-[1px] divide-[#1e272e]  ">
                             <div class="w-1/2 px-2 " id="in_list_selected_type">type</div>
-                            <div class="w-1/2 h-full flex items-center justify-center cursor-pointer relative" id="toggle_in_list_types">
-                                <div>-</div>
+                            <div class="w-1/2 h-full flex items-center justify-center cursor-pointer relative " id="toggle_in_list_types">
+                                <div class="h-full w-full flex items-center justify-center">-</div>
                                 <div class="absolute hidden border border-[#1e272e] bg-[#2b343b] h-32 w-32 p-2 overflow-y-auto shadow-lg top-8 z-50 " id="in_list_types">
                                     <%for (let i = 0; i < user_data.types.length; i++) { %>
                                         <div id="<%= user_data.types[i]._id %>" class="clicked_type_in_list  flex flex-row  items-center cursor-pointer p-2" onmouseenter="this.style.backgroundColor = '<%= user_data.types[i].color %>'" onmouseleave="this.style.backgroundColor = 'transparent'">
