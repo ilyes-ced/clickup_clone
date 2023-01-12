@@ -1,12 +1,12 @@
 <div class="absolute hidden w-full h-full bg-transparent" id="categories_modal">
     <div class="absolute bg-gray-600 h-32 w-32 p-2"  id="categories_modal_content">
-        <div class="divide-y">
+        <div class="divide-y overflow-y-auto">
             <% if(user_data.categories.length == 0){ %>
                 no categories here
             <% }else{ %>
                 <%for (let i = 0; i < user_data.categories.length; i++) { %>
-                    <div id="<%= user_data.categories[i]._id %>" class="selected_category rounded-lg flex flex-row cursor-pointer p-2 overflow-hidden truncate" onmouseenter="this.style.backgroundColor = '<%= user_data.categories[i].color %>'" onmouseleave="this.style.backgroundColor = 'transparent'">
-                        <div class="w-5 h-5 rounded-md" style="background-color: <%= user_data.categories[i].color %>" > </div>
+                    <div id="<%= user_data.categories[i]._id %>" class="selected_category  flex flex-row cursor-pointer p-2 overflow-hidden truncate" onmouseenter="this.style.backgroundColor = '<%= user_data.categories[i].color %>'" onmouseleave="this.style.backgroundColor = 'transparent'">
+                        <div class="w-3 h-3 rounded-sm" style="background-color: <%= user_data.categories[i].color %>" > </div>
                         &nbsp;&nbsp;
                         <%= user_data.categories[i].name %>
                     </div>

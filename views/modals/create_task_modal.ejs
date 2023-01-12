@@ -48,6 +48,15 @@
                     <div class="w-full border border-[#1e272e] my-2 rounded-md flex flex-col divide-y-[1px] divide-[#1e272e]">
                         <div class="flex flex-row h-6 w-full divide-x-[1px] divide-[#1e272e]">
                             <div class="w-1/2 px-2 ">type</div>
+                            <div class="absolute border border-[#1e272e] bg-[#2b343b] h-32 w-32 p-2 shadow-lg ">
+                                <%for (let i = 0; i < user_data.types.length; i++) { %>
+                                    <div id="<%= user_data.types[i]._id %>" class="selected_type  flex flex-row  items-center cursor-pointer p-2" onmouseenter="this.style.backgroundColor = '<%= user_data.types[i].color %>'" onmouseleave="this.style.backgroundColor = 'transparent'">
+                                        <div class="w-3 h-3 rounded-sm " style="background-color: <%= user_data.types[i].color %>" > </div>
+                                        &nbsp;&nbsp;
+                                        <%= user_data.types[i].name %>
+                                    </div>
+                                <% } %>
+                            </div>
                             <div class="w-1/2 flex items-center justify-center cursor-pointer">-</div>
                         </div>
                         <div class="flex flex-row h-6 w-full divide-x-[1px] divide-[#1e272e]">

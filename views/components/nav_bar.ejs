@@ -59,7 +59,7 @@
                 <img class="h-10 w-10 rounded-full" src="/public/images/<%= user_data.profile_image %>" alt="">
             </div>
             <div id="toggle_user_menu" class="flex flex-row items-center hover:bg-gray-700 hover:text-[#7c68ee] rounded-lg cursor-pointer px-2 h-4/6 self-center space-x-2">
-                <div>username</div>
+                <div> <%= user_data.username %> </div>
                 <%- include('../icons/chevron_down.svg') %>
             </div>
             <div id="user_menu" class=" absolute top-12 right-4  transition-all duration-200 ease-in-out  rounded-lg bg-[#384047] py-2 hidden">

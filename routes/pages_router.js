@@ -18,16 +18,6 @@ const ObjectID = require('mongodb').ObjectId
 
 router.get('/', is_auth_middleware, async (req, res) => {
     try{
-
-        
-
-
-        
-        
-        
-
-
-
         /*
         console.log(await workspace_model.findOne({_id : '6349567708492d5e6aebb33c', lists : {$elemMatch:{_id:ObjectID('634956e6d3b6946a1e4c2c5b')}}}))
         await workspace_model.findOneAndUpdate({_id : '63a18ab323aedabdf9e63330', lists : {$elemMatch:{_id:ObjectID('63a18ab323aedabdf9e6332f')}}},{
@@ -88,17 +78,18 @@ router.get('/', is_auth_middleware, async (req, res) => {
         console.log(vv[0].task)*/
         //console.log(vv[0].tasks.length)
         
-        await workspace_model.findOneAndUpdate({_id : '6357f0a0f8c05325a1b490c7', lists : {$elemMatch:{_id:ObjectID('63a1bec62640e928808ef796')}}},{
-            $push : {
-                "lists.$[para1].tasks": {
-                    _id : new ObjectID(), name:"test", description: '', tags:[], due_date: '', priority: '', category: {_id:  ObjectID('634d99a76d2fbfb2878c1393'),name: 'tech', color: 'rgb(200,120,210)'} , type: '', progress: 0, sub_tasks:[], createdAt:Date.now(), updatedAt:Date.now()
-                }
-            }
-        },{
-            arrayFilters: [
-                {"para1._id" : ObjectID('634956e6d3b6946a1e4c2c5b')},
-            ]
-        })
+        //console.log(await workspace_model.find({_id : '6357f0a0f8c05325a1b490c7'}, {lists : {$elemMatch:{_id:ObjectID('63a1bec62640e928808ef796')}}}))
+        //await workspace_model.findOneAndUpdate({_id : '6357f0a0f8c05325a1b490c7', lists : {$elemMatch:{_id:ObjectID('63a1bec62640e928808ef796')}}},{
+        //    $push : {
+        //        "lists.$[para1].tasks": {
+        //            _id : new ObjectID(), name:"test", description: '', tags:[], due_date: '', priority: '', category: {_id:  ObjectID('634d99a76d2fbfb2878c1393'),name: 'tech', color: 'rgb(200,120,210)'} , type: '', progress: 0, sub_tasks:[], createdAt:Date.now(), updatedAt:Date.now()
+        //        }
+        //    }
+        //},{
+        //    arrayFilters: [
+        //        {"para1._id" : ObjectID('63a1bec62640e928808ef796')},
+        //    ]
+        //})
 
         var workspaces = await workspace_model.find({owner: req.session.user_id})
         var user_data = await user_model.findOne({_id: req.session.user_id}).select('-_id username email profile_image tags types categories')
