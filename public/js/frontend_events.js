@@ -152,6 +152,14 @@ task_create_select_input_toggle.addEventListener('input', (event) => {
 })
 
 document.addEventListener('click', (event) => {
+    
+    toggle_in_list_types
+    in_list_types
+    in_list_selected_type
+    if(event.target.classList.contains('clicked_type_in_list')){
+        toggle_in_list_types.firstElementChild.innerHTML=  '<div class="w-full h-full"> '+event.target.innerText+' </div>'
+        toggle_in_list_types.firstElementChild.firstElementChild.style.backgroundColor = event.target.style.backgroundColor 
+    }
 
     if(event.target.classList.contains('edit_task')){
         if(event.target.parentElement.parentElement.parentElement.classList.contains('hidden_sub_tasks')){

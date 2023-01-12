@@ -45,6 +45,11 @@ const add_tags_in_list = document.getElementById('add_tags_in_list')
 const add_tags_in_list_modal = document.getElementById('add_tags_in_list_modal')
 const task_create_priority_toggle = document.getElementById('task_create_priority_toggle')
 const task_create_priority = document.getElementById('task_create_priority')
+const toggle_in_list_types = document.getElementById('toggle_in_list_types')
+const in_list_types = document.getElementById('in_list_types')
+const in_list_selected_type = document.getElementById('in_list_selected_type')
+const clicked_type_in_list = document.getElementById('clicked_type_in_list')
+
 
 
 

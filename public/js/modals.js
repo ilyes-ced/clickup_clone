@@ -96,9 +96,17 @@ add_tags_in_list.addEventListener('click', (event) => {
     add_tags_in_list_modal.classList.toggle('hidden')
 })
 
+toggle_in_list_types.addEventListener('click', (event) => {
+    in_list_types.classList.toggle('hidden')
+})
+
+
+
+
 
 
 //hide loading animation
 window.addEventListener('load', () => {
     document.getElementById('loader_parent').style.display = 'none';
 });
+
