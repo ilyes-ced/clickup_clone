@@ -152,7 +152,7 @@ const rename_task = async(req, res) => {
 		}
         await workspace_model.findOneAndUpdate({_id : req.body.parent_workspace, lists : {$elemMatch:{_id:ObjectID(req.body.parent_list)}}},{
             $set : {
-                "lists.$[para1].tasks.$[para2]": {name: req.body.new_name}
+                "lists.$[para1].tasks.$[para2].name": req.body.new_name
 			}
                 },{
                 arrayFilters: [
