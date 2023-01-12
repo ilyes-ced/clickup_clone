@@ -65,7 +65,7 @@
                                             <%the_tasks[user_data.categories[ii].name][k].tags.forEach(element =>{ %>
                                                 <div class="mx-2 px-1 rounded-md flex flex-row  items-center" style="background-color: <%= element.color %>"> <%= element.name %> <div id="<%= element._id %>" class="px-1 ml-1 remove_tag hover:bg-red-600 rounded-md flex items-center justify-center h-4/5" ><%- include('../icons/close.svg') %> </div> </div>
                                             <% }) %>
-                                            <div class=" row_hidden_icons rounded-md border border-gray-800 w-10 h-5 hidden flex flex-row divide-x" >
+                                            <div class=" row_hidden_icons rounded-md border border-gray-800 w-10 h-5 hidden flex flex-row divide-x divide-gray-800" >
                                                 <div class="toggle_sub_tasks w-5 flex items-center justify-center">
                                                     <%= the_tasks[user_data.categories[ii].name][k].sub_tasks.length %>
                                                 </div>
@@ -85,21 +85,21 @@
                                                     <%# 
                                                      <input type="date" name="" id="" class="w-1/5 text-center h-full flex justify-center items-center hover:bg-red-600">
                                                      %> 
-                                                    <div class="w-1/5 text-center h-full flex justify-center items-center hover:bg-red-600">
+                                                    <div class="w-1/5 text-center h-full flex justify-center items-center hover:bg-gray-800">
                                                         <input type="date" name="" id="" placeholder="ff" class="w-full h-full bg-transparent outline-none cursor-pointer">
                                                     </div>
                                                 <% } %>
                                                 <% if(the_tasks[user_data.categories[ii].name][k].priority){ %>
                                                     azdazd
                                                 <% }else{ %>
-                                                    <div class="w-1/5 text-center h-full flex justify-center items-center hover:bg-red-600 "><%- include('../icons/flag.svg') %> </div>
+                                                    <div class="w-1/5 text-center h-full flex justify-center items-center hover:bg-gray-800 "><%- include('../icons/flag.svg') %> </div>
                                                 <% } %>
                                                 <% if(the_tasks[user_data.categories[ii].name][k].type){ %>
-                                                    <div class="w-1/5 text-center hover:bg-green-600 h-full flex  items-center justify-center toggle_types_modal" style="background-color: <%= the_tasks[user_data.categories[ii].name][k].type.color %>">
+                                                    <div class="w-1/5 text-center hover:bg-gray-800 h-full flex  items-center justify-center toggle_types_modal" style="background-color: <%= the_tasks[user_data.categories[ii].name][k].type.color %>">
                                                         <%= the_tasks[user_data.categories[ii].name][k].type.name %>
                                                     </div>
                                                 <% }else{ %>
-                                                    <div class="w-1/5 text-center hover:bg-green-600 h-full flex  items-center justify-center toggle_types_modal">-</div>
+                                                    <div class="w-1/5 text-center hover:bg-gray-800 h-full flex  items-center justify-center toggle_types_modal">-</div>
                                                 <% } %>                     
                                                 <div class="w-1/5 flex items-center px-2">
                                                     <div class="text-green-600 px-1"><%= Math.round(the_tasks[user_data.categories[ii].name][k].sub_tasks.reduce((total, next) => total + next.progress , 0)/ the_tasks[user_data.categories[ii].name][k].sub_tasks.length) || 0 %>%</div>
@@ -158,7 +158,7 @@
                                                         <div class="edit_task row_hidden_icons rounded-md border border-gray-800 w-5 h-5 hidden flex items-center justify-center"><%- include('../icons/pen.svg') %> </div>
                                                     </div>
                                                     <div class="flex flex-row w-1/3 h-full items-center">
-                                                        <div class="w-1/5 text-center h-full hover:bg-red-600 flex items-center justify-center"> <%- include('../icons/calendar.svg') %>  </div>
+                                                        <div class="w-1/5 text-center h-full hover:bg-red-600 flex items-center justify-center"> <input type="date" name="" id="" placeholder="ff" class="w-full h-full bg-transparent outline-none cursor-pointer"> </div>
                                                         <div class="w-1/5 text-center h-full hover:bg-red-600 flex items-center justify-center "> <%- include('../icons/flag.svg') %>  </div> 
                                                         <% if(the_tasks[user_data.categories[ii].name][k].sub_tasks[l].type){ %>
                                                             <div class="w-1/5 text-center hover:bg-green-600 h-full flex  items-center justify-center toggle_types_modal" style="background-color: <%= the_tasks[user_data.categories[ii].name][k].type.color %>">
