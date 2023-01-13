@@ -1,4 +1,4 @@
-# instant messaging web app with Nodejs, Express, Mongodb and Socket.io
+# to do list webapplication nodejs tailwindcss ( clickup clone )
 
 ## insallation
 install node modules
