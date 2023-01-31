@@ -4,10 +4,10 @@ built with Nodejs, EJS templating engine, Express, MongoDB, TailwindCSS
 
 
 ## features
-autherntication
-create workspaces, lists, and tasks
-create tags categories and types
-set priority, due dates and progress
+- autherntication
+- create workspaces, lists, and tasks and sub tasks
+- create tags categories and types
+- set priority, due dates and progress
 
 ## insallation
 install node modules

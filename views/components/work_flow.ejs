@@ -90,7 +90,15 @@
                                                     </div>
                                                 <% } %>
                                                 <% if(the_tasks[user_data.categories[ii].name][k].priority){ %>
-                                                    azdazd
+                                                    <% if(the_tasks[user_data.categories[ii].name][k].priority == 'urgent'){ %>
+                                                        <div class="w-1/5 text-center h-full flex justify-center items-center hover:bg-gray-800 "><%- include('../icons/flag_urgent.svg') %> </div>
+                                                    <% }else if(the_tasks[user_data.categories[ii].name][k].priority == 'high'){ %>
+                                                        <div class="w-1/5 text-center h-full flex justify-center items-center hover:bg-gray-800 "><%- include('../icons/flag_high.svg') %> </div>
+                                                    <% }else if(the_tasks[user_data.categories[ii].name][k].priority == 'normal'){ %>
+                                                        <div class="w-1/5 text-center h-full flex justify-center items-center hover:bg-gray-800 "><%- include('../icons/flag_normal.svg') %> </div>
+                                                    <% }else if(the_tasks[user_data.categories[ii].name][k].priority == 'low'){ %>
+                                                        <div class="w-1/5 text-center h-full flex justify-center items-center hover:bg-gray-800 "><%- include('../icons/flag_low.svg') %> </div>
+                                                    <% } %>
                                                 <% }else{ %>
                                                     <div class="w-1/5 text-center h-full flex justify-center items-center hover:bg-gray-800 "><%- include('../icons/flag.svg') %> </div>
                                                 <% } %>
