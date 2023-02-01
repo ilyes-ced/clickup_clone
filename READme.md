@@ -11,7 +11,7 @@ built with Nodejs, EJS templating engine, Express, MongoDB, TailwindCSS
 
 
 ## ascreenshots
-![image info](./images/pfp.jpg)
+![image info](./images/main.png)
 
 ## insallation
 install node modules
