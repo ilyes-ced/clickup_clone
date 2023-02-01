@@ -4,7 +4,6 @@ built with Nodejs, EJS templating engine, Express, MongoDB, TailwindCSS
 /
 
 some features are unfinished and some unknown bugs
-progress : ![80%]https://progress-bar.dev/<80>
 
 ## features
 - autherntication
@@ -13,7 +12,7 @@ progress : ![80%]https://progress-bar.dev/<80>
 - set priority, due dates and progress
 
 
-## ascreenshots
+## Screenshots
 ![image info](./images/main.png)
 
 ## insallation
