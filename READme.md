@@ -1,7 +1,10 @@
 # to do list web application nodejs ( clickup for reference )
 no live demo at the moment
 built with Nodejs, EJS templating engine, Express, MongoDB, TailwindCSS
+/
 
+some features are unfinished and some unknown bugs
+progress : https://progress-bar.dev/<80>
 
 ## features
 - autherntication
