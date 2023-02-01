@@ -110,10 +110,17 @@
                                                     <div class="w-1/5 text-center hover:bg-gray-800 h-full flex  items-center justify-center toggle_types_modal">-</div>
                                                 <% } %>                     
                                                 <div class="w-1/5 flex items-center px-2">
-                                                    <div class="text-green-600 px-1"><%= Math.round(the_tasks[user_data.categories[ii].name][k].sub_tasks.reduce((total, next) => total + next.progress , 0)/ the_tasks[user_data.categories[ii].name][k].sub_tasks.length) || 0 %>%</div>
-                                                    <div class="w-full rounded-full border border-green-600 h-2">
-                                                        <div class="h-full rounded-full bg-green-600" style="width:<%= Math.round(the_tasks[user_data.categories[ii].name][k].sub_tasks.reduce((total, next) => total + next.progress , 0)/ the_tasks[user_data.categories[ii].name][k].sub_tasks.length)  || 0  %>%"></div>    
-                                                    </div>
+                                                    <%if (the_tasks[user_data.categories[ii].name][k].sub_tasks.length > 0) {  %>
+                                                        <div class="text-green-600 px-1"><%= Math.round(the_tasks[user_data.categories[ii].name][k].sub_tasks.reduce((total, next) => total + next.progress , 0)/ the_tasks[user_data.categories[ii].name][k].sub_tasks.length) || 0 %>%</div>
+                                                        <div class="w-full rounded-full border border-green-600 h-2">
+                                                            <div class="h-full rounded-full bg-green-600" style="width:<%= Math.round(the_tasks[user_data.categories[ii].name][k].sub_tasks.reduce((total, next) => total + next.progress , 0)/ the_tasks[user_data.categories[ii].name][k].sub_tasks.length)  || 0  %>%"></div>    
+                                                        </div>
+                                                    <% }else{ %>
+                                                        <div class="text-green-600 px-1"><%= Math.round(the_tasks[user_data.categories[ii].name][k].progress) %>%</div>
+                                                        <div class="w-full rounded-full border border-green-600 h-2">
+                                                            <div class="h-full rounded-full bg-green-600" style="width:<%= Math.round(the_tasks[user_data.categories[ii].name][k].progress)  %>%"></div>    
+                                                        </div>
+                                                    <% } %>
                                                 </div>
                                                 <div class="w-1/5 flex items-center px-2  h-full justify-around">
                                                     <div class="hover:bg-[#5b43ea] hover:text-red-600 rounded-lg p-2" id="delete_task">

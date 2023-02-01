@@ -9,6 +9,10 @@ built with Nodejs, EJS templating engine, Express, MongoDB, TailwindCSS
 - create tags categories and types
 - set priority, due dates and progress
 
+
+## ascreenshots
+![image info](./images/pfp.jpg)
+
 ## insallation
 install node modules
 ```
