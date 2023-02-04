@@ -339,6 +339,16 @@ document.addEventListener('click', (event) => {
         tags_modal_content.style.left = event.target.offsetLeft+'px'
     }
 
+    if(event.target.classList.contains('toggle_priorities_modal')){
+        selected_task = event.target.parentElement.parentElement.id
+        //for sub tasks needs fixing
+        if(event.target.parentElement.parentElement.parentElement.classList.contains('hidden_sub_tasks')){
+            selected_task_parent_task=event.target.parentElement.parentElement.parentElement.parentElement.id
+        }
+        priorities_modal.classList.remove('hidden')
+        priorities_modal_content.style.top = (event.target.offsetTop+30)+'px'
+        priorities_modal_content.style.left = event.target.offsetLeft+'px'
+    }
 
     if(event.target.classList.contains('remove_tag')){
         selected_task_parent_task = null

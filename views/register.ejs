@@ -6,48 +6,41 @@
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="public/css/app.css" />
 </head>
-<body class="bg-main text-text_color h-screen flex items-center  justify-center">
+<body class="bg-main text-text_color h-screen flex items-center bg-[#1e272e] justify-center">
 
 
 
-
-    <div class='border bg-secondary rounded-lg  p-8 w-[600px]'>
-                <p class='text-[25px] font-bold mb-4'>Please create a new account</p>
-                <div class='flex flex-row'>
-                <button class='border rounded-lg w-1/2 mr-2 h-10 bg-main flex flex-row  items-center  justify-center hover:bg-secondary hover:text-the_red'><x-bi-google class='mx-2'/>Log in with google</button>          
-                <button class='border rounded-lg w-1/2 ml-2 h-10 bg-main flex flex-row items-center  justify-center hover:bg-secondary hover:text-the_red '><x-bi-facebook class='mx-2'/>Log in with facebook</button>
-                </div>
+    <div class='border-2 border-[#7c68ee] bg-[#384047] rounded-lg  p-8 w-[500px] text-white'>
+                
+                <p class='text-[25px] font-bold mb-4 w-full flex justify-center'>Welcome</p>
+                
+         
 
 
-                <div class='flex flex-row items-center mt-2'>
-
-                <hr class="w-96 h-0.5 bg-icons " />
-                <div class='m-4'>OR</div>
-                <hr class="w-96 h-0.5 bg-icons " />
-                </div>
-
-
-                <div>
+            <div>
                 <form action="/register" method="post" class='flex flex-col'>
+                
                     <label class='mb-2' for="email">Username</label>
-                    <input class='mb-4 pl-2 h-10 bg-main rounded-lg border' type="text" name='username' placeholder="Username">
-                    
+                    <input class=' text-gray-700 bg-[#1e272e] border-2 border-[#7c68ee] mb-4 pl-2 h-10 bg-main rounded-lg' type="text" name='username' placeholder="Username">
                     <label class='mb-2' for="email">Email</label>
-                    <input class='mb-4 pl-2 h-10 bg-main rounded-lg border' type="text" name='email' placeholder="email">
+                    <input class='text-gray-700 bg-[#1e272e] border-2 border-[#7c68ee] mb-4 pl-2 h-10 bg-main rounded-lg ' type="text" name='email' placeholder="email">
                     <label class='mb-2' for="password">Password</label>
-                    <input class='pl-2 h-10 bg-main rounded-lg border' type="text" name='password' placeholder="password">
+                    <input class='text-gray-700 bg-[#1e272e] border-2 border-[#7c68ee] pl-2 h-10 bg-main rounded-lg ' type="text" name='password' placeholder="password">
                     <div class='flex justify-between my-4' >
                     <div>
                         <input class='' type="checkbox" name="checkbox" id="">
                         <label for="checkbox">remember me</label>
                     </div>
         
-                    <a href="" class='text-the_red underline' >forgot password</a>
+                    <a href="" class='text-[#7c68ee] underline' >forgot password</a>
                     </div>
+
+                    <div class='hidden w-full h-10 border text-white border-red-600  bg-[#ff000050]  rounded-lg items-center  justify-center mb-4 mt-2'>email or password wrong</div>
                     
-                    <button class='w-full bg-the_red rounded-lg h-10 mb-4 hover:bg-main hover:border hover:border-the_red'>submit</button>
+                    <button class='w-full bg-[#7c68ee] rounded-lg h-10 mb-4 hover:bg-main hover:border hover:border-[#7c68ee]'>submit</button>
                 </form>
-                have an accoutn?  <a href="/login" class='underline text-the_red'>login here</a>
+                already have an account?  <a href="/login" class='underline text-[#7c68ee]'>login up here</a>
+                
                 </div>
             </div>
         
@@ -59,3 +52,4 @@
 
 </body>
 </html>
+

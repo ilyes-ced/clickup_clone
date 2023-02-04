@@ -76,6 +76,12 @@ tags_modal.addEventListener('click', (event) => {
         tags_modal.classList.toggle('hidden')
     }
 })
+//close priorities modal
+priorities_modal.addEventListener('click', (event) => {
+    if(event.target == event.currentTarget) {
+        priorities_modal.classList.toggle('hidden')
+    }
+})
 
 //close task modal
 task_modal.addEventListener('click', (event) => {

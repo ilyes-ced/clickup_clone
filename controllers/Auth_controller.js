@@ -7,12 +7,12 @@ const workspace_model = require("../models/work_space")
 
 const login = async (req, res)=>{
 	const user = await user_model.findOne({email:req.body.email})
-	if(!user) return res.redirect("/login")
+	if(!user) return res.render('login', { err_msg: 'email does not exist' })
 	console.log(req.body.password)
 	console.log(user.password)
 	const matched = await bcrypt.compare(req.body.password, user.password)
 	console.log(matched)
-	if(!matched) return res.redirect('/login')
+	if(!matched) res.render('login', { err_msg: 'wrong credentials' })
 	req.session.is_auth = true
 	req.session.username = user.username
 	req.session.email = req.body.email
@@ -27,7 +27,7 @@ const login = async (req, res)=>{
 
 const register = async (req, res)=>{
 	let user = await user_model.findOne({email:req.body.email})
-	if(user) redirect("/login")
+	if(user) res.render('register', { err_msg: 'email taken' })
 	const hash_password = await bcrypt.hash(req.body.password, 10)
 	user = new user_model({
 		_id : new ObjectID(),
