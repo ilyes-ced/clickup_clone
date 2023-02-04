@@ -27,11 +27,11 @@
                     <div class="w-full">
                         <div class="flex flex-row items-center my-2">
                             <p>in</p>
-                            <div class="ml-2 h-8  border border-[#1e272e] rounded-full flex items-center p-2 w-1/2" type="text" id="task_create_select_input_toggle">&
+                            <div class="ml-2 h-8  border border-[#1e272e] rounded-full flex items-center p-2 w-1/2" type="text" id="task_create_select_input_toggle">
                                 <input type="hidden" id="task_create_select_input_id">
                             </div>
                         </div>
-                        <div class="absolute border border-[#1e272e] rounded-lg bg-[#2b343b] h-fit w-1/2 p-2 left-8 hidden" id="task_create_select_input">
+                        <div class="absolute border border-[#1e272e] rounded-lg bg-[#2b343b] h-fit w-1/2 p-2 left-8 hidden z-10" id="task_create_select_input">
                             <input id="selected_list_to_add_task_search" type="text" class="outline-none w-full bg-transparent border-b border-[#1e272e] " placeholder="Search workspaces and lists . . .">
                             <% for (let i = 0; i < workspaces.length; i++) { %>
                                 <div class="flex flex-row items-center p-2  hover:bg-red-600">
