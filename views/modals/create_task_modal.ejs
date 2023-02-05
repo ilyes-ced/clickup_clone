@@ -15,6 +15,21 @@
                             <div class="h-3 w-3 bg-white rounded-sm self-center "></div>
                             <input id="task_category_toggle_task_modal_value" type="hidden" name="">
                         </div>
+                        <div class="absolute left-0 top-6 bg-[#2b343b] h-32 w-32 p-2 border border-[#1e272e] "  id="in_list_categories">
+                            <div class=" h-full overflow-y-scroll  ">
+                                <% if(user_data.categories.length == 0){ %>
+                                    no categories here
+                                <% }else{ %>
+                                    <%for (let i = 0; i < user_data.categories.length; i++) { %>
+                                        <div id="<%= user_data.categories[i]._id %>" class="selected_category_in_list  flex flex-row cursor-pointer p-2 overflow-hidden truncate  items-center"  onmouseenter="this.style.backgroundColor = '<%= user_data.categories[i].color %>'" onmouseleave="this.style.backgroundColor = 'transparent'">
+                                            <div class="w-3 h-3 rounded-sm " style="background-color: <%= user_data.categories[i].color %>" > </div>
+                                            &nbsp;&nbsp;
+                                            <%= user_data.categories[i].name %>
+                                        </div>
+                                    <% } %>
+                                <% } %>
+                            </div>
+                        </div>
                         <div class="hidden">
                             categories here
                         </div>
@@ -104,12 +119,12 @@
                         <div class="flex flex-row h-8  items-center w-full divide-x-[1px] divide-[#1e272e]">
                             <div class="w-1/2 px-2 ">tags</div>
                             <div class="w-1/2  h-full flex items-center justify-center relative  cursor-pointer  " id="add_tags_in_list"> 
-                                <div class="hover:text-[#7c68ee] transition-all duration-300 ease-in-out flex items-center justify-center relative ">
+                                <div class="hover:text-[#7c68ee] transition-all duration-300 ease-in-out flex items-center justify-center relative  w-full h-full">
                                     <%- include('../icons/add_full.svg') %> &nbsp;&nbsp; add tag
                                 </div>
-                                <div id="add_tags_in_list_modal" class="absolute z-50 hidden border border-[#1e272e] bg-[#2b343b]  overflow-x-auto h-32 w-32 top-8">
+                                <div id="add_tags_in_list_modal" class="absolute z-50 hidden border border-[#1e272e] bg-[#2b343b]  overflow-x-auto h-32 w-32 p-2 top-8">
                                     <%for (let i = 0; i < user_data.tags.length; i++) { %>
-                                        <div id="<%= user_data.tags[i]._id %>" class="selected_tag_in_list  items-center rounded-lg flex flex-row cursor-pointer p-2 overflow-hidden truncate" onmouseenter="this.style.backgroundColor = '<%= user_data.tags[i].color %>'" onmouseleave="this.style.backgroundColor = 'transparent'">
+                                        <div id="<%= user_data.tags[i]._id %>" class="selected_tag_in_list  items-center flex flex-row cursor-pointer p-2 overflow-hidden truncate" onmouseenter="this.style.backgroundColor = '<%= user_data.tags[i].color %>'" onmouseleave="this.style.backgroundColor = 'transparent'">
                                             <div class="w-3 h-3 rounded-sm" style="background-color: <%= user_data.tags[i].color %>" > </div>
                                             &nbsp;&nbsp;
                                             <%= user_data.tags[i].name %>
@@ -130,11 +145,11 @@
                             <div class="w-1/2 h-full flex items-center justify-center relative cursor-pointer " id="task_create_priority_toggle"> 
                                 <div>-</div>
                                 <div class="absolute border border-[#1e272e] rounded-lg bg-[#2b343b] h-fit w-fit p-2 left-0 bottom-12 hidden" id="task_create_priority">
-                                    <div class="px-2 py-1 hover:bg-gray-600 cursor-pointer rounded-lg">none</div>
-                                    <div class="px-2 py-1 hover:bg-gray-600 cursor-pointer rounded-lg">low</div>
-                                    <div class="px-2 py-1 hover:bg-gray-600 cursor-pointer rounded-lg">normal</div>
-                                    <div class="px-2 py-1 hover:bg-gray-600 cursor-pointer rounded-lg">high</div>
-                                    <div class="px-2 py-1 hover:bg-gray-600 cursor-pointer rounded-lg">urgent</div>
+                                    <div class="in_list_priority px-2 py-1 hover:bg-gray-600 cursor-pointer rounded-lg flex flex-row "><%- include('../icons/flag.svg') %> &nbsp;&nbsp; none  </div>
+                                    <div class="in_list_priority px-2 py-1 hover:bg-gray-600 cursor-pointer rounded-lg flex flex-row "><%- include('../icons/flag_low.svg') %> &nbsp;&nbsp; low </div>
+                                    <div class="in_list_priority px-2 py-1 hover:bg-gray-600 cursor-pointer rounded-lg flex flex-row "><%- include('../icons/flag_normal.svg') %> &nbsp;&nbsp; normal </div>
+                                    <div class="in_list_priority px-2 py-1 hover:bg-gray-600 cursor-pointer rounded-lg flex flex-row "><%- include('../icons/flag_high.svg') %> &nbsp;&nbsp; high </div>
+                                    <div class="in_list_priority px-2 py-1 hover:bg-gray-600 cursor-pointer rounded-lg flex flex-row "><%- include('../icons/flag_urgent.svg') %> &nbsp;&nbsp; urgent </div>
                                 </div>
                             </div>
                         </div>

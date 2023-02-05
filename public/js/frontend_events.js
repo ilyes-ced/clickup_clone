@@ -153,9 +153,11 @@ task_create_select_input_toggle.addEventListener('input', (event) => {
 
 document.addEventListener('click', (event) => {
     
-    toggle_in_list_types
-    in_list_types
-    in_list_selected_type
+    //toggle_in_list_types
+    //in_list_types
+    //in_list_selected_type
+    
+
     if(event.target.classList.contains('clicked_type_in_list')){
         toggle_in_list_types.firstElementChild.innerHTML=  '<div class="h-full w-full flex items-center justify-center rounded-tr-md"> '+event.target.innerText+' </div>'
         toggle_in_list_types.firstElementChild.firstElementChild.style.backgroundColor = event.target.style.backgroundColor 
@@ -358,6 +360,35 @@ document.addEventListener('click', (event) => {
         }
         remove_tag(event.target)
     }
+
+
+
+    if(event.target.classList.contains('task_category_toggle_task_modal') || event.target.parentElement.classList.contains('task_category_toggle_task_modal')){
+        in_list_categories.classList.toggle('hidden')
+    }
+    if(event.target.classList.contains('selected_category_in_list') ){
+        task_category_toggle_task_modal_value.value = event.target.id
+        event.target.parentElement.parentElement.parentElement.firstElementChild.style.borderColor = event.target.firstElementChild.style.backgroundColor
+        event.target.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.style.backgroundColor = event.target.firstElementChild.style.backgroundColor
+        in_list_categories.classList.add('hidden')
+    }
+    if(event.target.classList.contains('selected_tag_in_list') ){
+        if(event.target.parentElement.parentElement.firstElementChild.querySelectorAll('[id$=tag_new]').length == 0){
+            alert(event.target.parentElement.parentElement.firstElementChild.querySelectorAll('[class$=tag_new]').length)
+            event.target.parentElement.parentElement.firstElementChild.innerHTML = ''
+            event.target.parentElement.parentElement.firstElementChild.innerHTML += `<div id='tag_new' class=' p-[2px] px-2  rounded-lg flex flex-row items-center'> ${event.target.innerText}  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg></div>`
+            event.target.parentElement.parentElement.firstElementChild.lastElementChild.style.backgroundColor = event.target.firstElementChild.style.backgroundColor 
+            
+        }else{
+            event.target.parentElement.parentElement.firstElementChild.innerHTML += `<div class='  p-[2px] px-2  rounded-lg flex flex-row items-center'> ${event.target.innerText}  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg></div>`
+            event.target.parentElement.parentElement.firstElementChild.lastElementChild.style.backgroundColor = event.target.firstElementChild.style.backgroundColor 
+        
+        }
+        //event.target.parentElement.parentElement.firstElementChild.style.backgroundColor = event.target.firstElementChild.style.backgroundColor
+    }
+
+    in_list_priority
+    
 })
 
 
