@@ -59,6 +59,7 @@ app.use('/remove_tag_from_task', pages_route)
 app.use('/add_type_to_task', pages_route)
 app.use('/remove_type_from_task', pages_route)
 app.use('/add_category_to_task', pages_route)
+app.use('/create_task_in_modal', pages_route)
 
 
 

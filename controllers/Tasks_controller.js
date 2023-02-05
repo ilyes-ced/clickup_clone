@@ -197,6 +197,11 @@ const rename_sub_task = async(req, res) => {
 	//}
 }
 
+const create_task_in_modal = async(req, res) => {
+	console.log(req.body)
+}
+
+
 
 
 module.exports = {
@@ -205,5 +210,6 @@ module.exports = {
 	delete_task,
 	delete_sub_task,
 	rename_task,
-	rename_sub_task
+	rename_sub_task,
+	create_task_in_modal
 }

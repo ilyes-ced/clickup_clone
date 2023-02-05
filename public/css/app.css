@@ -820,6 +820,22 @@ video {
   height: 1rem;
 }
 
+.h-20 {
+  height: 5rem;
+}
+
+.h-16 {
+  height: 4rem;
+}
+
+.h-\[50px\] {
+  height: 50px;
+}
+
+.h-\[60px\] {
+  height: 60px;
+}
+
 .w-32 {
   width: 8rem;
 }
@@ -1343,6 +1359,10 @@ video {
 
 .text-\[25pc\] {
   font-size: 25pc;
+}
+
+.text-\[50px\] {
+  font-size: 50px;
 }
 
 .font-bold {

@@ -126,9 +126,8 @@ router.post('/delete_task', Tasks_controller.delete_task)
 router.post('/delete_sub_task', Tasks_controller.delete_sub_task)
 router.post('/rename_task', Tasks_controller.rename_task)
 router.post('/rename_sub_task', Tasks_controller.rename_sub_task)
-
-
 router.post('/add_category_to_task', Categories_controller.add_category_to_task)
+router.post('/create_task_in_modal', Tasks_controller.create_task_in_modal)
 
 
 

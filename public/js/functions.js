@@ -58,6 +58,14 @@ const task_type_toggle_task_modal_value = document.getElementById('task_type_tog
 const task_tags_toggle_task_modal_value = document.getElementById('task_tags_toggle_task_modal_value')
 const task_progress_toggle_task_modal_value = document.getElementById('task_progress_toggle_task_modal_value')
 
+const task_create_select_input_id = document.getElementById('task_create_select_input_id')
+const text_area_desc = document.getElementById('text_area_desc')
+const due_date_input = document.getElementById('due_date_input')
+const name_create_task = document.getElementById('name_create_task')
+const selected_list_to_add_task_search = document.getElementById('selected_list_to_add_task_search')
+
+
+
 
 const submit_create_task = document.getElementById('submit_create_task')
 

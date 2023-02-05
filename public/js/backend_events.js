@@ -333,7 +333,43 @@ const rename_sub_task = (parent_id, id, new_name) => {
 
 
 const submit_in_list_task = () => {
-    create_task_modal.getElementsByTagName('input').forEach(element => {
-        console.log(element)
-    });
+    var subs = []
+    var ll = document.getElementsByClassName('new_sub_tasks_get')
+    for (let i = 0; i < ll.length; i++) {
+        subs.push(ll[i].firstElementChild.innerText)
+    }
+    
+    var data = JSON.stringify({
+        category: task_category_toggle_task_modal_value.value,
+        name: name_create_task.value ,
+        list: task_create_select_input_id.value ,
+        desc: text_area_desc.value ,
+        type: task_type_toggle_task_modal_value.value ,
+        progress: task_progress_toggle_task_modal_value.value ,
+        due_date: due_date_input.value ,
+        tags: task_tags_toggle_task_modal_value.value ,
+        priority: task_priority_toggle_task_modal_value.value ,
+        sub_tasks: subs ,
+    })
+    
+    console.log(data)
+    
+    http_request('/create_task_in_modal', 'POST', 'hello' ).onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            json = JSON.parse(this.response)
+            name_create_list.value=""
+            console.log(json)
+            if(json.status == 'success'){
+                success_modal.classList.remove('hidden')
+                show_success_modal()
+            }else if(json.status == 'denied'){
+                alert('error')
+            }else{
+                alert('error, please check your internet connection')
+            }
+        }
+    }
+
+
+ 
 }
