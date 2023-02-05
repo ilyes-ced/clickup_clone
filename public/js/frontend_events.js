@@ -157,6 +157,11 @@ document.addEventListener('click', (event) => {
     //in_list_types
     //in_list_selected_type
     
+    
+    if(event.target.id == "submit_create_task"){
+        submit_in_list_task()
+    }
+    
 
     if(event.target.classList.contains('clicked_type_in_list')){
         toggle_in_list_types.firstElementChild.innerHTML=  '<div class="h-full w-full flex items-center justify-center rounded-tr-md"> '+event.target.innerText+' </div>'
@@ -220,8 +225,6 @@ document.addEventListener('click', (event) => {
         });
     }
     
-    
-
     if(event.target.id == "task_create_priority_toggle"){
         task_create_priority.classList.toggle('hidden')
     }
@@ -386,8 +389,11 @@ document.addEventListener('click', (event) => {
         }
         //event.target.parentElement.parentElement.firstElementChild.style.backgroundColor = event.target.firstElementChild.style.backgroundColor
     }
-
-    in_list_priority
+    if(event.target.classList.contains('in_list_priority') ){
+        event.target.parentElement.parentElement.firstElementChild.innerHTML = event.target.innerHTML
+        task_priority_toggle_task_modal_value.value = event.target.innerText
+    }
+    
     
 })
 

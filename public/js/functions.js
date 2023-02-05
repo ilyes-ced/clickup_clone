@@ -51,9 +51,12 @@ const toggle_in_list_types = document.getElementById('toggle_in_list_types')
 const in_list_types = document.getElementById('in_list_types')
 const in_list_selected_type = document.getElementById('in_list_selected_type')
 const clicked_type_in_list = document.getElementById('clicked_type_in_list')
+
 const task_category_toggle_task_modal_value = document.getElementById('task_category_toggle_task_modal_value')
+const task_priority_toggle_task_modal_value = document.getElementById('task_priority_toggle_task_modal_value')
 
 
+const submit_create_task = document.getElementById('submit_create_task')
 
 
 
