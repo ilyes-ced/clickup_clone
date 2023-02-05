@@ -333,5 +333,7 @@ const rename_sub_task = (parent_id, id, new_name) => {
 
 
 const submit_in_list_task = () => {
-    console.log( create_task_modal.getElementsByTagName('input') )
+    create_task_modal.getElementsByTagName('input').forEach(element => {
+        console.log(element)
+    });
 }

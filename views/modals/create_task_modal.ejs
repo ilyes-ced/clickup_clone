@@ -9,13 +9,13 @@
 
 
 
-                <div class="flex flex-col overflow-y-auto relative">
+                <div class="flex flex-col overflow-y-auto relative space-y-6">
                     <div class="flex flex-row py-2 items-center space-x-4">
                         <div class="task_category_toggle_task_modal border hover:border-white rounded-sm border-transparent p-0.5 self-center cursor-pointer">    
                             <div class="h-3 w-3 bg-white rounded-sm self-center "></div>
                             <input id="task_category_toggle_task_modal_value" type="hidden" name="">
                         </div>
-                        <div class="absolute left-0 top-6 bg-[#2b343b] h-32 w-32 p-2 border border-[#1e272e] "  id="in_list_categories">
+                        <div class="absolute hidden left-1 top-5 bg-[#2b343b] h-32 w-32 p-2 border border-[#1e272e] "  id="in_list_categories">
                             <div class=" h-full overflow-y-scroll  ">
                                 <% if(user_data.categories.length == 0){ %>
                                     no categories here
@@ -76,6 +76,7 @@
                             <div class="w-1/2 px-2 " id="in_list_selected_type">type</div>
                             <div class="w-1/2 h-full flex items-center justify-center cursor-pointer relative " id="toggle_in_list_types">
                                 <div class="h-full w-full flex items-center justify-center rounded-tr-md">-</div>
+                                <input type="hidden" name="" id="task_type_toggle_task_modal_value" >
                                 <div class="absolute hidden border border-[#1e272e] bg-[#2b343b] h-32 w-32 p-2 overflow-y-auto shadow-lg top-8 z-50 " id="in_list_types">
                                     <%for (let i = 0; i < user_data.types.length; i++) { %>
                                         <div id="<%= user_data.types[i]._id %>" class="clicked_type_in_list  flex flex-row  items-center cursor-pointer p-2" onmouseenter="this.style.backgroundColor = '<%= user_data.types[i].color %>'" onmouseleave="this.style.backgroundColor = 'transparent'">
@@ -96,7 +97,7 @@
 
                         <div class="flex flex-row h-8  items-center w-full divide-x-[1px] divide-[#1e272e]">
                             <div class="w-1/2 px-2  items-center">progress</div>
-                            <div class="w-1/2 flex h-full items-center justify-center"> <input type="range" value="0" class="" name="" id=""> </div>
+                            <div class="w-1/2 flex h-full items-center justify-center"> <input type="range" value="0" class="" name="" id="task_progress_toggle_task_modal_value">  <div class="p-2" > 0 </div> </div>
                         </div>
 
 
@@ -122,6 +123,7 @@
                                 <div class="hover:text-[#7c68ee] transition-all duration-300 ease-in-out flex items-center justify-center relative  w-full h-full">
                                     <%- include('../icons/add_full.svg') %> &nbsp;&nbsp; add tag
                                 </div>
+                                <input type="hidden" name="" id="task_tags_toggle_task_modal_value" >
                                 <div id="add_tags_in_list_modal" class="absolute z-50 hidden border border-[#1e272e] bg-[#2b343b]  overflow-x-auto h-32 w-32 p-2 top-8">
                                     <%for (let i = 0; i < user_data.tags.length; i++) { %>
                                         <div id="<%= user_data.tags[i]._id %>" class="selected_tag_in_list  items-center flex flex-row cursor-pointer p-2 overflow-hidden truncate" onmouseenter="this.style.backgroundColor = '<%= user_data.tags[i].color %>'" onmouseleave="this.style.backgroundColor = 'transparent'">
@@ -156,8 +158,14 @@
                         </div>
                     </div>
 
-                    <div id="new_sub_tasks_tempo" class="flex flex-col p-2 bg-green-600"></div>
-                    <div class="my-2 cursor-pointer flex flex-row items-center " id="create_sub_task_input" > <%- include('../icons/add_full.svg') %> add subtask press to add input </div>
+
+
+                    <p class="text-[25px] underline"> Sub tasks </p>
+                    <div id="new_sub_tasks_tempo" class="flex flex-col  border-[#1e272e] divide-y-[1px] divide-[#1e272e] rounded-lg"></div>
+
+                    
+
+                    <div class="my-2 cursor-pointer flex flex-row items-center hover:text-[#7b68ee] transition-all 300 ease-in-out " id="create_sub_task_input" > <%- include('../icons/add_full.svg') %>  &nbsp;&nbsp; add subtask press to add input </div>
 
 
                    

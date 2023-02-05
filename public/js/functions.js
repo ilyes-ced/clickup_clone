@@ -54,6 +54,9 @@ const clicked_type_in_list = document.getElementById('clicked_type_in_list')
 
 const task_category_toggle_task_modal_value = document.getElementById('task_category_toggle_task_modal_value')
 const task_priority_toggle_task_modal_value = document.getElementById('task_priority_toggle_task_modal_value')
+const task_type_toggle_task_modal_value = document.getElementById('task_type_toggle_task_modal_value')
+const task_tags_toggle_task_modal_value = document.getElementById('task_tags_toggle_task_modal_value')
+const task_progress_toggle_task_modal_value = document.getElementById('task_progress_toggle_task_modal_value')
 
 
 const submit_create_task = document.getElementById('submit_create_task')
