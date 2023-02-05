@@ -11,10 +11,12 @@
 
                 <div class="flex flex-col overflow-y-auto relative space-y-6">
                     <div class="flex flex-row py-2 items-center space-x-4">
-                        <div class="task_category_toggle_task_modal border hover:border-white rounded-sm border-transparent p-0.5 self-center cursor-pointer">    
-                            <div class="h-3 w-3 bg-white rounded-sm self-center "></div>
-                            <input id="task_category_toggle_task_modal_value" type="hidden" name="">
+                        <div class="task_category_toggle_task_modal border rounded-sm border-transparent p-0.5 self-center cursor-pointer"   onmouseover="this.style.borderColor='<%= user_data.categories[0].color  %>';" onmouseout="this.style.borderColor='rgba(0,0,0,0)';" >    
+                            <div class="h-3 w-3  rounded-sm self-center " style="background-color: <%= user_data.categories[0].color %>; "  ></div>
+                            <input id="task_category_toggle_task_modal_value" type="hidden" name="" value="<%= user_data.categories[0]._id  %>">
                         </div>
+
+                        
                         <div class="absolute hidden left-1 top-5 bg-[#2b343b] h-32 w-32 p-2 border border-[#1e272e] "  id="in_list_categories">
                             <div class=" h-full overflow-y-scroll  ">
                                 <% if(user_data.categories.length == 0){ %>
@@ -34,7 +36,7 @@
                             categories here
                         </div>
                         <input class="bg-transparent p-2 w-full outline-none mx-2" type="text" id="name_create_task" placeholder="create task" required>
-                        <div class="text-xl p-2 hover:bg-[#1e272e] hover:text-[#7c68ee] cursor-pointer rounded-full">
+                        <div class="text-xl p-2 hover:bg-[#1e272e] hover:text-[#7c68ee] cursor-pointer rounded-full" id="close_create_task_modal">
                             <%- include('../icons/close.svg') %>
                         </div>
                     </div>

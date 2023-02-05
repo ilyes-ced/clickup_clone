@@ -354,14 +354,12 @@ const submit_in_list_task = () => {
     
     console.log(data)
     
-    http_request('/create_task_in_modal', 'POST', 'hello' ).onreadystatechange = function() {
+    http_request('/create_task_in_modal', 'POST', data ).onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             json = JSON.parse(this.response)
-            name_create_list.value=""
-            console.log(json)
+
             if(json.status == 'success'){
-                success_modal.classList.remove('hidden')
-                show_success_modal()
+                
             }else if(json.status == 'denied'){
                 alert('error')
             }else{

@@ -106,7 +106,9 @@ toggle_in_list_types.addEventListener('click', (event) => {
     in_list_types.classList.toggle('hidden')
 })
 
-
+close_create_task_modal.addEventListener('click', (event) => {
+    create_task_modal.classList.add('hidden')
+})
 
 
 

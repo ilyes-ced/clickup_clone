@@ -107,12 +107,9 @@ router.get('/register',(req, res) => {
     res.render('register')
 })
 
-
 router.post('/login',auth_controller.login)
 router.post('/register',auth_controller.register)
 router.post('/logout',auth_controller.logout)
-
-
 
 router.post('/create_list', Workspace_controller.create_list)
 router.post('/create_space', Workspace_controller.create_space)
